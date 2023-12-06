@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "HARLOWSI";
+	src: url("HARLOWSI.TTF");
+}
+
+body .title {
+	font-family: "HARLOWSI";
+	font-size: 100px;
+}
+
+.container {
+	width: 1000px;
+	margin: auto;
+}
+
+.title {
+	font-size: 50;
+}
+
+.titleImg {
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+.login {
+	margin-right: 10px;
+}
+
+a {
+	text-decoration-line: none;
+}
+
+.line {
+	height: 10px;
+	background-color: LightGray;
+	border: 0;
+}
+
+.pIcon, .bImgDiv, .nImgDiv {
+	display: flex;
+}
+
+.iicon, .Img {
+	flex: 1;
+	margin-top: 20px;
+}
+
+.iiconName {
+	flex: 1;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.beest, .neew {
+	margin-top: 200px;
+	font-size: 30px;
+	font-family: "HARLOWSI";
+}
+
+.bImgDiv {
+	margin-bottom: 120px;
+}

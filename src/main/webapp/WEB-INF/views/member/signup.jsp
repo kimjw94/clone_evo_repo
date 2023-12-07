@@ -7,29 +7,33 @@
 <title>Insert title here</title>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+<script type="text/javascript">
 	function btn_submit() {
 
-		var m_id = $("#m_id").val();
-		var m_pw = $("#m_pw").val();
-		var m_name = $("#m_name").val();
+		var m_id = document.getElementById("m_id");
+		var m_pw = document.getElementById("m_pw");
+		var m_pwcheck = document.getElementById("m_pwcheck");
+		var m_name = document.getElementById("m_name");
 
-		m_id = $.trim(m_id);
-		m_pw = $.trim(m_pw);
-		m_name = $.trim(m_name);
-		if (m_id == "") {
+		if ((m_id.value) == "") {
 			alert("아이디를 입력해주세요.");
-			$("#m_id").focus();
+			m_id.focus();
 			return false;
 		}
-		if (m_pw == "") {
+		if ((m_pw.value) == "") {
 			alert("비밀번호를 입력해주세요.");
-			$("#m_pw").focus();
+			m_pw.focus();
 			return false;
 		}
-		if (m_name == "") {
+		if ((m_name.value) == "") {
 			alert("이름을 입력해주세요.");
-			$("#m_name").focus();
+			m_name.focus();
+			return false;
+		}
+		if ((m_pw.value) != (m_pwcheck.value)) {
+			alert("비밀번호가 동일하지 않습니다.");
+			m_pwcheck.focus();
+			
 			return false;
 		}
 
@@ -91,7 +95,7 @@
 </script>
 </head>
 <body>
-	<form action="">
+	<form action="member.signup" method="post" onsubmit="return btn_submit();">
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
@@ -107,6 +111,11 @@
 				<th><label for="m_pw">PW</label></th>
 				<td><input type="password" name="m_pw" id="m_pw"
 					placeholder="Password" class=""></td>
+			</tr>
+			<tr>
+				<th><label for="m_pwcheck">PW확인</label></th>
+				<td><input type="password" name="m_pwcheck" id="m_pwcheck"
+					placeholder="Password Check" class=""></td>
 			</tr>
 			<tr>
 				<th><label for="m_name">이름</label></th>

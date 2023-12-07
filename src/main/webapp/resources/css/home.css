@@ -73,3 +73,12 @@ a {
 .bImgDiv {
 	margin-bottom: 120px;
 }
+
+.footer {
+	color: gray;
+	padding: 20px;
+}
+
+.footerHr {
+	margin-top: 200px;
+}

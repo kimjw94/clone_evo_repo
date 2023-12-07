@@ -11,22 +11,21 @@ public class MemberController {
 	
 	@RequestMapping(value="/signup.buyerorseller",method=RequestMethod.GET)
 	public String signupBuyerOrSeller(HttpServletRequest req) {
-		
-		return "member/buyerOrSeller";
-		
+		req.setAttribute("cp", "member/buyerOrseller.jsp");
+		return "index";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginPage(HttpServletRequest req) {
+		req.setAttribute("cp", "member/loginPage.jsp");
 		
-		
-		return "member/loginPage";
+		return "index";
 	}
 	
 	@RequestMapping(value = "/member.b_signup.go", method = RequestMethod.GET)
 	public String buyerSignupPage(HttpServletRequest req) {
-		
-		return "member/b_signup";
+		req.setAttribute("cp", "member/b_signup.jsp");
+		return "index";
 	}
 	
 //	@RequestMapping(value = "/member.b_signup", method = RequestMethod.POST)
@@ -37,8 +36,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member.s_signup.go", method = RequestMethod.GET)
 	public String sellerSignupPage(HttpServletRequest req) {
-		
-		return "member/s_signup";
+		req.setAttribute("cp", "member/s_signup.jsp");
+		return "index";
 	}
 	
 //	@RequestMapping(value = "/member.s_signup", method = RequestMethod.POST)

@@ -9,13 +9,6 @@
 </head>
 <body>
 	<div class="container">
-		<div align="center">
-			<a href="" class="title">evo</a>
-			<div class="login" align="right">
-				<a href="">Login</a>
-			</div>
-		</div>
-		<hr/>
 		<div class="titleImg" align="center">
 			<img src="./resources/css/img/main.PNG" width="800px" height="200px">
 		</div>

@@ -24,7 +24,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/member.b_signup.go", method = RequestMethod.GET)
 	public String buyerSignupPage(HttpServletRequest req) {
-		req.setAttribute("cp", "member/b_signup.jsp");
+		req.setAttribute("cp", "member/b_signup.jsp"); 
 		return "index";
 	}
 	

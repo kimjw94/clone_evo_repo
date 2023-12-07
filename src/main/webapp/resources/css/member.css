@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+/* buyerOrSeller */
+
+#BuyerSignUpBtn{
+	width: 150px;
+	height: 80px;
+}
+#SellerSignUpBtn{
+	width: 150px;
+	height:80px;
+}
+
+.bContainer {
+	display: flex;
+}
+
+#buyer, #seller {
+	flex: 1;
+}
+
+
+/* loginPage */
+#tTitle {
+	font-size: 60px;
+	padding: 50px;
+}
+
+.lDiv {
+	padding: 20px;
+}
+
+.lBtn {
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.btn-black {
+	position: relative;
+	color: #000;
+	z-index: 2;
+  	line-height: 40px;
+  	padding: 0;
+  	width: 80px;
+}
+
+.btn-black:hover {
+	border: none;
+}
+
+.btn-black:before,
+.btn-black:after {
+	 position: absolute;
+	 content: "";
+	 width: 0%;
+	 height: 0%;
+	 border: 2px solid;
+	 z-index: -1;
+	 transition: all 0.3s ease;
+}
+
+.btn-black:before {
+  	top: 0;
+	left: 0;
+	border-bottom-color: transparent;
+	border-right-color: transparent;
+	border-top-color: #000;
+	border-left-color: #000;
+}
+
+.btn-black:after {
+	bottom: 0;
+	right: 0;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-bottom-color: #000;
+	border-right-color: #000;
+}
+
+.btn-black:hover:before, .btn-black:hover:after {
+	border-color: #000;
+	height: 100%;
+	width: 100%;
+}
+
+
+input {
+	width: 250px;
+	height: 30px;
+}
+
+.searchIW a {
+	font-size: 15px;
+}
+
+#signupA {
+	color: gray;	
+	text-decoration: underline;
+}
+

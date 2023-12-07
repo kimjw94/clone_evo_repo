@@ -7,21 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div align="center"> <h1>로그인</h1></div>
+	<div align="center" class="title" id="tTitle"> Login </div>
 	<form action="" method="post">
-	<div align="center">
-		<input placeholder="ID" align="center">
-		<p>
-			<input placeholder="PW" align="center">
-		<p>
-		<button> Login </button>
-	</div>
+		<div align="center" class="lDiv">
+			<input placeholder="ID">	<p>
+		</div>
+		<div align="center" class="lDiv">
+			<input placeholder="PW">	<p>
+		</div>
+		<div align="center" class="lBtn">
+			<button class="btn-black"> Login </button>
+		</div>
 	</form>
-	<div align="center">
-	<a href=""> 아이디 찾기</a> <a href="">비밀번호 찾기</a> <p>
+	<div class="searchIW" align="center">
+		<a href="" class="nfont"> 아이디 찾기</a> <a href="" class="nfont">비밀번호 찾기</a> <p>
 	</div>
 	<div align="center">
-	<a href="signup.buyerorseller" align="center"> 아직 회원이 아니신가요? </a>
+		<a href="signup.buyerorseller" id="signupA"> 아직 회원이 아니신가요? </a>
 	</div>	
 
 

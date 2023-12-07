@@ -39,17 +39,19 @@ function btn_submit(){
 </head>
 <body>
 	<form action="">
-		<table align="center">
-			<caption>
-				<h1>회원가입</h1>
-			</caption>
+		<table class="s_signup" align="center">
+			<tr>
+				<td class="title" id="tTitle" align="center" colspan="4">
+					Signup_seller
+				</td>
+			</tr>
 			<tr>
 				<th>
 					<label for="s_id">ID</label>
 				</th>
 				<td>
-					<input type="text" name="s_id" id="s_id" placeholder="아이디 입력" class="">
-					<button>중복 확인</button>
+					<input type="text" name="s_id" id="s_id" placeholder="ID" class="">
+					<button class="btn-black">중복 확인</button>
 				</td>
 			</tr>	
 			<tr>
@@ -57,7 +59,7 @@ function btn_submit(){
 					<label for="s_pw">PW</label>
 				</th>
 				<td>
-					<input type="password" name="s_pw" id="s_pw" placeholder="비밀번호 입력" class="">
+					<input type="password" name="s_pw" id="s_pw" placeholder="Password" class="">
 				</td>
 			</tr>	
 			<tr>
@@ -65,7 +67,7 @@ function btn_submit(){
 					<label for="s_name">회사명</label>
 				</th>
 				<td>
-					<input type="text" name="s_name" id="s_name" class="">
+					<input type="text" name="s_name" id="s_name" placeholder="이름" class="">
 				</td>
 			</tr>	
 			<tr>
@@ -73,7 +75,7 @@ function btn_submit(){
 					<label for="b_phone">연락처</label>
 				</th>
 				<td>
-					<input type="text" name="b_phone" id="b_phone" class=""> ex) 010-xxxx-xxxx
+					<input type="text" name="b_phone" id="b_phone" class=""  placeholder="ex) 010-xxxx-xxxx">
 				</td>
 			</tr>
 			<tr>
@@ -81,8 +83,8 @@ function btn_submit(){
 					<label for="s_address">주소</label>
 				</th>
 				<td>
-					<input type="text" name="s_address" id="s_address" class="">
-					<button>검색</button>
+					<input type="text" name="s_address" id="s_address" class="" placeholder="주소">
+					<button class="btn-black">검색</button>
 				</td>
 			</tr>
 			<tr>
@@ -90,21 +92,19 @@ function btn_submit(){
 					<label for="s_bank">계좌</label>
 				</th>
 				<td>
-					<select>
+					<select class="selectB">
 						<option>농협</option>
 						<option>카카오</option>
 						<option>우리</option>
 						<option>국민</option>
 					</select>
 					
-					<input type="text" name="s_bank" id="s_bank" class="">
+					<input type="text" name="s_bank" id="s_bank" class="" placeholder="계좌번호">
 				</td>
 			</tr>
 			<tr>
-		<td colspan="2" align="center">
-		<button>가입</button>
-
-		<button onclick="cancle()">취소</button>
+		<td colspan="2" align="center" class="signupTd">
+		<button class="btn-black" id="signupBtn">가입</button>
 		</td>
 	</tr>	
 		</table>

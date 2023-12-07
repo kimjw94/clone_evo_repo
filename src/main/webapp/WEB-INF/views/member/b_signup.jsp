@@ -39,17 +39,19 @@ function btn_submit(){
 </head>
 <body>
 	<form id="frm" action="member.b_signup" onsubmit="return btn_submit();" enctype="multipart/form-data" method="post">
-		<table align="center">
-			<caption>
-				<h1>회원가입</h1>
-			</caption>
+		<table class="b_signup" align="center">
+			<tr>
+				<td class="title" id="tTitle" align="center" colspan="4">
+					Signup
+				</td>
+			</tr>
 			<tr>
 				<th>
 					<label for="b_id">ID</label>
 				</th>
 				<td>
-					<input type="text" name="b_id" id="b_id" placeholder="아이디 입력" class="">
-					<button>중복 확인</button>
+					<input type="text" name="b_id" id="b_id" placeholder="ID" class="">
+					<button class="btn-black">중복 확인</button>
 				</td>
 			</tr>	
 			<tr>
@@ -57,7 +59,7 @@ function btn_submit(){
 					<label for="b_pw">PW</label>
 				</th>
 				<td>
-					<input type="password" name="b_pw" id="b_pw" placeholder="비밀번호 입력" class="">
+					<input type="password" name="b_pw" id="b_pw" placeholder="Password" class="">
 				</td>
 			</tr>	
 			<tr>
@@ -65,7 +67,7 @@ function btn_submit(){
 					<label for="b_name">이름</label>
 				</th>
 				<td>
-					<input type="text" name="b_name" id="b_name" class="">
+					<input type="text" name="b_name" id="b_name" placeholder="이름" class="">
 				</td>
 			</tr>	
 			<tr>
@@ -73,8 +75,8 @@ function btn_submit(){
 					<label for="b_alias">닉네임</label>
 				</th>
 				<td>
-					<input type="text" name="b_alias" id="b_alias" class="">
-					<button>중복 확인</button>
+					<input type="text" name="b_alias" id="b_alias" placeholder="닉네임" class="">
+					<button class="btn-black">중복 확인</button>
 				</td>
 			</tr>
 			<tr>
@@ -82,14 +84,12 @@ function btn_submit(){
 					<label for="b_phone">연락처</label>
 				</th>
 				<td>
-					<input type="text" name="b_phone" id="b_phone" class=""> ex) 010-xxxx-xxxx
+					<input type="text" name="b_phone" id="b_phone" class="" placeholder="ex) 010-xxxx-xxxx">
 				</td>
 			</tr>
 			<tr>
-		<td colspan="2" align="center">
-		<button>가입</button>
-
-		<button onclick="cancle()">취소</button>
+		<td colspan="2" align="center" class="signupTd">
+			<button class="btn-black" id="signupBtn">회원가입</button>
 		</td>
 	</tr>			
 		</table>

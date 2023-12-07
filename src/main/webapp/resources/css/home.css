@@ -5,9 +5,18 @@
 	src: url("HARLOWSI.TTF");
 }
 
+@font-face {
+	font-famliy: "aLight";
+	src: url("aLight.TTF");
+}
+
 body .title {
 	font-family: "HARLOWSI";
 	font-size: 100px;
+}
+
+body a {
+	color: black;
 }
 
 .container {
@@ -24,7 +33,12 @@ body .title {
 	margin-bottom: 100px;
 }
 
-.login {
+.nfont {
+	font-famliy: "aLight";
+	font-size: 20px;
+}
+
+#login {
 	margin-right: 10px;
 }
 

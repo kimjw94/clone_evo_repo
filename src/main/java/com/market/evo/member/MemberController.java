@@ -45,6 +45,17 @@ public class MemberController {
 //		mDAO.s_singup(m, req);
 //		return "home";
 //	}
+	
+	@RequestMapping(value = "member.addressSearch", method = RequestMethod.GET)
+	public String addressSearch(HttpServletRequest req) {
+		return "member/addressSearch";
+	}
+	
+	@RequestMapping(value = "/member.signup.go", method = RequestMethod.GET)
+	public String signupPage(HttpServletRequest req) {
+		req.setAttribute("cp", "member/signup.jsp");
+		return "index";
+	}
 
 
 	

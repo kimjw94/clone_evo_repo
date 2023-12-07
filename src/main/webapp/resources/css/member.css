@@ -1,16 +1,14 @@
 @charset "UTF-8";
-@font-face {
-	font-famliy: "aLight";
-	src: url("aLight.TTF");
-}
 
 /* buyerOrSeller */
 
-#BuyerSignUpBtn, #SellerSignUpBtn{
+#BuyerSignUpBtn{
 	width: 150px;
 	height: 80px;
-	font-family: "aLight";	
-	font-size: 25px;
+}
+#SellerSignUpBtn{
+	width: 150px;
+	height:80px;
 }
 
 .bContainer {
@@ -34,18 +32,7 @@
 
 .lBtn {
 	padding: 20px;
-	margin-bottom: 20px;	
-}
-
-#blogin {
-	width: 80px;
-	font-size: 18px;
-	font-family: "aLight";	
-}
-
-.searchIW a {
-	padding: 30px;
-	font-size: 15px;
+	margin-bottom: 20px;
 }
 
 .btn-black {
@@ -54,6 +41,7 @@
 	z-index: 2;
   	line-height: 40px;
   	padding: 0;
+  	width: 80px;
 }
 
 .btn-black:hover {
@@ -101,42 +89,12 @@ input {
 	height: 30px;
 }
 
+.searchIW a {
+	font-size: 15px;
+}
 
 #signupA {
 	color: gray;	
 	text-decoration: underline;
 }
 
-
-/* signup */
-.b_signup, .s_signup {
-	font-family: "aLight";	
-}
-
-
-.b_signup th, .s_signup th {
-	padding: 25px;
-}
-
-body:placeholer {
-	font-family: "aLight";
-}
-
-.b_signup button, .s_signup button {
-	height: 38px;
-	width: 65px;
-	text-align: center;
-	font-weight: bold;
-}
-
-.signupTd {
-	padding: 20px;	
-}
-
-#signupBtn {
-	width: 100px;
-}
-
-.selectB {
-	height: 35px;
-}

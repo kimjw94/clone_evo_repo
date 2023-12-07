@@ -6,7 +6,7 @@
 }
 
 @font-face {
-	font-family: "aLight";
+	font-famliy: "aLight";
 	src: url("aLight.TTF");
 }
 
@@ -24,6 +24,9 @@ body a {
 	margin: auto;
 }
 
+.title {
+	font-size: 50;
+}
 
 .titleImg {
 	margin-top: 100px;
@@ -31,7 +34,7 @@ body a {
 }
 
 .nfont {
-	font-family: "aLight";
+	font-famliy: "aLight";
 	font-size: 20px;
 }
 

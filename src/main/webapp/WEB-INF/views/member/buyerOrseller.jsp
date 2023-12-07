@@ -11,8 +11,10 @@
 <body>
 	<div align="center" class="title" id="tTitle"> Signup</div>
 
-	<div align="center" class="nfont">
+	<div align="center">
+		<h4>
 			EVO 에 오신 것을 환영합니다.<br> 지금 회원 가입하신 후 EVO를 통해 멋쟁이가 됩시다!
+		</h4>
 	</div>
 	<div class="bContainer">
 		<div class="lBtn" align="center" id="buyer">

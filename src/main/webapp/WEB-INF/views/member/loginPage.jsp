@@ -16,7 +16,7 @@
 			<input placeholder="PW">	<p>
 		</div>
 		<div align="center" class="lBtn">
-			<button class="btn-black" id="blogin"> Login </button>
+			<button class="btn-black"> Login </button>
 		</div>
 	</form>
 	<div class="searchIW" align="center">
@@ -25,9 +25,6 @@
 	<div align="center">
 		<a href="signup.buyerorseller" id="signupA"> 아직 회원이 아니신가요? </a>
 	</div>	
-	<div align="right">
-		<a href="">판매자 로그인</a>
-	</div>
 
 
 

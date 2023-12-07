@@ -21,6 +21,11 @@
 		<div>
 			<jsp:include page="${cp }"/>
 		</div>
+		<hr class="footerHr"/>
+		<div class="footer" align="center">
+			evo <p>
+			문의 : 0000 - 0000
+		</div>
 	</div>
 </body>
 </html>

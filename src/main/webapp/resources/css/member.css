@@ -4,23 +4,6 @@
 	src: url("aLight.TTF");
 }
 
-/* buyerOrSeller */
-
-#BuyerSignUpBtn, #SellerSignUpBtn{
-	width: 150px;
-	height: 80px;
-	font-family: "aLight";	
-	font-size: 25px;
-}
-
-.bContainer {
-	display: flex;
-}
-
-#buyer, #seller {
-	flex: 1;
-}
-
 
 /* loginPage */
 #tTitle {
@@ -109,20 +92,20 @@ input {
 
 
 /* signup */
-.b_signup, .s_signup {
+.m_signup {
 	font-family: "aLight";	
 }
 
 
-.b_signup th, .s_signup th {
+.m_signup th {
 	padding: 25px;
 }
 
-body:placeholer {
+body:placeholder {
 	font-family: "aLight";
 }
 
-.b_signup button, .s_signup button {
+.m_signup button {
 	height: 38px;
 	width: 65px;
 	text-align: center;

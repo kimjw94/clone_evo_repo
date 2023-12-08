@@ -10,7 +10,7 @@
 		#{m_company_address_num,jdbcType=NUMERIC},
 		#{m_company_address_kor,jdbcType=VARCHAR},
 		#{m_account_name,jdbcType=VARCHAR},
-		#{m_account_number,jdbcType=VARCHAR},#{m_serial_no,jdbcType=NUMERIC})
+		#{m_account_number,jdbcType=VARCHAR})
 	</insert>
 	
 	<select id="GetIDForLogin" resultType="com.market.evo.member.Member">

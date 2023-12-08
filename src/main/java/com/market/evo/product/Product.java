@@ -5,52 +5,53 @@ import java.math.BigDecimal;
 import oracle.sql.DATE;
 
 public class Product {
-	private BigDecimal p_serialNum;
-	private BigDecimal p_productNum;
-	private int p_categoryCode;
+	private String p_m_id;
+	private BigDecimal p_product_no;
+	private int p_category_code;
 	private int p_price;
 	private String p_info;
 	private String p_photo;
 	private DATE p_addDay;
 	private BigDecimal p_views;
 	
+	
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-	public Product(BigDecimal p_serialNum, BigDecimal p_productNum, int p_categoryCode, int p_price, String p_info,
+	
+	
+	public Product(String p_m_id, BigDecimal p_product_no, int p_category_code, int p_price, String p_info,
 			String p_photo, DATE p_addDay, BigDecimal p_views) {
 		super();
-		this.p_serialNum = p_serialNum;
-		this.p_productNum = p_productNum;
-		this.p_categoryCode = p_categoryCode;
+		this.p_m_id = p_m_id;
+		this.p_product_no = p_product_no;
+		this.p_category_code = p_category_code;
 		this.p_price = p_price;
 		this.p_info = p_info;
 		this.p_photo = p_photo;
 		this.p_addDay = p_addDay;
 		this.p_views = p_views;
 	}
-	
-	
-	public BigDecimal getP_serialNum() {
-		return p_serialNum;
+
+
+	public String getP_m_id() {
+		return p_m_id;
 	}
-	public void setP_serialNum(BigDecimal p_serialNum) {
-		this.p_serialNum = p_serialNum;
+	public void setP_m_id(String p_m_id) {
+		this.p_m_id = p_m_id;
 	}
-	public BigDecimal getP_productNum() {
-		return p_productNum;
+	public BigDecimal getP_product_no() {
+		return p_product_no;
 	}
-	public void setP_productNum(BigDecimal p_productNum) {
-		this.p_productNum = p_productNum;
+	public void setP_product_no(BigDecimal p_product_no) {
+		this.p_product_no = p_product_no;
 	}
-	public int getP_categoryCode() {
-		return p_categoryCode;
+	public int getP_category_code() {
+		return p_category_code;
 	}
-	public void setP_categoryCode(int p_categoryCode) {
-		this.p_categoryCode = p_categoryCode;
+	public void setP_category_code(int p_category_code) {
+		this.p_category_code = p_category_code;
 	}
 	public int getP_price() {
 		return p_price;
@@ -82,4 +83,5 @@ public class Product {
 	public void setP_views(BigDecimal p_views) {
 		this.p_views = p_views;
 	}
+	
 }

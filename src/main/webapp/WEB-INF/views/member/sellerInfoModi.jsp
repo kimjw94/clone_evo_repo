@@ -7,43 +7,7 @@
 <title>Insert title here</title>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-	function btn_submit() {
-
-		var m_id = document.getElementById("m_id");
-		var m_pw = document.getElementById("m_password");
-		var m_pwcheck = document.getElementById("m_pwcheck");
-		var m_name = document.getElementById("m_name");
-
-		if ((m_id.value) == "") {
-			alert("아이디를 입력해주세요.");
-			m_id.focus();
-			return false;
-		}
-		
-		if ((m_pw.value) == "") {
-			alert("비밀번호를 입력해주세요.");
-			m_pw.focus();
-			return false;
-		}
-		
-		if ((m_name.value) == "") {
-			alert("이름을 입력해주세요.");
-			m_name.focus();
-			return false;
-		}
-		
-		if ((m_pw.value) != (m_pwcheck.value)) {
-			alert("비밀번호가 동일하지 않습니다.");
-			m_pwcheck.focus();
-			
-			return false;
-		}
-
-		return true;
-
-	}
-
-	function address_search() {
+function address_search() {
 
 		new daum.Postcode(
 				{
@@ -97,46 +61,24 @@
 </script>
 </head>
 <body>
-	<form action="member.signup" method="post" >
+	<form action="member.sellerInfoModi" method="post">
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
-					Signup</td>
+					SellerInfo</td>
 			</tr>
 			<tr>
-				<th><label for="m_id">ID</label></th>
-				<td><input type="text" name="m_id" id="m_id" placeholder="ID"
-					class="">
-					<button class="btn-black">중복 확인</button></td>
+				<th><label for="m_id">회사명</label></th>
+				<td><input type="text" name="m_company_name"
+					id="m_company_name" placeholder="회사명" class=""></td>
 			</tr>
 			<tr>
-				<th><label for="m_pw">PW</label></th>
-				<td><input type="password" name="m_password" id="m_pw"
+				<th><label for="m_accunt">계좌번호</label></th>
+				<td><input type="password" name="m_pw" id="m_pw"
 					placeholder="Password" class=""></td>
 			</tr>
 			<tr>
-				<th><label for="m_pwcheck">PW확인</label></th>
-				<td><input type="password" name="m_pwcheck" id="m_pwcheck"
-					placeholder="Password Check" class=""></td>
-			</tr>
-			<tr>
-				<th><label for="m_name">이름</label></th>
-				<td><input type="text" name="m_name" id="m_name"
-					placeholder="이름" class=""></td>
-			</tr>
-			<tr>
-				<th><label for="m_nickname">닉네임</label></th>
-				<td><input type="text" name="m_alias" id="m_alias"
-					placeholder="닉네임" class="">
-					<button class="btn-black">중복 확인</button></td>
-			</tr>
-			<tr>
-				<th><label for="m_phone">연락처</label></th>
-				<td><input type="text" name="m_phone" id="m_phone" class=""
-					placeholder="ex) 010-xxxx-xxxx"></td>
-			</tr>
-			<tr>
-				<th><label for="m_address">주소</label></th>
+				<th><label for="m_address">회사주소</label></th>
 				<td><input type="text" name="m_address1" id="address input1"
 					class="" readonly="readonly">
 					<button type="button" onclick="address_search()" class="btn-black">검색</button>
@@ -154,7 +96,8 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button onclick="btn_submit()" class="btn-black" id="signupBtn">가입</button>
+					<button type="button" onclick="btn_submit()" class="btn-black"
+						id="signupBtn">등록</button>
 
 				</td>
 			</tr>

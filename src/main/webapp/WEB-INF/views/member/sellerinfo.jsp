@@ -10,6 +10,7 @@
 <script type="text/javascript">
 	function btn_submit() {
 
+
 		var m_pw = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
@@ -89,6 +90,7 @@
 
 	}
 	function sellerInfo() {
+
 
 		var w = (window.screen.width / 2) - 300;
 		var h = (window.screen.height / 2) - 350;

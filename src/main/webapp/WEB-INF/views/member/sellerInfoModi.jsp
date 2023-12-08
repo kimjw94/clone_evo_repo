@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/member.css">
-<script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-	function address_search() {
+function address_search() {
+
 
 		new daum.Postcode(
 				{
@@ -97,6 +97,7 @@
 			</tr>
 			<tr>
 				<th></th>
+
 				<td><input type="text" name="m_company_address2"
 					id="address input2" class="" readonly="readonly"></td>
 			</tr>
@@ -108,7 +109,6 @@
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
 					<button class="btn-black" id="signupBtn">등록</button>
-
 				</td>
 			</tr>
 		</table>

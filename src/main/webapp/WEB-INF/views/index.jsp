@@ -19,7 +19,7 @@
 					<a href="">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
 				</c:if>
 				<c:if test="${sessionScope.loginMember.m_id == null }">
-					<a href="member.login">Login</a>
+					<a href="login">Login</a>
 				</c:if>
 			</div>
 		</div>

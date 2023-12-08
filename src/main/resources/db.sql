@@ -13,8 +13,7 @@ Create table EVO_MEMBER(
 	m_company_address_num Number(7),
 	m_company_address_kor varchar2(50 char),
 	m_account_name varchar2(10 char),
-	m_account_number varchar2(20 char),
-	m_serial_no number(10)
+	m_account_number varchar2(20 char)
 	);
 	
 drop table EVO_MEMBER;

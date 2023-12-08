@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,17 +14,23 @@
 		<div align="center">
 			<a href="/evo/" class="title">evo</a>
 			<div class="nfont" id="login" align="right">
-				<a href="login">Login</a>
+				
+				<c:if test="${sessionScope.loginMember.m_id != null }">
+					<a href="">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
+				</c:if>
+				<c:if test="${sessionScope.loginMember.m_id == null }">
+					<a href="member.login">Login</a>
+				</c:if>
 			</div>
 		</div>
-		<hr/>
+		<hr />
 		<div>
-			<jsp:include page="${cp }"/>
+			<jsp:include page="${cp }" />
 		</div>
-		<hr class="footerHr"/>
+		<hr class="footerHr" />
 		<div class="footer" align="center">
-			evo <p>
-			문의 : 0000 - 0000
+			evo
+			<p>문의 : 0000 - 0000
 		</div>
 	</div>
 </body>

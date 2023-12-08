@@ -1,6 +1,5 @@
 package com.market.evo.member;
 
-import java.math.BigDecimal;
 
 public class Member {
 	private String m_id;
@@ -8,24 +7,23 @@ public class Member {
 	private String m_name;
 	private String m_alias;
 	private String m_phone;
-	private BigDecimal m_address_num;
+	private int m_address_num;
 	private String m_address_kor;
-	private BigDecimal m_buy_sell;
+	private int m_buy_sell;
 	private String m_company_name;
-	private BigDecimal m_company_address_num;
+	private int m_company_address_num;
 	private String m_company_address_kor;
 	private String m_account_name;
 	private String m_account_number;
-	private BigDecimal m_serial_no;
+	private int m_serial_no;
 	
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(String m_id, String m_password, String m_name, String m_alias, String m_phone,
-			BigDecimal m_address_num, String m_address_kor, BigDecimal m_buy_sell, String m_company_name,
-			BigDecimal m_company_address_num, String m_company_address_kor, String m_account_name,
-			String m_account_number, BigDecimal m_serial_no) {
+	public Member(String m_id, String m_password, String m_name, String m_alias, String m_phone, int m_address_num,
+			String m_address_kor, int m_buy_sell, String m_company_name, int m_company_address_num,
+			String m_company_address_kor, String m_account_name, String m_account_number, int m_serial_no) {
 		super();
 		this.m_id = m_id;
 		this.m_password = m_password;
@@ -83,11 +81,11 @@ public class Member {
 		this.m_phone = m_phone;
 	}
 
-	public BigDecimal getM_address_num() {
+	public int getM_address_num() {
 		return m_address_num;
 	}
 
-	public void setM_address_num(BigDecimal m_address_num) {
+	public void setM_address_num(int m_address_num) {
 		this.m_address_num = m_address_num;
 	}
 
@@ -99,11 +97,11 @@ public class Member {
 		this.m_address_kor = m_address_kor;
 	}
 
-	public BigDecimal getM_buy_sell() {
+	public int getM_buy_sell() {
 		return m_buy_sell;
 	}
 
-	public void setM_buy_sell(BigDecimal m_buy_sell) {
+	public void setM_buy_sell(int m_buy_sell) {
 		this.m_buy_sell = m_buy_sell;
 	}
 
@@ -115,11 +113,11 @@ public class Member {
 		this.m_company_name = m_company_name;
 	}
 
-	public BigDecimal getM_company_address_num() {
+	public int getM_company_address_num() {
 		return m_company_address_num;
 	}
 
-	public void setM_company_address_num(BigDecimal m_company_address_num) {
+	public void setM_company_address_num(int m_company_address_num) {
 		this.m_company_address_num = m_company_address_num;
 	}
 
@@ -147,15 +145,15 @@ public class Member {
 		this.m_account_number = m_account_number;
 	}
 
-	public BigDecimal getM_serial_no() {
+	public int getM_serial_no() {
 		return m_serial_no;
 	}
 
-	public void setM_serial_no(BigDecimal m_serial_no) {
+	public void setM_serial_no(int m_serial_no) {
 		this.m_serial_no = m_serial_no;
 	}
-	
-	
+
+
 	
 	
 }

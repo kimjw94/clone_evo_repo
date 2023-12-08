@@ -20,21 +20,21 @@ public class MemberController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/member.b_info.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.sellerinfo.go", method = RequestMethod.GET)
 	public String buyerSignupPage(HttpServletRequest req) {
-		req.setAttribute("cp", "member/b_info.jsp"); 
+		req.setAttribute("cp", "member/sellerinfo.jsp"); 
 		return "index";
 	}
 	
 	
-	@RequestMapping(value = "/member.s_info.go", method = RequestMethod.GET)
-	public String sellerSignupPage(HttpServletRequest req) {
-		req.setAttribute("cp", "member/s_info.jsp");
+	@RequestMapping(value = "/member.info.go", method = RequestMethod.GET)
+	public String infoPage(HttpServletRequest req) {
+		req.setAttribute("cp", "member/info.jsp");
 		return "index";
 	}
 	
 	
-	@RequestMapping(value = "member.addressSearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.addressSearch", method = RequestMethod.GET)
 	public String addressSearch(HttpServletRequest req) {
 		return "member/addressSearch";
 	}
@@ -58,5 +58,6 @@ public class MemberController {
 		req.setAttribute("cp","home.jsp");
 		return "index";
 	}
+	
 
 }

@@ -8,13 +8,13 @@
 </head>
 <body>
 	<div align="center" class="title" id="tTitle">Login</div>
-	<form action="" method="post">
+	<form action="member.login" method="post">
 		<div align="center" class="lDiv">
-			<input placeholder="ID">
+			<input name="m_id" placeholder="ID">
 			<p>
 		</div>
 		<div align="center" class="lDiv">
-			<input placeholder="PW">
+			<input name="m_password" placeholder="PW">
 			<p>
 		</div>
 		<div align="center" class="lBtn">

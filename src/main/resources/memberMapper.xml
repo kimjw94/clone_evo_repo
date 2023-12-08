@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.evo.member.MemberMapper">
+	<insert id="Signup" parameterType="com.market.evo.member.Member">
+		insert into EVO_MEMBER
+		values(#{m_id}, #{m_password},#{m_name}, #{m_alias},
+		#{m_phone},#{m_address_num},
+		#{m_address_kor},#{m_buy_sell,jdbcType=NUMERIC},
+		#{m_company_name,jdbcType=VARCHAR},
+		#{m_company_address_num,jdbcType=NUMERIC},
+		#{m_company_address_kor,jdbcType=VARCHAR},
+		#{m_account_name,jdbcType=VARCHAR},
+		#{m_account_number,jdbcType=VARCHAR},#{m_serial_no,jdbcType=NUMERIC})
+	</insert>
+	
+	<select id="GetIDForLogin" resultType="com.market.evo.member.Member">
+		SELECT * FROM EVO_MEMBER WHERE M_ID =#{m_id}
+	</select>
+</mapper>

@@ -20,16 +20,19 @@
 			m_id.focus();
 			return false;
 		}
+		
 		if ((m_pw.value) == "") {
 			alert("비밀번호를 입력해주세요.");
 			m_pw.focus();
 			return false;
 		}
+		
 		if ((m_name.value) == "") {
 			alert("이름을 입력해주세요.");
 			m_name.focus();
 			return false;
 		}
+		
 		if ((m_pw.value) != (m_pwcheck.value)) {
 			alert("비밀번호가 동일하지 않습니다.");
 			m_pwcheck.focus();
@@ -109,7 +112,7 @@
 			</tr>
 			<tr>
 				<th><label for="m_pw">PW</label></th>
-				<td><input type="password" name="m_pw" id="m_pw"
+				<td><input type="password" name="m_password" id="m_pw"
 					placeholder="Password" class=""></td>
 			</tr>
 			<tr>
@@ -123,8 +126,14 @@
 					placeholder="이름" class=""></td>
 			</tr>
 			<tr>
+				<th><label for="m_nickname">닉네임</label></th>
+				<td><input type="text" name="m_alias" id="m_alias"
+					placeholder="닉네임" class="">
+					<button class="btn-black">중복 확인</button></td>
+			</tr>
+			<tr>
 				<th><label for="b_phone">연락처</label></th>
-				<td><input type="text" name="b_phone" id="b_phone" class=""
+				<td><input type="text" name="m_phone" id="m_phone" class=""
 					placeholder="ex) 010-xxxx-xxxx"></td>
 			</tr>
 			<tr>

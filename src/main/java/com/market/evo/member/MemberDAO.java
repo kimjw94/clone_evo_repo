@@ -18,7 +18,7 @@ public class MemberDAO {
 
 		try {
 			// 주소처리
-			System.out.println("통과못함2");
+			
 			int m_address_num = Integer.parseInt(req.getParameter("m_address1"));
 			String m_address_kor = req.getParameter("m_address2") + req.getParameter("m_address3");
 			m.setM_address_num(m_address_num);

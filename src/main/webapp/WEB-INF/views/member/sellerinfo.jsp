@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	function btn_submit() {
 
-		var m_pw = document.getElementById("m_pw");
+		var m_pw = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
 
@@ -90,17 +90,17 @@
 	}
 	function sellerInfo() {
 
-		var w = (window.screen.width / 2) - 200;
-		var h = (window.screen.height / 2) - 200;
+		var w = (window.screen.width / 2) - 300;
+		var h = (window.screen.height / 2) - 350;
 		var url = "member.sellerInfoModi.go"
-		window.open(url, "sellerInfoModi", "width=400,height=400,left=" + w + ",top="
+		window.open(url, "sellerInfoModi", "width=600,height=700,left=" + w + ",top="
 				+ h)
 
 	}
 </script>
 </head>
 <body>
-	<form action="member.s_info" method="post">
+	<form action="member.sellerinfo" method="post">
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
@@ -113,13 +113,13 @@
 			</tr>
 			<tr>
 				<th><label for="m_pw">PW</label></th>
-				<td><input value="${sessionScope.loginMember.m_pw }"
-					type="password" name="m_pw" id="m_pw" placeholder="Password"
+				<td><input value="${sessionScope.loginMember.m_password }"
+					type="password" name="m_passwordw" id="m_pw" placeholder="Password"
 					class=""></td>
 			</tr>
 			<tr>
 				<th><label for="m_pwcheck">PW확인</label></th>
-				<td><input value="${sessionScope.loginMember.m_pw }"
+				<td><input value="${sessionScope.loginMember.m_password }"
 					type="password" name="m_pwcheck" id="m_pwcheck"
 					placeholder="Password Check" class=""></td>
 			</tr>
@@ -130,7 +130,7 @@
 			</tr>
 			<tr>
 				<th><label for="m_nickname">닉네임</label></th>
-				<td><input value="${sessionScope.loginMember.m_nickname }"
+				<td><input value="${sessionScope.loginMember.m_alias }"
 					type="text" name="m_alias" id="m_alias" placeholder="닉네임" class="">
 					<button class="btn-black">중복 확인</button></td>
 			</tr>
@@ -158,11 +158,9 @@
 					class="" placeholder="상세주소"></td>
 			</tr>
 			<tr>
-				<td align="center" class="signupTd">
+				<td colspan="2" align="center" class="signupTd">
 					<button type="button" onclick="btn_submit()" class="btn-black"
 						id="signupBtn">수정</button>
-				</td>
-				<td align="center" class="signupTd">
 					<button type="button" onclick="sellerInfo()" class="btn-black" id="">판매자
 						정보 등록</button>
 				</td>

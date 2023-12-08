@@ -15,7 +15,6 @@ public class Member {
 	private String m_company_address_kor;
 	private String m_account_name;
 	private String m_account_number;
-	private int m_serial_no;
 	
 	public Member() {
 		// TODO Auto-generated constructor stub
@@ -38,7 +37,7 @@ public class Member {
 		this.m_company_address_kor = m_company_address_kor;
 		this.m_account_name = m_account_name;
 		this.m_account_number = m_account_number;
-		this.m_serial_no = m_serial_no;
+		
 	}
 
 	public String getM_id() {
@@ -144,16 +143,5 @@ public class Member {
 	public void setM_account_number(String m_account_number) {
 		this.m_account_number = m_account_number;
 	}
-
-	public int getM_serial_no() {
-		return m_serial_no;
-	}
-
-	public void setM_serial_no(int m_serial_no) {
-		this.m_serial_no = m_serial_no;
-	}
-
-
-	
 	
 }

@@ -5,9 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/home.css">
+<link rel="stylesheet" href="resources/css/member.css">
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 function address_search() {
+
 
 		new daum.Postcode(
 				{
@@ -74,31 +77,38 @@ function address_search() {
 			</tr>
 			<tr>
 				<th><label for="m_accunt">계좌번호</label></th>
-				<td><input type="password" name="m_pw" id="m_pw"
-					placeholder="Password" class=""></td>
+				<td>
+					<input type="text" name="m_account_number" id="m_account_number" placeholder="계좌번호" class="">
+					<select name="m_account_name" id="m_account_name">
+						<option>은행</option>
+						<option>농협</option>
+						<option>카카오</option>
+						<option>우리</option>
+						<option>국민</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th><label for="m_address">회사주소</label></th>
-				<td><input type="text" name="m_address1" id="address input1"
-					class="" readonly="readonly">
+				<td><input type="text" name="m_company_address1"
+					id="address input1" class="" readonly="readonly">
 					<button type="button" onclick="address_search()" class="btn-black">검색</button>
 				</td>
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="text" name="m_address2" id="address input2"
-					class="" readonly="readonly"></td>
+
+				<td><input type="text" name="m_company_address2"
+					id="address input2" class="" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="text" name="m_address3" id="address input3"
-					class="" placeholder="상세주소"></td>
+				<td><input type="text" name="m_company_address3"
+					id="address input3" class="" placeholder="상세주소"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button type="button" onclick="btn_submit()" class="btn-black"
-						id="signupBtn">등록</button>
-
+					<button class="btn-black" id="signupBtn">등록</button>
 				</td>
 			</tr>
 		</table>

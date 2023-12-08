@@ -60,4 +60,9 @@ public class MemberController {
 	}
 	
 
+	@RequestMapping(value="/member.sellerInfoModi.go", method = RequestMethod.GET)
+	public String sellerInfoModi(HttpServletRequest req) {
+		return "member/sellerInfoModi";
+	}
+	
 }

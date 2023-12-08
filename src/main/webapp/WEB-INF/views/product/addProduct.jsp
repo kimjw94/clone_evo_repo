@@ -9,12 +9,11 @@
 <script type="text/javascript">
 $(function() {
 	function dCategory() {
-		var category = $("#category" option:selected).val();
 		
 		$.ajax({
 			type: "POST",
 			url: "product.getDetailCategory",
-			data: {category},
+			data: {p_category_code : $("#category" + "> option:selected").val()},
 			success: function(data) {
 				if(typeof(category) != "undefined") {
 					var list = data;
@@ -24,18 +23,17 @@ $(function() {
 						$("#detailCate").append("<option value=" + list[i].D_CATEGORY_CODE + ">"
 							+ detailCate + "</option>");
 					})
-				else {
-					alert("오류ㅠㅠㅠ");
-					}
-				},
-				error: function(error) {
-					alert(error);
 				}
-			}
+				else { alert("오류ㅠㅠㅠ");}
+				},
+				
+			error: function(error) {
+					alert(error);
+			}	
 		})
 		
 	};
-}
+})
 	
 </script>
 </head>

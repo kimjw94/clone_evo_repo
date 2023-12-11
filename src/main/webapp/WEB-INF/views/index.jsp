@@ -17,7 +17,7 @@
 			<div class="nfont" id="login" align="right">
 				
 				<c:if test="${sessionScope.loginMember.m_id != null }">
-					<a href="">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
+					<a href="myPage">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
 				</c:if>
 				<c:if test="${sessionScope.loginMember.m_id == null }">
 					<a href="login">Login</a>

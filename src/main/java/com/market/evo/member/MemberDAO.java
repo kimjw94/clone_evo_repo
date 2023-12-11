@@ -57,5 +57,18 @@ public class MemberDAO {
 			req.setAttribute("r", "로그인 실패(DB 서버)");
 		}
 	}
+	
+	public void logout(HttpServletRequest req) {
+		try {
+			req.getSession().setAttribute("loginMember", null);
+			req.setAttribute("r", "로그아웃");
+			
+		
+			
+		} catch (Exception e) {
+			req.setAttribute("r", "로그아웃 실패");
+			
+		}
+	}
 
 }

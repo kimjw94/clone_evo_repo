@@ -65,4 +65,18 @@ public class MemberController {
 		return "member/sellerInfoModi";
 	}
 	
+	@RequestMapping(value="myPage", method = RequestMethod.GET)
+	public String myPage(HttpServletRequest req) {
+		
+		req.setAttribute("cp", "member/myPage.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value="/member.logout", method=RequestMethod.GET)
+	public String memberLogout( HttpServletRequest req) {
+		mDAO.logout(req);
+		req.setAttribute("cp", "home.jsp");
+		return "index";
+	}
+	
 }

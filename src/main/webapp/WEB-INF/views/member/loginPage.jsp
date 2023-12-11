@@ -14,7 +14,7 @@
 			<p>
 		</div>
 		<div align="center" class="lDiv">
-			<input name="m_password" placeholder="PW">
+			<input name="m_password" placeholder="PW" type="password">
 			<p>
 		</div>
 		<div align="center" class="lBtn">

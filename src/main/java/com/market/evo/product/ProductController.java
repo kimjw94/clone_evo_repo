@@ -18,7 +18,7 @@ public class ProductController {
 	@Autowired
 	ProductDAO pDAO;
 	
-	@RequestMapping(value="/product.addProduct", method = RequestMethod.GET)
+	@RequestMapping(value="/product.viewAddProduct", method = RequestMethod.GET)
 	public String addProduct(HttpServletRequest req) {
 		pDAO.getCategoryName(req);
 		req.setAttribute("cp", "product/addProduct.jsp");

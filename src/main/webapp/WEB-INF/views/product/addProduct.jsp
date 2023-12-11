@@ -17,12 +17,13 @@
 			var detailCate = document.getElementById("detailCate");
 			var cCode = (category.options[category.selectedIndex].value);
 			
-			
+			// 재선택시 세부카테고리 초기화
 			if(detailC != undefined) {
 				detailC.remove();
 			}
-			
-			if(detailCate != null) {
+
+			// 카테고리 선택 클릭 시 if문 못 들어감! 
+			if(!isNaN(cCode)) {
 				$.ajax({
 					type: "POST",
 					url: "product.getDetailCategory",
@@ -37,17 +38,14 @@
 									+ detailCate  + "</option>");
 							})
 						}
-						else { alert("오류ㅠㅠㅠ");}
+						else { alert("오류입니다. 다시 선택해주세요.");}
 						},
 						
 					error: function(error) {
 							alert("에러입니다 : " + error);
 					}	
 				})
-			} else {
-				detailCate.remove();
 			}
-			
 		})
 	
 	});
@@ -59,7 +57,7 @@
 	<form action="addProduct" method="POST" enctype="multipart/form-data">
 		<table class="m_signup" align="center">
 			<tr>
-				<td colspan="4" align="center" class="title" id="tTitle">상품 추가</td>
+				<td colspan="4" align="center" class="nfont" id="tTitle">상품 추가</td>
 			</tr>
 			<tr>
 				<th>상품명</th>
@@ -70,7 +68,7 @@
 				<td>
 					<label> 
 					<select id="category">
-						<option value="">선택</option>
+						<option value="choice">선택</option>
 						<c:forEach var="c" items="${categoryName }">
 							<option value="${c.C_CATEGORY_CODE }">${c.C_CATEGORY_NAME }</option>
 						</c:forEach>
@@ -88,7 +86,7 @@
 			</tr>
 			<tr>
 				<th>상품설명</th>
-				<td><textarea placeholder="상품설명" cols="25" rows="8"></textarea></td>
+				<td><textarea placeholder="상품설명" cols="29" rows="8" maxlength="250"></textarea></td>
 			</tr>
 			<tr>
 				<th>가격</th>

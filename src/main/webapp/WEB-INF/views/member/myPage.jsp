@@ -53,7 +53,7 @@
 		<hr class="line"/>
 		<div align="center" valign="bottom">
 			<div align="left">
-				<div colspan="4">최근 본 상품</div>
+				<div colspan="4" class="nfont">최근 본 상품</div>
 			</div>
 			<div>
 				<div></div>

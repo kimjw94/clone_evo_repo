@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
-	font-famliy: "aLight";
-	src: url("aLight.TTF");
+	font-famliy: "a109";
+	src: url("a109.TTF");
 }
 
 
@@ -23,7 +23,7 @@
 #blogin {
 	width: 80px;
 	font-size: 18px;
-	font-family: "aLight";	
+	font-family: "a109";	
 }
 
 .searchIW a {
@@ -82,6 +82,7 @@
 input {
 	width: 250px;
 	height: 30px;
+	font-family: "a109";
 }
 
 
@@ -93,7 +94,7 @@ input {
 
 /* signup */
 .m_signup {
-	font-family: "aLight";	
+	font-family: "a109";	
 }
 
 
@@ -101,15 +102,11 @@ input {
 	padding: 25px;
 }
 
-body:placeholder {
-	font-family: "aLight";
-}
-
 .m_signup button {
 	height: 38px;
 	width: 65px;
 	text-align: center;
-	font-weight: bold;
+	font-family: "a109";
 }
 
 .signupTd {
@@ -125,12 +122,13 @@ body:placeholder {
 }
 
 #sellBtn {
-	width: 100px;
+	width: 110px;
 }
 
 .infoModi {
 	padding: 10px;
 	margin-top: 40px;
 	margin-bottom: 40px;
+	font-family: "a109";
 
 }

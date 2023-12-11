@@ -102,7 +102,7 @@
 </script>
 </head>
 <body>
-	<form action="member.sellerinfo" method="post">
+	<form action="member.updateMember" method="post">
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
@@ -116,7 +116,7 @@
 			<tr>
 				<th><label for="m_pw">PW</label></th>
 				<td><input value="${sessionScope.loginMember.m_password }"
-					type="password" name="m_passwordw" id="m_pw" placeholder="Password"
+					type="password" name="m_password" id="m_pw" placeholder="Password"
 					class=""></td>
 			</tr>
 			<tr>
@@ -161,7 +161,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button type="button" onclick="btn_submit()" class="btn-black"
+					<button onclick="btn_submit()" class="btn-black"
 						id="signupBtn">수정</button>
 					<button type="button" onclick="sellerInfo()" class="btn-black" id="sellBtn">판매자
 						정보 등록</button>

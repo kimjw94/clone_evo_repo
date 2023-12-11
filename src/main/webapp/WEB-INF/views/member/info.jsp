@@ -92,8 +92,8 @@
 </script>
 </head>
 <body>
-	<form action="member.info" method="post">
-		<table class="m_signup" align="center">
+	<form action="member.updateMember" method="post">
+		<table class="" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
 					Infomodi</td>
@@ -148,7 +148,7 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button type="button" onclick="btn_submit()" class="btn-black" id="signupBtn">수정</button>
+					<button onclick="btn_submit()" class="btn-black" id="signupBtn">수정</button>
 				</td>
 			</tr>
 		</table>

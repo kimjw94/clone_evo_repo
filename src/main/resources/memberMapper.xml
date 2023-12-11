@@ -16,4 +16,10 @@
 	<select id="GetIDForLogin" resultType="com.market.evo.member.Member">
 		SELECT * FROM EVO_MEMBER WHERE M_ID =#{m_id}
 	</select>
+	<update id="updateMember" parameterType="com.market.evo.member.Member">
+		update EVO_MEMBER set m_password = #{m_password}, m_name = #{m_name}, m_alias = #{m_alias}, m_phone = #{m_phone}, m_address_num = #{m_address_num}, m_address_kor = #{m_address_kor} where m_id = #{m_id} 
+	</update>
+	<update id="sellerupdate" parameterType="com.market.evo.member.Member">
+		update EVO_MEMBER set m_company_name = #{m_company_name}, m_company_address_num = #{m_company_address_num},  m_account_name = #{m_account_name}, m_account_number = #{m_account_number}, m_company_address_kor = #{m_company_address_kor,jdbcType=VARCHAR} where m_id = #{m_id} 
+	</update>
 </mapper>

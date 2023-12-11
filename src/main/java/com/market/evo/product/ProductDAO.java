@@ -21,9 +21,6 @@ public class ProductDAO {
 			
 			if(category.size() != 0) {
 				req.setAttribute("categoryName", category);
-//				for(int i = 0; i < category.size(); i++) {
-//					System.out.println(category);
-//			}
 			} else {
 				System.out.println("뭐가없음");
 			}
@@ -33,15 +30,15 @@ public class ProductDAO {
 		}
 	}
 	
-	public List<Map<String, Object>> getDetailCateName(HttpServletRequest req) {
+	public List<Map<String, Object>> getDetailCateName(HttpServletRequest req, int categoryCode) {
 		try {
-			List<Map<String, Object>> dCategory = ss.getMapper(ProductMapper.class).detailCateList();
+			
+			
+			List<Map<String, Object>> dCategory = ss.getMapper(ProductMapper.class).detailCateList(categoryCode);
+			
 			
 			if(dCategory.size() != 0) {
 				req.setAttribute("detailCateName", dCategory);
-				for(int i = 0; i < dCategory.size(); i++) {
-					System.out.println(dCategory);
-				}
 				
 				return dCategory;
 			}

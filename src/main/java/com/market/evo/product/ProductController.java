@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ProductController {
@@ -24,10 +26,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/product.getDetailCategory", method=RequestMethod.POST)
-	public List<Map<String, Object>> detailCategory(HttpServletRequest req) {
-		List<Map<String, Object>> list = pDAO.getDetailCateName(req);
+	@ResponseBody
+	public List<Map<String, Object>> detailCategory(HttpServletRequest req, @RequestParam int categoryCode) {
+		List<Map<String, Object>> list = pDAO.getDetailCateName(req, categoryCode);
 		
 		return list;
-		
 	}
+	
 }

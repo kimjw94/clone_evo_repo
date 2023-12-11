@@ -8,13 +8,9 @@
 	</select>
 	
 	<!-- detailCategoryName -->
-	<select id="detailCateList" parameterType="_int" resultType="map">
-		select p_category_code, p_category_detail_name  
+	<select id="detailCateList" parameterType="int" resultType="map">
+		select d_category_detail_code, d_category_detail_name  
 		  from evo_category_detail
-		 where p_category_code = (
-		 						select p_category_code
-		 						  from evo_category
-		 						 where p_category_code = #{p_category_code}
-		 						)
+		 where d_category_code = #{c_category_code}
 	</select>
 </mapper>

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/member.css">
+<link rel="stylesheet" href="resources/css/product.css">
 </head>
 <body>
 	<div class="container">
@@ -24,6 +25,7 @@
 			</div>
 		</div>
 		<hr />
+		<a href="product.addProduct">상품 추가</a>
 		<div>
 			<jsp:include page="${cp }" />
 		</div>

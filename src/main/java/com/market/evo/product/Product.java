@@ -1,8 +1,9 @@
 package com.market.evo.product;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
-import oracle.sql.DATE;
+
 
 public class Product {
 	private String p_m_id;
@@ -11,7 +12,7 @@ public class Product {
 	private int p_price;
 	private String p_info;
 	private String p_photo;
-	private DATE p_addDay;
+	private Date p_addDay;
 	private BigDecimal p_views;
 	
 	
@@ -22,7 +23,7 @@ public class Product {
 	
 	
 	public Product(String p_m_id, BigDecimal p_product_no, int p_category_code, int p_price, String p_info,
-			String p_photo, DATE p_addDay, BigDecimal p_views) {
+			String p_photo, Date p_addDay, BigDecimal p_views) {
 		super();
 		this.p_m_id = p_m_id;
 		this.p_product_no = p_product_no;
@@ -71,10 +72,10 @@ public class Product {
 	public void setP_photo(String p_photo) {
 		this.p_photo = p_photo;
 	}
-	public DATE getP_addDay() {
+	public Date getP_addDay() {
 		return p_addDay;
 	}
-	public void setP_addDay(DATE p_addDay) {
+	public void setP_addDay(Date p_addDay) {
 		this.p_addDay = p_addDay;
 	}
 	public BigDecimal getP_views() {

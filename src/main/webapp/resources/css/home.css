@@ -35,9 +35,6 @@ body a {
 	font-size: 20px;
 }
 
-#login {
-	margin-right: 10px;
-}
 
 a {
 	text-decoration-line: none;
@@ -81,4 +78,8 @@ a {
 
 .footerHr {
 	margin-top: 200px;
+}
+
+#loginA {
+	padding: 10px;
 }

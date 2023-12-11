@@ -12,20 +12,28 @@
 </head>
 <body>
 	<div class="container">
+		<div class="nfont" align="right" id="loginA">
+			<c:choose>
+				<c:when test="${sessionScope.loginMember.m_id == null }">
+					<a href="login">Login</a>
+				</c:when>
+				<c:otherwise>
+					<a href="member.logout">Logout</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
 		<div align="center">
-			<a href="/evo/" class="title">evo</a>
-			<div class="nfont" id="login" align="right">
-				
+			<div class="nfont" align="center">
+				<a href="/evo/" class="title">evo</a>
+			</div>
+			<div class="nfont" align="right">
 				<c:if test="${sessionScope.loginMember.m_id != null }">
 					<a href="myPage">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
 				</c:if>
-				<c:if test="${sessionScope.loginMember.m_id == null }">
-					<a href="login">Login</a>
-				</c:if>
 			</div>
+			
 		</div>
 		<hr />
-		<a href="product.addProduct">상품 추가</a>
 		<div>
 			<jsp:include page="${cp }" />
 		</div>

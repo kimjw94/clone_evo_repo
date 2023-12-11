@@ -45,7 +45,7 @@
 				<div class="iiconName" align="center">구매내역</div>
 			<c:if test="${sessionScope.loginMember.m_buy_sell == 1 }">
 				<div class="iiconName" align="center">
-					<a href="product.viewAddProduct"></a>상품추가</div>
+					<a href="product.viewAddProduct">상품추가</a></div>
 			</c:if>
 				
 			</div>

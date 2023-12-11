@@ -163,7 +163,7 @@
 				<td colspan="2" align="center" class="signupTd">
 					<button type="button" onclick="btn_submit()" class="btn-black"
 						id="signupBtn">수정</button>
-					<button type="button" onclick="sellerInfo()" class="btn-black" id="">판매자
+					<button type="button" onclick="sellerInfo()" class="btn-black" id="sellBtn">판매자
 						정보 등록</button>
 				</td>
 			</tr>

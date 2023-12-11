@@ -1,0 +1,109 @@
+@charset "UTF-8";
+#check_box {
+	display: none;
+}
+
+#check_box+label {
+	 position: fixed; /* 이동을 위해 position을 fixed로 변경 */
+    top: 20px; /* 원하는 수직 위치로 조정 */
+    left: 20px; /* 원하는 수평 위치로 조정 */
+    display: block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 2;
+	
+}
+
+#check_box+label>span {
+	position: absolute;
+	display: block;
+	width: 100%;
+	height: 5px;
+	background: black;
+	border-radius: 5px;
+	transition: all 300ms;
+}
+
+#check_box:checked+label>span:nth-child(1) {
+	top: 50%;
+	transform: translate(0, -50%);
+	transform: rotate(45deg);
+}
+
+#check_box+label>span:nth-child(2) {
+	top: 50%;
+	transform: translate(0, -50%);
+}
+
+#check_box:checked+label>span:nth-child(2) {
+	opacity: 0;
+}
+
+#check_box+label>span:nth-child(3) {
+	bottom: 0;
+}
+
+#check_box:checked+label>span:nth-child(3) {
+	top: 50%;
+	transform: translate(0, -50%);
+	transform: rotate(-45deg);
+}
+
+#side_menu {
+	position: fixed;
+	width: 300px; /* 변경된 너비 */
+	height: 100%;
+	background-color: white;
+	left: -300px; /* 변경된 위치 */
+	transition: all 300ms;
+	z-index: 1;
+	top: 0px;
+	padding: 60px 20px 20px 20px;
+	box-sizing: border-box;
+	border-right: 1px solid #ccc;
+	overflow: auto; /*화면이 넘어가면 스크롤 생김* auto,scroll 중 auto 선택함)*/
+}
+
+#check_box:checked+label+#side_menu {
+	left: 0;
+}
+
+.submenu {
+	display: none;
+}
+
+ul, li {
+	list-style-type: none;
+	margin: 0;
+	padding: 5px;
+}
+
+#side_menu>ul>li {
+	list-style-type: none;
+	margin-bottom: 10px; /* 여백 조정 */
+	border-bottom: 1px solid #ccc; /* 선 추가 */
+	padding-bottom: 10px; /* 아래 여백 추가 */
+}
+/* 상의 하위 메뉴 항목에 대한 배경색 변경 */
+#side_menu>ul>li:hover {
+	background-color: white; /* 원하는 배경색으로 수정하세요 */
+	border-bottom-color: white; /* 마우스를 올렸을 때 선을 숨김 */
+}
+
+#side_menu a {
+	text-decoration: none; /* 밑줄 제거 */
+	color: inherit; /* 기본 색상 유지 */
+	transition: color 0.3s; /* 색상 변화에 대한 전환 효과 추가 */
+}
+
+#side_menu a:hover {
+	color: #000;
+	font-weight: bold; /* 마우스를 올렸을 때의 원하는 색상으로 수정하세요 */
+}
+
+.toggle-btn {
+	display: inline-block;
+	margin-right: 5px;
+	cursor: pointer;
+}

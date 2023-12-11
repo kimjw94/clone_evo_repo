@@ -17,14 +17,15 @@ Create table EVO_MEMBER(
 	);
 	
 drop table EVO_MEMBER cascade constraint purge;
+
 select * from EVO_MEMBER;
 
-delete from EVO_MEMBER
-where m_id = 'test'
-;
 
+
+/* 상품 테이블 */
 create table evo_product(
    p_product_no decimal(10, 0) primary key,
+   p_product_name varchar2(50 char) not null,
    p_m_id varchar2(15 char) not null,
    	  constraint fk_p_m_id foreign key(p_m_id)
    	  references evo_member(m_id) on delete cascade,
@@ -38,10 +39,17 @@ create table evo_product(
    p_view decimal(10, 0)
 );
 
+-- product 칼럼 추가
+-- 위 테이블 새로 만들었으면 추가 안해도 됨!!
+alter table evo_product add p_product_name varchar2(50 char) not null;
+
 select * from evo_product;
 
 drop table evo_product cascade constraint purge;
 
+
+
+-- 상품 카테고리 테이블
 create table evo_category(
    c_category_code number(8) primary key,
    c_category_name varchar2(15) not null
@@ -52,6 +60,7 @@ drop table evo_category cascade constraint purge;
 
 select * from evo_category;
 
+-- 카테고리 데이터 추가
 insert into evo_category values (10000, '상의');
 insert into evo_category values (20000, '아우터');
 insert into evo_category values (30000, '바지');
@@ -63,6 +72,8 @@ insert into evo_category values (80000, '모자');
 insert into evo_category values (90000, '액세서리');
 
 
+
+-- 상품 디테일 카테고리 (세부카테고리)
 create table evo_category_detail(
    d_category_code   number(8) not null,
       constraint fk_d_category_code foreign key(d_category_code)
@@ -75,6 +86,8 @@ drop table evo_category_detail cascade constraint purge;
 
 select * from evo_category_detail;
 
+
+-- 세부 카테고리 데이터 추가
 insert into evo_category_detail values(10000, 10001, '후드티');
 insert into evo_category_detail values(10000, 10002, '니트/스웨터');
 insert into evo_category_detail values(10000, 10003, '맨투맨');
@@ -133,13 +146,3 @@ insert into evo_category_detail values(90000, 90003, '머플러');
 insert into evo_category_detail values(90000, 90004, '장갑');
 insert into evo_category_detail values(90000, 90005, '마스크');
 insert into evo_category_detail values(90000, 90006, '기타 악세사리');
-
-
-select p_category_code, p_category_detail_name  
-        from evo_category_detail
-       where p_category_code = (
-                         select p_category_code
-                           from evo_category
-                          where p_category_code = 10000
-                         )
-

@@ -19,7 +19,7 @@ public class ProductController {
 	ProductDAO pDAO;
 	
 	@RequestMapping(value="/product.viewAddProduct", method = RequestMethod.GET)
-	public String addProduct(HttpServletRequest req) {
+	public String viewAddProduct(HttpServletRequest req) {
 		pDAO.getCategoryName(req);
 		req.setAttribute("cp", "product/addProduct.jsp");
 		return "index";
@@ -33,4 +33,16 @@ public class ProductController {
 		return list;
 	}
 	
+	@RequestMapping(value="/product.addProduct", method=RequestMethod.POST)
+	public String addProduct(HttpServletRequest req, Product p) {
+		pDAO.addProduct(p, req);
+		req.setAttribute("cp", "product/infoProduct.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value="/product.infoProduct", method=RequestMethod.GET)
+	public String infoProduct(HttpServletRequest req) {
+		req.setAttribute("cp", "product/infoProduct.jsp");
+		return "index";
+	}
 }

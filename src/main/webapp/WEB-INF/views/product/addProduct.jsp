@@ -12,9 +12,9 @@
 		
 		$('#category').change(function() {
 			
-			var detailC = $("#detailCate").find('option');
+			var detailC = $("#p_category_code").find('option');
 			var category = document.getElementById("category");
-			var detailCate = document.getElementById("detailCate");
+			var detailCate = document.getElementById("p_category_code");
 			var cCode = (category.options[category.selectedIndex].value);
 			
 			// 재선택시 세부카테고리 초기화
@@ -34,7 +34,7 @@
 							
 							$(list).each(function(i) {
 								var detailCate = list[i].D_CATEGORY_DETAIL_NAME;
-								$("#detailCate").append("<option value=" + list[i].D_CATEGORY_DETAIL_CODE + ">"
+								$("#p_category_code").append("<option value=" + list[i].D_CATEGORY_DETAIL_CODE + ">"
 									+ detailCate  + "</option>");
 							})
 						}
@@ -54,14 +54,14 @@
 </script>
 </head>
 <body>
-	<form action="addProduct" method="POST" enctype="multipart/form-data">
+	<form action="product.addProduct" method="POST" enctype="multipart/form-data">
 		<table class="m_signup" align="center">
 			<tr>
-				<td colspan="4" align="center" class="nfont" id="tTitle">상품 추가</td>
+				<td colspan="4" align="center" class="nfont" id="tpTitle">상품 추가</td>
 			</tr>
 			<tr>
 				<th>상품명</th>
-				<td><input placeholder="상품명" id=""></td>
+				<td><input placeholder="상품명" name="p_product_name"></td>
 			</tr>
 			<tr>
 				<th>카테고리</th>
@@ -75,22 +75,22 @@
 					</select>
 				</label> 
 				<label> 
-					<select id="detailCate">
+					<select id="p_category_code" name="p_category_code">
 					</select>
 				</label>
 				</td>
 			</tr>
 			<tr>
 				<th>상품사진</th>
-				<td><input type="file"></td>
+				<td><input type="file" name="p_photo"></td>
 			</tr>
 			<tr>
 				<th>상품설명</th>
-				<td><textarea placeholder="상품설명" cols="29" rows="8" maxlength="250"></textarea></td>
+				<td><textarea name="p_info" placeholder="상품설명" cols="29" rows="8" maxlength="250"></textarea></td>
 			</tr>
 			<tr>
 				<th>가격</th>
-				<td><input placeholder="가격" type="number" id="pPrice"></td>
+				<td><input placeholder="가격" type="number" name="p_price"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">

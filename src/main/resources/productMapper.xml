@@ -13,4 +13,23 @@
 		  from evo_category_detail
 		 where d_category_code = #{c_category_code}
 	</select>
+	
+	<!-- 상품 추가 -->
+	<insert id="addProduct" parameterType="com.market.evo.product.Product" >
+		
+		
+		insert into evo_product
+		 values (
+		 		seq_p_product_no.nextval,
+		 		#{p_product_name},
+		 		#{p_m_id},
+		 		#{p_category_code},
+		 		#{p_price},
+		 		#{p_info},
+		 		#{p_photo},
+		 		default,
+		 		default,
+		 		default
+		 )
+	</insert>
 </mapper>

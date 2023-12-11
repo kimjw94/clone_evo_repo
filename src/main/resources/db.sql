@@ -20,6 +20,7 @@ drop table EVO_MEMBER cascade constraint purge;
 
 select * from EVO_MEMBER;
 
+update EVO_MEMBER set m_buy_sell = 1 WHERE m_id = 'test';
 
 
 /* 상품 테이블 */
@@ -31,13 +32,17 @@ create table evo_product(
    	  references evo_member(m_id) on delete cascade,
    p_category_code number(8) not null,
       constraint fk_category_code foreign key(p_category_code)
-      references evo_category(c_category_code) on delete cascade,
+      references evo_category_detail(d_category_detail_code) on delete cascade,
    p_price number(6) not null,
    p_info varchar2(500 char) not null,
    p_photo varchar2(100 char) not null,
-   p_addDay DATE not null,
-   p_view decimal(10, 0)
+   p_addDay DATE default sysdate,
+   p_updateDay DATE default sysdate,
+   p_view decimal(10, 0) default 0
 );
+
+create sequence seq_p_product_no;
+
 
 -- product 칼럼 추가
 -- 위 테이블 새로 만들었으면 추가 안해도 됨!!
@@ -78,7 +83,7 @@ create table evo_category_detail(
    d_category_code   number(8) not null,
       constraint fk_d_category_code foreign key(d_category_code)
          references evo_category(c_category_code) on delete cascade,
-   d_category_detail_code number(10) not null,
+   d_category_detail_code number(10) primary key,
    d_category_detail_name varchar2(30) not null
 );
 

@@ -45,6 +45,7 @@ public class MemberDAO {
 				if (dbM.getM_password().equals(m.getM_password())) {
 					req.setAttribute("r", "로그인 성공");
 					req.getSession().setAttribute("loginMember", dbM);
+					
 					req.getSession().setMaxInactiveInterval(600);
 				} else {
 					req.setAttribute("r", "로그인 실패(PW 오류");

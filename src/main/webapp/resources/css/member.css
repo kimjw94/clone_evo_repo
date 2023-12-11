@@ -123,3 +123,7 @@ body:placeholder {
 .selectB {
 	height: 35px;
 }
+
+#sellBtn {
+	width: 100px;
+}

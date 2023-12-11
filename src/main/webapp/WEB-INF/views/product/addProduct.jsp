@@ -63,7 +63,7 @@
 			</tr>
 			<tr>
 				<th>상품명</th>
-				<td><input placeholder="상품명"></td>
+				<td><input placeholder="상품명" id=""></td>
 			</tr>
 			<tr>
 				<th>카테고리</th>
@@ -83,16 +83,16 @@
 				</td>
 			</tr>
 			<tr>
-				<th>상품설명</th>
-				<td><input placeholder="상품설명"></td>
-			</tr>
-			<tr>
 				<th>상품사진</th>
 				<td><input type="file"></td>
 			</tr>
 			<tr>
+				<th>상품설명</th>
+				<td><textarea placeholder="상품설명" cols="25" rows="8"></textarea></td>
+			</tr>
+			<tr>
 				<th>가격</th>
-				<td><input placeholder="가격"></td>
+				<td><input placeholder="가격" type="number" id="pPrice"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">

@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/home.css">
 <link rel="stylesheet" href="resources/css/member.css">
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-function address_search() {
-
+	function address_search() {
 
 		new daum.Postcode(
 				{
@@ -64,12 +64,13 @@ function address_search() {
 </script>
 </head>
 <body>
-	<form action="member.sellerInfoModi" method="post">
+	<form action="member.sellerupdate" method="post">
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
 					SellerInfo</td>
 			</tr>
+
 			<tr>
 				<th><label for="m_id">회사명</label></th>
 				<td><input type="text" name="m_company_name"
@@ -77,16 +78,15 @@ function address_search() {
 			</tr>
 			<tr>
 				<th><label for="m_accunt">계좌번호</label></th>
-				<td>
-					<input type="text" name="m_account_number" id="m_account_number" placeholder="계좌번호" class="">
-					<select name="m_account_name" id="m_account_name">
+				<td><input type="text" name="m_account_number"
+					id="m_account_number" placeholder="계좌번호" class=""> <select
+					name="m_account_name" id="m_account_name">
 						<option>은행</option>
 						<option>농협</option>
 						<option>카카오</option>
 						<option>우리</option>
 						<option>국민</option>
-					</select>
-				</td>
+				</select></td>
 			</tr>
 			<tr>
 				<th><label for="m_address">회사주소</label></th>
@@ -110,6 +110,11 @@ function address_search() {
 				<td colspan="2" align="center" class="signupTd">
 					<button class="btn-black" id="signupBtn">등록</button>
 				</td>
+			</tr>
+			<tr>
+				<td><input value="${sessionScope.loginMember.m_id }"
+					name="m_id" id="m_id" placeholder="ID" class="" readonly="readonly"
+					type="hidden">
 			</tr>
 		</table>
 	</form>

@@ -79,4 +79,20 @@ public class MemberController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/member.updateMember",method = RequestMethod.POST)
+	public String updateMember(Member m, HttpServletRequest req) {
+		mDAO.updateMember(m, req);
+		req.setAttribute("cp", "home.jsp");
+		return "index";
+		
+	}
+	
+	@RequestMapping(value="/member.sellerupdate",method = RequestMethod.POST)
+	public String sellerupdate(Member m, HttpServletRequest req) {
+		mDAO.sellerupdate(m, req);
+		req.setAttribute("cp", "member/close.jsp");
+		return "index";
+		
+	}
+	
 }

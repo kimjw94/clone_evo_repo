@@ -45,7 +45,6 @@ public class MemberDAO {
 				if (dbM.getM_password().equals(m.getM_password())) {
 					req.setAttribute("r", "로그인 성공");
 					req.getSession().setAttribute("loginMember", dbM);
-					
 					req.getSession().setMaxInactiveInterval(600);
 				} else {
 					req.setAttribute("r", "로그인 실패(PW 오류");
@@ -69,6 +68,66 @@ public class MemberDAO {
 		} catch (Exception e) {
 			req.setAttribute("r", "로그아웃 실패");
 			
+		}
+	}
+	public void updateMember(Member m, HttpServletRequest req) {
+
+		try {
+			m.setM_password(req.getParameter("m_password"));
+			m.setM_name(req.getParameter("m_name"));
+			m.setM_alias(req.getParameter("m_alias"));
+			m.setM_phone(req.getParameter("m_phone"));
+			// 주소처리
+			
+			
+			int m_address_num = Integer.parseInt(req.getParameter("m_address1"));
+			String m_address_kor = req.getParameter("m_address2") + req.getParameter("m_address3");
+			m.setM_address_num(m_address_num);
+			m.setM_address_kor(m_address_kor);
+			
+			
+
+			if (ss.getMapper(MemberMapper.class).updateMember(m) == 1) {
+				req.setAttribute("r", "회원정보 수정");
+			} else {
+				System.out.println("통과못함");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "수정 실패");
+		}
+	}
+	public void sellerupdate(Member m, HttpServletRequest req) {
+
+		try {
+			m.setM_company_name(req.getParameter("m_company_name"));
+			m.setM_account_name(req.getParameter("m_account_name"));
+			m.setM_account_number(req.getParameter("m_account_number"));
+			// 주소처리
+			
+			
+			int m_company_address_num = Integer.parseInt(req.getParameter("m_company_address1"));
+			String m_company_address_kor = req.getParameter("m_company_address2") + req.getParameter("m_company_address3");
+			m.setM_address_num(m_company_address_num);
+			m.setM_address_kor(m_company_address_kor);
+			
+			System.out.println(req.getParameter("m_company_name"));
+			System.out.println(req.getParameter("m_account_name"));
+			System.out.println(req.getParameter("m_account_number"));
+			System.out.println(m_company_address_num);
+			System.out.println(m_company_address_kor);
+			
+
+			if (ss.getMapper(MemberMapper.class).sellerupdate(m) == 1) {
+				req.setAttribute("r", "회원정보 수정");
+			} else {
+				System.out.println("통과못함");
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "수정 실패");
 		}
 	}
 

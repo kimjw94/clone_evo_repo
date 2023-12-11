@@ -23,7 +23,7 @@
 			</c:choose>
 		</div>
 		<div align="center">
-			<div class="nfont" align="center">
+			<div align="center">
 				<a href="/evo/" class="title">evo</a>
 			</div>
 			<div class="nfont" align="right">

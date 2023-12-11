@@ -6,8 +6,9 @@
 }
 
 @font-face {
-	font-family: "aLight";
-	src: url("aLight.TTF");
+	font-family: "a109";
+	src: url("a109.TTF");
+
 }
 
 body .title {
@@ -31,8 +32,8 @@ body a {
 }
 
 .nfont {
-	font-family: "aLight";
-	font-size: 20px;
+	font-family: "a109";
+	font-size: 15px;
 }
 
 
@@ -59,6 +60,7 @@ a {
 	flex: 1;
 	margin-top: 10px;
 	margin-bottom: 20px;
+	font-family: "a109";
 }
 
 .beest, .neew {

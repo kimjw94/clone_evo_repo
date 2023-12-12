@@ -109,14 +109,8 @@ public class MemberDAO {
 			
 			int m_company_address_num = Integer.parseInt(req.getParameter("m_company_address1"));
 			String m_company_address_kor = req.getParameter("m_company_address2") + req.getParameter("m_company_address3");
-			m.setM_address_num(m_company_address_num);
-			m.setM_address_kor(m_company_address_kor);
-			
-			System.out.println(req.getParameter("m_company_name"));
-			System.out.println(req.getParameter("m_account_name"));
-			System.out.println(req.getParameter("m_account_number"));
-			System.out.println(m_company_address_num);
-			System.out.println(m_company_address_kor);
+			m.setM_company_address_num(m_company_address_num);
+			m.setM_company_address_kor(m_company_address_kor);
 			
 
 			if (ss.getMapper(MemberMapper.class).sellerupdate(m) == 1) {

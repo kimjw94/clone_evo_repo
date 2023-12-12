@@ -27,6 +27,13 @@
 			submenu.style.display = "none";
 		}
 	}
+	function logout() {
+		let R = confirm("로그아웃 하시겠습니까?");
+		if (R) {
+			location.href = "member.logout";
+
+		}
+	}
 </script>
 </head>
 <body>
@@ -37,7 +44,7 @@
 					<a href="login">Login</a>
 				</c:when>
 				<c:otherwise>
-					<a href="member.logout">Logout</a>
+					<a href="" onclick="logout()">Logout</a>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -50,7 +57,7 @@
 					<a href="myPage">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
 				</c:if>
 			</div>
-			
+
 		</div>
 		<hr />
 		<div>
@@ -163,6 +170,6 @@
 				</ul></li>
 		</ul>
 	</div>
-	
+
 </body>
 </html>

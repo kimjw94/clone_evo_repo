@@ -10,7 +10,6 @@
 <script type="text/javascript">
 	function btn_submit() {
 
-
 		var m_pw = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
@@ -91,14 +90,14 @@
 	}
 	function sellerInfo() {
 
-
 		var w = (window.screen.width / 2) - 300;
 		var h = (window.screen.height / 2) - 350;
 		var url = "member.sellerInfoModi.go"
-		window.open(url, "sellerInfoModi", "width=600,height=700,left=" + w + ",top="
-				+ h)
+		window.open(url, "sellerInfoModi", "width=600,height=700,left=" + w
+				+ ",top=" + h)
 
 	}
+
 </script>
 </head>
 <body>
@@ -161,10 +160,15 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button onclick="btn_submit()" class="btn-black"
-						id="signupBtn">수정</button>
-					<button type="button" onclick="sellerInfo()" class="btn-black" id="sellBtn">판매자
-						정보 등록</button>
+					<button onclick="btn_submit()" class="btn-black" id="signupBtn">수정</button>
+					<button type="button" onclick="sellerInfo()" class="btn-black"
+						id="sellBtn">판매자 정보 등록</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center" class="signupTd">
+					<button type="button" onclick="location.href='member.deletMember.go'" class="btn-black"
+						id="deletBtn">회원 탈퇴</button>
 				</td>
 			</tr>
 		</table>

@@ -90,9 +90,15 @@ public class MemberController {
 	@RequestMapping(value="/member.sellerupdate",method = RequestMethod.POST)
 	public String sellerupdate(Member m, HttpServletRequest req) {
 		mDAO.sellerupdate(m, req);
-		req.setAttribute("cp", "member/close.jsp");
+		req.setAttribute("cp", "home.jsp");
 		return "index";
 		
+	}
+	
+	@RequestMapping(value="/member.deletMember.go", method = RequestMethod.GET)
+	public String deletMember(HttpServletRequest req) {
+		req.setAttribute("cp", "member/deletMember.jsp");
+		return "index";
 	}
 	
 }

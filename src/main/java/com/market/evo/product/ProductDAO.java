@@ -1,7 +1,9 @@
 package com.market.evo.product;
 
 import java.io.File;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
 
 import com.market.evo.member.Member;
 import com.oreilly.servlet.MultipartRequest;
@@ -21,6 +27,7 @@ public class ProductDAO {
 	@Autowired
 	SqlSession ss;
 	
+	// 카테고리
 	public void getCategoryName(HttpServletRequest req) {
 		try {
 			List<Map<String, Object>> category = ss.getMapper(ProductMapper.class).categoryList();
@@ -36,6 +43,7 @@ public class ProductDAO {
 		}
 	}
 	
+	// 세부카테고리
 	public List<Map<String, Object>> getDetailCateName(HttpServletRequest req, int categoryCode) {
 		try {
 			
@@ -57,6 +65,7 @@ public class ProductDAO {
 		}
 	}
 	
+	// 상품추가
 	public void addProduct(Product p, HttpServletRequest req) {
 
 		MultipartRequest mr = null;
@@ -67,13 +76,15 @@ public class ProductDAO {
 			path = req.getSession().getServletContext().getRealPath("resources/productImg");
 			System.out.println(path);
 			
+			path = "c:\\upload\\";
+			
 			File folder = new File(path);
 			
 			// 폴더 존재 여부
 			if(!folder.exists()) {
 				try {
 					folder.mkdir();
-					System.out.println("productImg 폴더가 생성되었습니다.");
+					System.out.println("upload 폴더가 생성되었습니다.");
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -120,6 +131,31 @@ public class ProductDAO {
 			e.printStackTrace();
 			System.out.println("사진 용량이 너무 커요");
 			return;
+		}
+	}
+	
+	// 판매자가 추가한 상품만 모아보기
+	public void idViewProduct(HttpServletRequest req, String p_m_id) {
+		try {
+
+			Member m = (Member)req.getSession().getAttribute("loginMember");
+			p_m_id = m.getM_id();
+			
+			List<Map<String, String>> pl = ss.getMapper(ProductMapper.class).idViewProduct(p_m_id);
+			
+			if(pl.size() != 0) {
+
+				req.setAttribute("idProduct", pl);
+				req.setAttribute("p", "");
+				
+
+			} else {
+				System.out.println("등록한 상품이 없어요");
+				req.setAttribute("p", "등록한 상품이 없습니다.");
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		
 		}
 	}
 }

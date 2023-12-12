@@ -15,7 +15,7 @@
 		
 		<div class="pIcon">
 			<div class="iicon" align="center">
-				<a href=""><i class="fa-solid fa-shirt fa-2x"></i></a>
+				<a href="product.showAll"><i class="fa-solid fa-shirt fa-2x"></i></a>
 			</div>
 			<div class="iicon" align="center">
 				<a href=""><i class="fa-solid fa-bag-shopping fa-2x"></i></a>

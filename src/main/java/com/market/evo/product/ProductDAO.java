@@ -158,4 +158,16 @@ public class ProductDAO {
 		
 		}
 	}
+	
+	public void viewProducts(Product p,HttpServletRequest req) {
+		try { 
+			List<Product> products = ss.getMapper(ProductMapper.class).viewProducts(p);
+			
+			req.setAttribute("products", products);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 }

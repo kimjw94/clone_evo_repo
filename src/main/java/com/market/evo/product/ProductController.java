@@ -48,4 +48,11 @@ public class ProductController {
 		req.setAttribute("cp", "product/infoProduct.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value="/product.showAll",method=RequestMethod.GET)
+	public String viewProducts(Product p,HttpServletRequest req) {
+		pDAO.viewProducts(p, req);
+		req.setAttribute("cp", "product/productView.jsp");
+		return "index";
+	}
 }

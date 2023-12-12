@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MemberController {
@@ -108,4 +109,13 @@ public class MemberController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/member.idCheck", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	public @ResponseBody Members memberIdCheck(Member m){
+		return mDAO.memberIdCheck(m);
+	}
+	
+	@RequestMapping(value = "/member.alCheck", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	public @ResponseBody Members memberalCheck(Member m){
+		return mDAO.memberalCheck(m);
+	}
 }

@@ -14,7 +14,7 @@
 		var m_password = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
-		
+
 		let result = true;
 
 		if ((m_id.value) == "") {
@@ -98,20 +98,56 @@
 				}).open();
 
 	}
+
+	$(function() {
+
+		$("#m_id").keyup(function() {
+			let m_id = $("#m_id").val();
+			//alert(m_id);
+			$.getJSON("member.idCheck?m_id=" + m_id, function(memberJSON) {
+				if (memberJSON.member[0] == null) {
+					$("#label1").html('사용 가능한 아이디입니다.')
+					$("#label1").css("color", "black");
+				} else {
+					$("#label1").html('사용할 수 없는 아이디입니다.')
+					$("#label1").css("color", "red");
+				}
+			});
+		});
+
+	});
+	$(function(){
+		$("#m_alias").keyup(function() {
+			let m_alias = $("#m_alias").val();
+			//alert(m_alias);
+			$.getJSON("member.alCheck?m_alias=" + m_alias, function(memberJSON) {
+				if (memberJSON.member[0] == null) {
+					$("#label2").html('사용 가능한 닉네임입니다.')
+					$("#label2").css("color", "black");
+				} else {
+					$("#label2").html('사용할 수 없는 닉네임입니다.')
+					$("#label2").css("color", "red");
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body>
-	<form action="member.signup" method="post" onsubmit="return btn_submit();">
+	<form action="member.signup" method="post"
+		onsubmit="return btn_submit();">
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
 					Signup</td>
 			</tr>
 			<tr>
-				<th><label for="m_id">ID</label></th>
-				<td><input type="text" name="m_id" id="m_id" placeholder="ID"
-					class="">
-					<button type="button" class="btn-black">중복 확인</button></td>
+				<th rowspan="2"><label for="m_id">ID</label></th>
+				<td><input name="m_id" id="m_id" placeholder="ID" class="">
+				</td>
+			</tr>
+			<tr>
+				<td><label id="label1"></label></td>
 			</tr>
 			<tr>
 				<th><label for="m_pw">PW</label></th>
@@ -129,10 +165,14 @@
 					placeholder="이름" class=""></td>
 			</tr>
 			<tr>
-				<th><label for="m_nickname">닉네임</label></th>
-				<td><input type="text" name="m_alias" id="m_alias"
+				<th rowspan="2"><label for="m_alias">닉네임</label></th>
+				<td>
+					<input name="m_alias" id="m_alias"
 					placeholder="닉네임" class="">
-					<button type="button" class="btn-black">중복 확인</button></td>
+				</td>
+			</tr>
+			<tr>
+				<td><label id="label2"></label></td>
 			</tr>
 			<tr>
 				<th><label for="m_phone">연락처</label></th>

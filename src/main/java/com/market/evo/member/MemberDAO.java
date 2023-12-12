@@ -137,5 +137,13 @@ public class MemberDAO {
 			req.setAttribute("r", "탈퇴 실패");
 		}
 	}
+	
+	public Members memberIdCheck(Member m) {
+		return new Members(ss.getMapper(MemberMapper.class).getMemberById(m));
+	}
+	
+	public Members memberalCheck(Member m) {
+		return new Members(ss.getMapper(MemberMapper.class).getMemberByAl(m));
+	}
 
 }

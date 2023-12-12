@@ -36,6 +36,8 @@
 		}
 	}
 </script>
+<script type="text/javascript" src="resources/js/go.js"></script>
+<script type="text/javascript" src="resources/js/jQuery.js"></script>
 </head>
 <body>
 	<div class="container">

@@ -27,6 +27,7 @@
 			submenu.style.display = "none";
 		}
 	}
+	
 	function logout() {
 		let R = confirm("로그아웃 하시겠습니까?");
 		if (R) {
@@ -44,7 +45,7 @@
 					<a href="login">Login</a>
 				</c:when>
 				<c:otherwise>
-					<a href="" onclick="logout()">Logout</a>
+					<a style="cursor: pointer;" onclick="logout()">Logout</a>
 				</c:otherwise>
 			</c:choose>
 		</div>

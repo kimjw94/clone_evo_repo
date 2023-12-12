@@ -8,4 +8,5 @@ public interface MemberMapper {
 	public abstract List<Member> GetIDForLogin(Member m);
 	public abstract int updateMember(Member m);
 	public abstract int sellerupdate(Member m);
+	public abstract int deleteMember(Member m);
 }

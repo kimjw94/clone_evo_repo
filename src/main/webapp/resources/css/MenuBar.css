@@ -107,3 +107,8 @@ ul, li {
 	margin-right: 5px;
 	cursor: pointer;
 }
+
+#side_menu ul li,
+    #side_menu ul li ul li {
+        cursor: pointer;
+    }

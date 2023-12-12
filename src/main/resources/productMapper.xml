@@ -36,4 +36,8 @@
 		  from evo_product
 		 where p_m_id = #{p_m_id}
 	</select>
+	<select id ="viewProducts" resultType="com.market.evo.product.Product">
+		select * from evo_product 
+	</select>
+	
 </mapper>

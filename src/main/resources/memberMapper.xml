@@ -25,4 +25,10 @@
 	<delete id="deleteMember" parameterType="com.market.evo.member.Member">
 		delete from EVO_MEMBER where m_id = #{m_id}
 	</delete>
+	<select id="getMemberById" parameterType="com.market.evo.member.Member" resultType="com.market.evo.member.Member">
+		select * from EVO_MEMBER where m_id = #{m_id}
+	</select>
+	<select id="getMemberByAl" parameterType="com.market.evo.member.Member" resultType="com.market.evo.member.Member">
+		select * from EVO_MEMBER where m_alias = #{m_alias}
+	</select>
 </mapper>

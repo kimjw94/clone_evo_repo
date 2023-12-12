@@ -97,6 +97,21 @@
 				+ ",top=" + h)
 
 	}
+	$(function(){
+		$("#m_alias").keyup(function() {
+			let m_alias = $("#m_alias").val();
+			//alert(m_alias);
+			$.getJSON("member.alCheck?m_alias=" + m_alias, function(memberJSON) {
+				if (memberJSON.member[0] == null) {
+					$("#label2").html('사용 가능한 닉네임입니다.')
+					$("#label2").css("color", "black");
+				} else {
+					$("#label2").html('사용할 수 없는 닉네임입니다.')
+					$("#label2").css("color", "red");
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -130,10 +145,13 @@
 					type="text" name="m_name" id="m_name" placeholder="이름" class=""></td>
 			</tr>
 			<tr>
-				<th><label for="m_nickname">닉네임</label></th>
+				<th rowspan="2"><label for="m_alias">닉네임</label></th>
 				<td><input value="${sessionScope.loginMember.m_alias }"
 					type="text" name="m_alias" id="m_alias" placeholder="닉네임" class="">
-					<button type="button" class="btn-black">중복 확인</button></td>
+					
+			</tr>
+			<tr>
+				<td><label id="label2"></label></td>
 			</tr>
 			<tr>
 				<th><label for="b_phone">연락처</label></th>

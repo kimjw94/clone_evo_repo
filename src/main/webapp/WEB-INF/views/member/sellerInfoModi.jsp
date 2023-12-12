@@ -10,7 +10,7 @@
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-	function address_search() {
+	function c_address_search() {
 
 		new daum.Postcode(
 				{
@@ -52,10 +52,10 @@
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('address input1').value = data.zonecode;
-						document.getElementById("address input2").value = addr;
+						document.getElementById('c_address input1').value = data.zonecode;
+						document.getElementById("c_address input2").value = addr;
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById("address input3").focus();
+						document.getElementById("c_address input3").focus();
 
 					}
 				}).open();
@@ -91,20 +91,20 @@
 			<tr>
 				<th><label for="m_address">회사주소</label></th>
 				<td><input type="text" name="m_company_address1"
-					id="address input1" class="" readonly="readonly">
-					<button type="button" onclick="address_search()" class="btn-black">검색</button>
+					id="c_address input1" class="" readonly="readonly">
+					<button type="button" onclick="c_address_search()" class="btn-black">검색</button>
 				</td>
 			</tr>
 			<tr>
 				<th></th>
 
 				<td><input type="text" name="m_company_address2"
-					id="address input2" class="" readonly="readonly"></td>
+					id="c_address input2" class="" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th></th>
 				<td><input type="text" name="m_company_address3"
-					id="address input3" class="" placeholder="상세주소"></td>
+					id="c_address input3" class="" placeholder="상세주소"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">

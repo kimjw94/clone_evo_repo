@@ -16,8 +16,6 @@
 	
 	<!-- 상품 추가 -->
 	<insert id="addProduct" parameterType="com.market.evo.product.Product" >
-		
-		
 		insert into evo_product
 		 values (
 		 		seq_p_product_no.nextval,
@@ -32,4 +30,10 @@
 		 		default
 		 )
 	</insert>
+	
+	<select id="idViewProduct" parameterType="String" resultType="map">
+		select p_info, p_price, p_photo, p_product_name, p_product_no
+		  from evo_product
+		 where p_m_id = #{p_m_id}
+	</select>
 </mapper>

@@ -8,4 +8,5 @@ public interface ProductMapper {
 	public List<Map<String, Object>> categoryList();
 	public List<Map<String, Object>> detailCateList(int categorycode);
 	public abstract int addProduct(Product p);
+	public List<Map<String, String>> idViewProduct(String p_m_id);
 }

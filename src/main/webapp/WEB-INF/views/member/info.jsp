@@ -10,13 +10,13 @@
 <script type="text/javascript">
 	function btn_submit() {
 
-		var m_pw = document.getElementById("m_pw");
+		var m_password = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
 
-		if ((m_pw.value) == "") {
+		if ((m_password.value) == "") {
 			alert("비밀번호를 입력해주세요.");
-			m_pw.focus();
+			m_password.focus();
 			return false;
 		}
 
@@ -26,14 +26,14 @@
 			return false;
 		}
 
-		if ((m_pw.value) != (m_pwcheck.value)) {
+		if ((m_password.value) != (m_pwcheck.value)) {
 			alert("비밀번호가 동일하지 않습니다.");
 			m_pwcheck.focus();
 
 			return false;
+		} else {
+			return true;
 		}
-
-		return true;
 
 	}
 
@@ -100,7 +100,8 @@
 </script>
 </head>
 <body>
-	<form action="member.updateMember" method="post">
+	<form action="member.updateMember" method="post"
+		onsubmit="return btn_submit();">
 		<table class="" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
@@ -132,7 +133,7 @@
 				<th><label for="m_nickname">닉네임</label></th>
 				<td><input value="${sessionScope.loginMember.m_alias }"
 					type="text" name="m_alias" id="m_alias" placeholder="닉네임" class="">
-					<button class="btn-black">중복 확인</button></td>
+					<button type="button" class="btn-black">중복 확인</button></td>
 			</tr>
 			<tr>
 				<th><label for="b_phone">연락처</label></th>
@@ -159,13 +160,14 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button onclick="btn_submit()" class="btn-black" id="signupBtn">수정</button>
+					<button class="btn-black" id="signupBtn">수정</button>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button onclick="location.href='member.deletMember.go'" class="btn-black" id="deletBtn">회원
-						탈퇴</button>
+					<button type="button"
+						onclick="location.href='member.deletMember.go'" class="btn-black"
+						id="deletBtn">회원 탈퇴</button>
 				</td>
 			</tr>
 		</table>

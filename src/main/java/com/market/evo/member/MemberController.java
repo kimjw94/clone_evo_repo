@@ -96,8 +96,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member.deletMember.go", method = RequestMethod.GET)
-	public String deletMember(HttpServletRequest req) {
+	public String deletMemberGo(HttpServletRequest req) {
 		req.setAttribute("cp", "member/deletMember.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value="/member.deletMember", method = RequestMethod.POST)
+	public String deletMember(HttpServletRequest req) {
+		mDAO.delete(req);
+		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 	

@@ -18,7 +18,7 @@ public class MemberDAO {
 
 		try {
 			// 주소처리
-			
+
 			int m_address_num = Integer.parseInt(req.getParameter("m_address1"));
 			String m_address_kor = req.getParameter("m_address2") + req.getParameter("m_address3");
 			m.setM_address_num(m_address_num);
@@ -57,19 +57,18 @@ public class MemberDAO {
 			req.setAttribute("r", "로그인 실패(DB 서버)");
 		}
 	}
-	
+
 	public void logout(HttpServletRequest req) {
 		try {
 			req.getSession().setAttribute("loginMember", null);
 			req.setAttribute("r", "로그아웃");
-			
-		
-			
+
 		} catch (Exception e) {
 			req.setAttribute("r", "로그아웃 실패");
-			
+
 		}
 	}
+
 	public void updateMember(Member m, HttpServletRequest req) {
 
 		try {
@@ -78,14 +77,11 @@ public class MemberDAO {
 			m.setM_alias(req.getParameter("m_alias"));
 			m.setM_phone(req.getParameter("m_phone"));
 			// 주소처리
-			
-			
+
 			int m_address_num = Integer.parseInt(req.getParameter("m_address1"));
 			String m_address_kor = req.getParameter("m_address2") + req.getParameter("m_address3");
 			m.setM_address_num(m_address_num);
 			m.setM_address_kor(m_address_kor);
-			
-			
 
 			if (ss.getMapper(MemberMapper.class).updateMember(m) == 1) {
 				req.setAttribute("r", "회원정보 수정");
@@ -98,6 +94,7 @@ public class MemberDAO {
 			req.setAttribute("r", "수정 실패");
 		}
 	}
+
 	public void sellerupdate(Member m, HttpServletRequest req) {
 
 		try {
@@ -105,13 +102,12 @@ public class MemberDAO {
 			m.setM_account_name(req.getParameter("m_account_name"));
 			m.setM_account_number(req.getParameter("m_account_number"));
 			// 주소처리
-			
-			
+
 			int m_company_address_num = Integer.parseInt(req.getParameter("m_company_address1"));
-			String m_company_address_kor = req.getParameter("m_company_address2") + req.getParameter("m_company_address3");
+			String m_company_address_kor = req.getParameter("m_company_address2")
+					+ req.getParameter("m_company_address3");
 			m.setM_company_address_num(m_company_address_num);
 			m.setM_company_address_kor(m_company_address_kor);
-			
 
 			if (ss.getMapper(MemberMapper.class).sellerupdate(m) == 1) {
 				req.setAttribute("r", "회원정보 수정");
@@ -122,6 +118,23 @@ public class MemberDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("r", "수정 실패");
+		}
+	}
+
+	public void delete(HttpServletRequest req) {
+		try {
+			Member m = (Member) req.getSession().getAttribute("loginMember");
+			if(m.getM_password().equals(req.getParameter("m_password"))) {
+				if(ss.getMapper(MemberMapper.class).deleteMember(m) == 1) {
+					req.setAttribute("r", "탈퇴 완료");
+					req.getSession().setAttribute("loginMember", null);
+				}else {
+					req.setAttribute("r", "이미 탈퇴됨");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			req.setAttribute("r", "탈퇴 실패");
 		}
 	}
 

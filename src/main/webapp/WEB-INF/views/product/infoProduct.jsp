@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품정보</title>
 </head>
 <body>
 	<div>
@@ -16,17 +17,17 @@
 				<a href="product.viewAddProduct">상품 추가</a>
 			</div>
 			<hr style="border:dotted 2px lightgray"/>
-			<table  align="center">
-				<tr>
-					<td rowspan="2"><img src="">이미지!!</td>
-					<td><a href="">상품이름</a></td>
-					<td><a href="">상품정보</a></td>
-				</tr>
-				<tr>
-					<td><a href="">상품이름</a></td>
-				</tr>
-				
-			</table>
+			<div><jsp:include page="${p }" />
+			</div>
+			<div class="proContainer" align="center">
+				<c:forEach var="p" items="${idProduct}" >
+					<div class="photo">
+						<div><img src="resources/productImg/${p.P_PHOTO}" id="p_image"></div>
+						<div><a href="">${p.P_PRODUCT_NAME}</a></div>
+						<div><a href="">${p.P_INFO}</a></div>
+					</div>
+				</c:forEach>
+			</div>
 		</form>
 	</div>
 

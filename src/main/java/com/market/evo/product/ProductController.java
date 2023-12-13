@@ -37,14 +37,15 @@ public class ProductController {
 	@RequestMapping(value="/product.addProduct", method=RequestMethod.POST)
 	public String addProduct(HttpServletRequest req, Product p) {
 		pDAO.addProduct(p, req);
+		pDAO.idViewProduct(req);
 		req.setAttribute("cp", "product/infoProduct.jsp");
 		return "index";
 	}
 	
 	
 	@RequestMapping(value="/product.infoProduct", method=RequestMethod.GET)
-	public String infoProduct(HttpServletRequest req, String p_m_id) {
-		pDAO.idViewProduct(req, p_m_id);
+	public String infoProduct(HttpServletRequest req) {
+		pDAO.idViewProduct(req);
 		req.setAttribute("cp", "product/infoProduct.jsp");
 		return "index";
 	}
@@ -53,6 +54,12 @@ public class ProductController {
 	public String viewProducts(Product p,HttpServletRequest req) {
 		pDAO.viewProducts(p, req);
 		req.setAttribute("cp", "product/productView.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value="/product.modiProduct.go", method=RequestMethod.GET)
+	public String modiProduct(HttpServletRequest req) {
+		req.setAttribute("cp", "product/modiProduct.jsp");
 		return "index";
 	}
 }

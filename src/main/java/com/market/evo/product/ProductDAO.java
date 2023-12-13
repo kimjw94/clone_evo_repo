@@ -76,8 +76,6 @@ public class ProductDAO {
 			path = req.getSession().getServletContext().getRealPath("resources/productImg");
 			System.out.println(path);
 			
-			path = "c:\\upload\\";
-			
 			File folder = new File(path);
 			
 			// 폴더 존재 여부
@@ -88,9 +86,7 @@ public class ProductDAO {
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
-			} else {
-				System.out.println("폴더있어요");
-			}
+			} 
 			
 			mr = new MultipartRequest(req, path, 30 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());	
 			
@@ -116,8 +112,7 @@ public class ProductDAO {
 				p.setP_photo(p_photo_kor);
 				
 				if(ss.getMapper(ProductMapper.class).addProduct(p) == 1) {
-					req.setAttribute("r", "상품 추가 -완-");
-					System.out.println("상품추가완!!");
+					System.out.println("상품 추가가 완료되었습니다.");
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
@@ -135,12 +130,12 @@ public class ProductDAO {
 	}
 	
 	// 판매자가 추가한 상품만 모아보기
-	public void idViewProduct(HttpServletRequest req, String p_m_id) {
+	public void idViewProduct(HttpServletRequest req) {
 		try {
 
 			Member m = (Member)req.getSession().getAttribute("loginMember");
-			p_m_id = m.getM_id();
-			
+			String p_m_id = m.getM_id();
+		
 			List<Map<String, String>> pl = ss.getMapper(ProductMapper.class).idViewProduct(p_m_id);
 			
 			if(pl.size() != 0) {

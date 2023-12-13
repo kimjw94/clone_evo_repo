@@ -1,21 +1,18 @@
 package com.market.evo.product;
 
 import java.io.File;
-import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.nio.file.Files;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
 
 import com.market.evo.member.Member;
 import com.oreilly.servlet.MultipartRequest;
@@ -73,7 +70,7 @@ public class ProductDAO {
 		
 		try {		
 			
-			path = req.getSession().getServletContext().getRealPath("resources/productImg");
+			path = req.getSession().getServletContext().getRealPath("resources/productImg/");
 			System.out.println(path);
 			
 			File folder = new File(path);
@@ -94,6 +91,22 @@ public class ProductDAO {
 			
 			try {
 				
+				String fileName = mr.getFilesystemName("p_photo");
+				System.out.println("기존 파일 이름 : " + fileName);
+				
+				String now = new SimpleDateFormat("yyMMddHmsS").format(new Date());
+				
+				// 파일 확장자 위치 찾기
+				int i = fileName.lastIndexOf(".");
+				String fileName2 = now + fileName;
+				System.out.println("수정한 파일 이름 : " + fileName2);
+				
+				File oldPhoto = new File(path + fileName);
+				File newPhoto = new File(path + fileName2);
+				
+				oldPhoto.renameTo(newPhoto);
+
+				
 				Member m = (Member)req.getSession().getAttribute("loginMember");
 				
 				p.setP_m_id(m.getM_id());
@@ -106,9 +119,9 @@ public class ProductDAO {
 				int p_price = Integer.parseInt(mr.getParameter("p_price"));
 				p.setP_price(p_price);
 				
-			
-				String p_photo = mr.getFilesystemName("p_photo");
+				String p_photo = fileName2;
 				String p_photo_kor = URLEncoder.encode(p_photo, "UTF-8").replace("+", " ");
+				
 				p.setP_photo(p_photo_kor);
 				
 				if(ss.getMapper(ProductMapper.class).addProduct(p) == 1) {

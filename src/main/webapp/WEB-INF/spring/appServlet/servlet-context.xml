@@ -43,7 +43,8 @@
 		<beans:property name="typeAliasesPackage" value="com.market.evo" />
 		<beans:property name="mapperLocations">
 			<beans:list>
-				<beans:value>classpath:mapper/testMapper1.xml</beans:value>
+				<beans:value>classpath:memberMapper.xml</beans:value>
+				<beans:value>classpath:productMapper.xml</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

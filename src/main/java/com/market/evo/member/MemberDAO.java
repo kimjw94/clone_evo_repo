@@ -47,10 +47,11 @@ public class MemberDAO {
 					req.getSession().setAttribute("loginMember", dbM);
 					req.getSession().setMaxInactiveInterval(600);
 				} else {
-					req.setAttribute("r", "로그인 실패(PW 오류");
+					req.setAttribute("r", "PW가 잘못되었습니다.");
+					
 				}
 			} else {
-				req.setAttribute("r", "로그인 실패(ID 없음)");
+				req.setAttribute("r", "ID가 잘못되었습니다.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -145,5 +146,13 @@ public class MemberDAO {
 	public Members memberalCheck(Member m) {
 		return new Members(ss.getMapper(MemberMapper.class).getMemberByAl(m));
 	}
-
+	
+	public boolean loginCheck(HttpServletRequest req) {
+        Member m = (Member) req.getSession().getAttribute("loginMember");
+        if(m != null) {
+        	return true;
+        }else {
+        	return false;
+        }
+	}
 }

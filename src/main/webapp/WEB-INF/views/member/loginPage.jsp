@@ -8,17 +8,21 @@
 </head>
 <body>
 	<div align="center" class="title" id="tTitle">Login</div>
-	<form action="member.login" method="post">
+	<form id="login_page" action="member.login" method="post">
 		<div align="center" class="lDiv">
 			<input name="m_id" placeholder="ID">
 			<p>
 		</div>
 		<div align="center" class="lDiv">
-			<input name="m_password" placeholder="PW" type="password">
+			<input id="m_password" name="m_password" placeholder="PW"
+				type="password">
 			<p>
+			<div style="color: red;">
+				<p>${r}</p>
+			</div>
 		</div>
 		<div align="center" class="lBtn">
-			<button class="btn-black" id="blogin">Login</button>
+			<button class="btn-black" name="loginbtn" id="blogin">Login</button>
 		</div>
 	</form>
 	<div class="searchIW" align="center">

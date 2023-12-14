@@ -32,6 +32,29 @@
 		default
 		)
 	</insert>
+	
+	<!-- 상품 이미지 추가 -->
+	<insert id="addImage" parameterType="map">
+		insert into evo_product_image
+		 values(
+		 		#{im_p_product_no},
+		 		#{im_thumbnail_image},
+		 		#{im_info_image}
+		 )
+	</insert>
+	
+	<!-- 상품 번호 불러오는거 -->
+	<select id="getProNo" parameterType="com.market.evo.product.Product" resultType="int">
+		select p_product_no 
+		  from evo_product
+	     where p_addDay = (select max(p_addDay) from (
+							select p_addDay
+							  from evo_product
+							 where p_product_name = #{p_product_name}
+							   and p_m_id = #{p_m_id}
+							   and p_category_code = #{p_category_code}))
+;
+	</select>
 
 	<select id="idViewProduct" parameterType="String"
 		resultType="map">

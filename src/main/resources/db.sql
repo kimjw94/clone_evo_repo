@@ -35,7 +35,6 @@ create table evo_product(
       references evo_category_detail(d_category_detail_code) on delete cascade,
    p_price number(6) not null,
    p_info varchar2(500 char) not null,
-   p_photo varchar2(100 char) not null,
    p_addDay DATE default sysdate,
    p_updateDay DATE default sysdate,
    p_view decimal(10, 0) default 0
@@ -44,14 +43,61 @@ create table evo_product(
 create sequence seq_p_product_no;
 
 
--- product 칼럼 추가
--- 위 테이블 새로 만들었으면 추가 안해도 됨!!
-alter table evo_product add p_product_name varchar2(50 char) not null;
+
+-- product 상품 추가 시 이미지 테이블에 넣을 product_no 가져오는 쿼리
+select p_product_no from evo_product
+where p_addDay = (select max(p_addDay) from (
+							select p_addDay
+							  from evo_product
+							 where p_product_name = '검은색 후드티'
+							   and p_m_id = 'test'
+							   and p_category_code = 10001))
+;
+
 
 select * from evo_product;
 
 drop table evo_product cascade constraint purge;
+ 
+ 
+ 
+-- 상품 재고 테이블
+create table evo_product_inventory(
+	i_p_product_no decimal(10, 0) not null,
+		constraint fk_product_no foreign key(i_p_product_no)
+      	references evo_product(p_product_no) on delete cascade,
+    i_product_color varchar2(30 char) not null,
+    i_product_size varchar2(10 char) not null,
+    i_product_count number(5) not null
+);
 
+select * from evo_product_inventory;
+
+
+-- 상품별 이미지 테이블
+create table evo_product_image(
+	im_p_product_no decimal(10, 0) not null,
+		constraint fk_im_product_no foreign key(im_p_product_no)
+		references evo_product(p_product_no) on delete cascade,
+	im_thumbnail_image varchar2(100 char) not null,
+	im_info_image varchar(100 char)
+);
+
+select * from evo_product_image;
+
+
+
+-- 디테일 상품 불러오기 쿼리
+select p.p_product_no,
+		p.p_product_name,
+		p.p_price,
+		c.c_category_name,
+		d.d_category_detail_name
+  from evo_product p left join evo_category_detail d on p.p_category_code = d.d_category_detail_code
+            left join evo_category c on c.c_category_code = d.d_category_code 
+ where p.p_category_code =  d.d_category_detail_code
+   and d.d_category_code = c.c_category_code
+;
 
 
 -- 상품 카테고리 테이블

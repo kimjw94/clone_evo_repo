@@ -12,4 +12,6 @@ public interface MemberMapper {
 	public boolean selectId(Member m);
 	public abstract List<Member> getMemberById(Member m);
 	public abstract List<Member> getMemberByAl(Member m);
+	public abstract Member searchId(Member m);
+	public abstract Member searchPw(Member m);
 }

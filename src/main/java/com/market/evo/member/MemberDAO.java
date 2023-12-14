@@ -155,4 +155,31 @@ public class MemberDAO {
         	return false;
         }
 	}
+	
+	public Member searchId(Member m, HttpServletRequest req) {
+	    try {
+	    	if(req.getSession().getAttribute("foundMember2") != null) {
+	        	req.getSession().setAttribute("foundMember2", null);
+	        }
+	    	
+	    	Member searchResult = ss.getMapper(MemberMapper.class).searchId(m);
+	        return searchResult;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
+	public Member searchPw(Member m, HttpServletRequest req) {
+	    try {
+	        if(req.getSession().getAttribute("foundMember") != null) {
+	        	req.getSession().setAttribute("foundMember", null);
+	        }
+	    	
+	    	Member searchResult = ss.getMapper(MemberMapper.class).searchId(m);
+	        return searchResult;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+	}
 }

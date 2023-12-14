@@ -26,8 +26,8 @@
 		</div>
 	</form>
 	<div class="searchIW" align="center">
-		<a href="" class="nfont"> 아이디 찾기</a> <a href="" class="nfont">비밀번호
-			찾기</a>
+		<a href="member.searchId.go" class="nfont"> 아이디 찾기</a> 
+		<a href="member.searchPw.go" class="nfont">비밀번호 찾기</a>
 		<p>
 	</div>
 	<div align="center">

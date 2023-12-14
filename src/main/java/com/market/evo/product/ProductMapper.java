@@ -1,5 +1,6 @@
 package com.market.evo.product;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -11,4 +12,6 @@ public interface ProductMapper {
 	public abstract int addProduct(Product p);
 	public List<Map<String, String>> idViewProduct(String p_m_id);
 	public abstract List<Product> viewProducts(Product p);
-}
+	public  Product getProductByProductNo(BigDecimal p_product_no);
+	public List<Product> getUpperWearProducts();
+	}

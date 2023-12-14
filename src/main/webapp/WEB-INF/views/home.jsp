@@ -15,7 +15,7 @@
 		
 		<div class="pIcon">
 			<div class="iicon" align="center">
-				<a href="product.showAll"><i class="fa-solid fa-shirt fa-2x"></i></a>
+				<a href="product.showUpperWear"><i class="fa-solid fa-shirt fa-2x"></i></a>
 			</div>
 			<div class="iicon" align="center">
 				<a href=""><i class="fa-solid fa-bag-shopping fa-2x"></i></a>
@@ -30,7 +30,7 @@
 		
 		<div class="pIcon">
 			<div class="iiconName" align="center">
-				<a href="">의류</a>
+				<a href="product.showUpperWear">상의</a>
 			</div>
 			<div class="iiconName" align="center">
 				<a href="">가방</a>

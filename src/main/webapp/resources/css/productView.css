@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: "a109";
+	src: url("a109.TTF");
+
+}
+
+#category{
+	font-family: "a109";
+	font-size: 15px;
+}
+
+#productPhoto{
+	float:left;
+	margin-right:20px;
+	border: 1px solid #ccc; /* 테두리 스타일, 두께 및 색상을 조절할 수 있습니다. */
+    padding: 10px; /* 테두리와 내용 사이에 간격을 조절할 수 있습니다. */
+    /* 다른 스타일링 속성들도 추가할 수 있습니다. */
+}
+
+#productName{
+	font-family: "a109";
+	font-size: 25px;
+	
+}
+
+#productDetail{
+	font-family: "a109"
+	
+	
+}
+

@@ -15,3 +15,4 @@ public interface MemberMapper {
 	public abstract Member searchId(Member m);
 	public abstract Member searchPw(Member m);
 }
+

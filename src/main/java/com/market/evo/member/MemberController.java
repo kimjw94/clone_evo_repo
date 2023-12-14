@@ -1,5 +1,7 @@
 package com.market.evo.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,5 +137,49 @@ public class MemberController {
 	@RequestMapping(value = "/member.alCheck", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
 	public @ResponseBody Members memberalCheck(Member m) {
 		return mDAO.memberalCheck(m);
+	}
+	
+	@RequestMapping(value = "/member.searchId.go", method = RequestMethod.GET)
+	public String searchIdgo(HttpServletRequest req) {
+		req.setAttribute("cp", "member/searchId.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/member.searchId", method = RequestMethod.POST)
+	public String searchId(Member m, HttpServletRequest req) {
+	    Member foundMember = mDAO.searchId(m, req);
+	    
+	    if (foundMember != null) {
+	        req.setAttribute("foundMember", foundMember);
+	        req.getSession().setAttribute("foundMember", foundMember);
+	        req.setAttribute("cp", "member/searchResult.jsp");
+	    } else {
+	        req.setAttribute("r", "아이디를 찾을 수 없습니다.");
+	        req.setAttribute("cp", "member/searchResult.jsp");
+	    }
+	    
+	    return "index";
+	}
+	
+	@RequestMapping(value = "/member.searchPw.go", method = RequestMethod.GET)
+	public String searchPwgo(HttpServletRequest req) {
+		req.setAttribute("cp", "member/searchPw.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/member.searchPw", method = RequestMethod.POST)
+	public String searchPw(Member m, HttpServletRequest req) {
+	    Member foundMember2 = mDAO.searchPw(m, req);
+	    
+	    if (foundMember2 != null) {
+	        req.setAttribute("foundMember2", foundMember2);
+	        req.getSession().setAttribute("foundMember2", foundMember2);
+	        req.setAttribute("cp", "member/searchResult.jsp");
+	    } else {
+	        req.setAttribute("r", "비밀번호를 찾을 수 없습니다.");
+	        req.setAttribute("cp", "member/searchResult.jsp");
+	    }
+	    
+	    return "index";
 	}
 }

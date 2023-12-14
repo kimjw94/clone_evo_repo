@@ -139,7 +139,7 @@
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
-					Signup</td>
+					SignUp</td>
 			</tr>
 			<tr>
 				<th rowspan="2"><label for="m_id">ID</label></th>

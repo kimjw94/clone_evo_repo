@@ -133,12 +133,13 @@ public class MemberController {
 	public @ResponseBody Members memberalCheck(Member m) {
 		return mDAO.memberalCheck(m);
 	}
-
+  
 	@RequestMapping(value = "/member.searchId.go", method = RequestMethod.GET)
 	public String searchIdgo(HttpServletRequest req) {
 		req.setAttribute("cp", "member/searchId.jsp");
 		return "index";
 	}
+
 
 	@RequestMapping(value = "/member.searchId", method = RequestMethod.POST)
 	public String searchId(Member m, HttpServletRequest req) {
@@ -156,11 +157,13 @@ public class MemberController {
 		return "index";
 	}
 
+
 	@RequestMapping(value = "/member.searchPw.go", method = RequestMethod.GET)
 	public String searchPwgo(HttpServletRequest req) {
 		req.setAttribute("cp", "member/searchPw.jsp");
 		return "index";
 	}
+
 
 	@RequestMapping(value = "/member.searchPw", method = RequestMethod.POST)
 	public String searchPw(Member m, HttpServletRequest req) {
@@ -237,5 +240,6 @@ public class MemberController {
 			
 		}
 		return "index";
+
 	}
 }

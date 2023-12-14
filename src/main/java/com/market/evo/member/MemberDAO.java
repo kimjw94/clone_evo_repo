@@ -182,8 +182,6 @@ public class MemberDAO {
 	        return null;
 	    }
 	}
-	
-	
 
 }
 

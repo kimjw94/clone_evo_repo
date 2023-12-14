@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="resources/css/product.css">
 <link rel="stylesheet" href="resources/css/MenuBar.css">
 <link rel="stylesheet" href="resources/css/productView.css">
+<link rel="stylesheet" href="resources/css/helpper.css">
 <script type="text/javascript">
 	function toggleSubMenu(event) {
 		// 클릭된 요소가 링크인 경우 토글 동작을 수행하지 않음
@@ -28,7 +29,7 @@
 			submenu.style.display = "none";
 		}
 	}
-	
+
 	function logout() {
 		let R = confirm("로그아웃 하시겠습니까?");
 		if (R) {
@@ -56,10 +57,25 @@
 			<div align="center">
 				<a href="/evo/" class="title">evo</a>
 			</div>
-			<div class="nfont" align="right">
-				<c:if test="${sessionScope.loginMember.m_id != null }">
-					<a href="myPage">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
-				</c:if>
+			<div>
+				<div class="nfont" align="left">
+					<nav class="helpper">
+						<ul>
+							<li style="cursor: pointer;">고객센터
+								<ul>
+									<li><a href="">자주 묻는 질문</a></li>
+									<li><a href="member.helpper.go">1:1 문의</a></li>
+									<li><a href="member.helpperList.go">문의 내역</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="nfont" align="right">
+					<c:if test="${sessionScope.loginMember.m_id != null }">
+						<a href="myPage">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
+					</c:if>
+				</div>
 			</div>
 		</div>
 		<hr />
@@ -79,7 +95,7 @@
 		<ul>
 			<li onclick="toggleSubMenu(event)"><strong>상의</strong>&nbsp;<span>Top</span>
 				<ul class="submenu">
-					<li><a href="productAllUpperWearView">전체</a></li>
+					<li><a href="product.showUpperWear">전체</a></li>
 					<li><a href="#">후드티</a></li>
 					<li><a href="#">니트/스웨터</a></li>
 					<li><a href="#">맨투맨</a></li>

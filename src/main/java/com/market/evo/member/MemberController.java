@@ -55,26 +55,26 @@ public class MemberController {
 
 	}
 
-//	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
-//	public String login(Member m, HttpServletRequest req) {
-//		// MemberDAO에서 로그인 처리를 수행하는 GetIDForLogin 메서드 호출
-//		
-//		mDAO.GetIDForLogin(m, req);
-//		boolean loginSuccess = mDAO.loginCheck(req);
-//		
-//		if (loginSuccess) {
-//			// 로그인 성공 후 home.jsp로 이동하기 위해 cp 속성을 설정
-//			
-//			return "redirect:/home";
-//		
-//		} else {
-//			// 로그인 실패 시 실패 메시지를 설정
-//			req.setAttribute("cp", "member/loginPage.jsp");
-//			
-//		}
-//		return "index";
-//		
-//	}
+	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
+	public String login(Member m, HttpServletRequest req) {
+		// MemberDAO에서 로그인 처리를 수행하는 GetIDForLogin 메서드 호출
+		
+		mDAO.GetIDForLogin(m, req);
+		boolean loginSuccess = mDAO.loginCheck(req);
+		
+		if (loginSuccess) {
+			// 로그인 성공 후 home.jsp로 이동하기 위해 cp 속성을 설정
+			
+			return "redirect:/home";
+		
+		} else {
+			// 로그인 실패 시 실패 메시지를 설정
+			req.setAttribute("cp", "member/loginPage.jsp");
+			
+		}
+		return "index";
+		
+	}
 
 	@RequestMapping(value = "/member.sellerInfoModi.go", method = RequestMethod.GET)
 	public String sellerInfoModi(HttpServletRequest req) {
@@ -220,26 +220,26 @@ public class MemberController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
-	public String login(Member m, HttpServletRequest req) {
-		// 로그인 처리 로직
-		mDAO.GetIDForLogin(m, req);
-		boolean loginSuccess = mDAO.loginCheck(req);
-		String prevPage = (String) req.getSession().getAttribute("prevPage");
-		if (loginSuccess) {
-			// 성공 시 이전 페이지로 리다이렉트
-			
-			if (prevPage != null) {
-				req.getSession().removeAttribute("prevPage");
-				return "redirect:" + prevPage;
-			} else {
-				// 이전 페이지 정보가 없으면 홈페이지로 리다이렉트 또는 다른 처리 수행
-				req.setAttribute("cp", "home.jsp");
-				return "index";
-			}
-			
-		}
-		return "index";
-
-	}
+//	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
+//	public String login(Member m, HttpServletRequest req) {
+//		// 로그인 처리 로직
+//		mDAO.GetIDForLogin(m, req);
+//		boolean loginSuccess = mDAO.loginCheck(req);
+//		String prevPage = (String) req.getSession().getAttribute("prevPage");
+//		if (loginSuccess) {
+//			// 성공 시 이전 페이지로 리다이렉트
+//			
+//			if (prevPage != null) {
+//				req.getSession().removeAttribute("prevPage");
+//				return "redirect:" + prevPage;
+//			} else {
+//				// 이전 페이지 정보가 없으면 홈페이지로 리다이렉트 또는 다른 처리 수행
+//				req.setAttribute("cp", "home.jsp");
+//				return "index";
+//			}
+//			
+//		}
+//		return "index";
+//
+//	}
 }

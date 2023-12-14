@@ -6,38 +6,60 @@
 	<select id="categoryList" resultType="map">
 		select * from evo_category
 	</select>
-	
+
 	<!-- detailCategoryName -->
 	<select id="detailCateList" parameterType="int" resultType="map">
-		select d_category_detail_code, d_category_detail_name  
-		  from evo_category_detail
-		 where d_category_code = #{c_category_code}
+		select d_category_detail_code, d_category_detail_name
+		from
+		evo_category_detail
+		where d_category_code = #{c_category_code}
 	</select>
-	
+
 	<!-- 상품 추가 -->
-	<insert id="addProduct" parameterType="com.market.evo.product.Product" >
+	<insert id="addProduct"
+		parameterType="com.market.evo.product.Product">
 		insert into evo_product
-		 values (
-		 		seq_p_product_no.nextval,
-		 		#{p_product_name},
-		 		#{p_m_id},
-		 		#{p_category_code},
-		 		#{p_price},
-		 		#{p_info},
-		 		#{p_photo},
-		 		default,
-		 		default,
-		 		default
-		 )
+		values (
+		seq_p_product_no.nextval,
+		#{p_product_name},
+		#{p_m_id},
+		#{p_category_code},
+		#{p_price},
+		#{p_info},
+		#{p_photo},
+		default,
+		default,
+		default
+		)
 	</insert>
-	
-	<select id="idViewProduct" parameterType="String" resultType="map">
-		select p_info, p_price, p_photo, p_product_name, p_product_no
-		  from evo_product
-		 where p_m_id = #{p_m_id}
+
+	<select id="idViewProduct" parameterType="String"
+		resultType="map">
+		select p_info, p_price, p_photo, p_product_name,
+		p_product_no
+		from evo_product
+		where p_m_id = #{p_m_id}
 	</select>
-	<select id ="viewProducts" resultType="com.market.evo.product.Product">
-		select * from evo_product 
+	<select id="viewProducts"
+		resultType="com.market.evo.product.Product">
+		select * from evo_product
 	</select>
-	
+
+	<select id="getProductByProductNo"
+		parameterType="java.math.BigDecimal"
+		resultType="com.market.evo.product.Product">
+		SELECT * FROM evo_product WHERE p_product_no =
+		#{p_product_no}
+	</select>
+
+
+	<select id="getUpperWearProducts"
+		parameterType="com.market.evo.product.Product"
+		resultType="com.market.evo.product.Product">
+		SELECT * FROM evo_product p
+		JOIN evo_category_detail cd ON p.p_category_code =
+		cd.d_category_detail_code
+		JOIN evo_category c ON cd.d_category_code = c.c_category_code
+		WHERE c.c_category_name = '상의'
+	</select>
 </mapper>

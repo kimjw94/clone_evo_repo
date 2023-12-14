@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="resources/css/member.css">
 <link rel="stylesheet" href="resources/css/product.css">
 <link rel="stylesheet" href="resources/css/MenuBar.css">
+<link rel="stylesheet" href="resources/css/productView.css">
 <script type="text/javascript">
 	function toggleSubMenu(event) {
 		// 클릭된 요소가 링크인 경우 토글 동작을 수행하지 않음
@@ -78,7 +79,7 @@
 		<ul>
 			<li onclick="toggleSubMenu(event)"><strong>상의</strong>&nbsp;<span>Top</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="productAllUpperWearView">전체</a></li>
 					<li><a href="#">후드티</a></li>
 					<li><a href="#">니트/스웨터</a></li>
 					<li><a href="#">맨투맨</a></li>

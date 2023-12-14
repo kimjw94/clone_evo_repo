@@ -12,21 +12,19 @@
 		<div class="nfont" id="tpTitle" align="center">상품 정보</div>
 		<div class="proContainer">
 			<div class="proContainer" align="center">
-				<c:forEach var="product" items="${products}" >
+				<c:forEach var="upperWear" items="${upperWear}">
 					<div class="photo">
-						<a href="product.viewDetail?p_product_no=${product.p_product_no}">
-						<img src="resources/productImg/${product.p_photo}" id="p_image">
-						${product.p_product_name}
-						${product.p_price}
+				
+						<a href="product.viewDetail?p_product_no=${upperWear.p_product_no}"> 
+						
+							<img src="resources/productImg/${upperWear.p_photo}" id="p_image">
+							${upperWear.p_product_name} <br> ${upperWear.p_price}
 						</a>
 					
 					</div>
 				</c:forEach>
 			</div>
 		</div>
-		</div>
-	
-	
-	
+	</div>
 </body>
 </html>

@@ -4,26 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>evo</title>
 </head>
 <body>
 	<div align="center" class="title" id="tTitle">Login</div>
-	<form action="member.login" method="post">
+	<form id="login_page" action="member.login" method="post">
 		<div align="center" class="lDiv">
 			<input name="m_id" placeholder="ID">
 			<p>
 		</div>
 		<div align="center" class="lDiv">
-			<input name="m_password" placeholder="PW">
+			<input id="m_password" name="m_password" placeholder="PW"
+				type="password">
 			<p>
+			<div style="color: red;">
+				<p>${r}</p>
+			</div>
 		</div>
 		<div align="center" class="lBtn">
-			<button class="btn-black" id="blogin">Login</button>
+			<button class="btn-black" name="loginbtn" id="blogin">Login</button>
 		</div>
 	</form>
 	<div class="searchIW" align="center">
-		<a href="" class="nfont"> 아이디 찾기</a> <a href="" class="nfont">비밀번호
-			찾기</a>
+		<a href="member.searchId.go" class="nfont"> 아이디 찾기</a> 
+		<a href="member.searchPw.go" class="nfont">비밀번호 찾기</a>
 		<p>
 	</div>
 	<div align="center">

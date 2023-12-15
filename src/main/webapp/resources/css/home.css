@@ -6,8 +6,9 @@
 }
 
 @font-face {
-	font-family: "aLight";
-	src: url("aLight.TTF");
+	font-family: "a109";
+	src: url("a109.TTF");
+
 }
 
 body .title {
@@ -31,13 +32,15 @@ body a {
 }
 
 .nfont {
-	font-family: "aLight";
+	font-family: "a109";
+	font-size: 15px;
+}
+
+.sfont {
+	font-family: "a109";
 	font-size: 20px;
 }
 
-#login {
-	margin-right: 10px;
-}
 
 a {
 	text-decoration-line: none;
@@ -62,6 +65,7 @@ a {
 	flex: 1;
 	margin-top: 10px;
 	margin-bottom: 20px;
+	font-family: "a109";
 }
 
 .beest, .neew {
@@ -81,4 +85,8 @@ a {
 
 .footerHr {
 	margin-top: 200px;
+}
+
+#loginA {
+	padding: 10px;
 }

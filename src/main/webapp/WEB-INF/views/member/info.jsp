@@ -10,19 +10,9 @@
 <script type="text/javascript">
 	function btn_submit() {
 
-		var m_id = document.getElementById("m_id");
 		var m_password = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
-
-		let result = true;
-
-		if ((m_id.value) == "") {
-			alert("아이디를 입력해주세요.");
-			result = false;
-			m_id.focus();
-			return result;
-		}
 
 		if ((m_password.value) == "") {
 			alert("비밀번호를 입력해주세요.");
@@ -36,7 +26,7 @@
 			return false;
 		}
 
-		if ((m_pw.value) != (m_pwcheck.value)) {
+		if ((m_password.value) != (m_pwcheck.value)) {
 			alert("비밀번호가 동일하지 않습니다.");
 			m_pwcheck.focus();
 
@@ -98,24 +88,15 @@
 				}).open();
 
 	}
+	function deletBtn() {
 
-	$(function() {
+		var w = (window.screen.width / 2) - 300;
+		var h = (window.screen.height / 2) - 350;
+		var url = "member.deletMember.go"
+		window.open(url, "deletMember", "width=600,height=700,left=" + w
+				+ ",top=" + h)
 
-		$("#m_id").keyup(function() {
-			let m_id = $("#m_id").val();
-			//alert(m_id);
-			$.getJSON("member.idCheck?m_id=" + m_id, function(memberJSON) {
-				if (memberJSON.member[0] == null) {
-					$("#label1").html('사용 가능한 아이디입니다.')
-					$("#label1").css("color", "black");
-				} else {
-					$("#label1").html('사용할 수 없는 아이디입니다.')
-					$("#label1").css("color", "red");
-				}
-			});
-		});
-
-	});
+	}
 	$(function(){
 		$("#m_alias").keyup(function() {
 			let m_alias = $("#m_alias").val();
@@ -134,49 +115,48 @@
 </script>
 </head>
 <body>
-	<form action="member.signup" method="post"
+	<form action="member.updateMember" method="post"
 		onsubmit="return btn_submit();">
 		<table class="m_signup" align="center">
 			<tr>
 				<td class="title" id="tTitle" align="center" colspan="4">
-					SignUp</td>
+					Infomodi</td>
 			</tr>
 			<tr>
-				<th rowspan="2"><label for="m_id">ID</label></th>
-				<td><input name="m_id" id="m_id" placeholder="ID" class="">
-				</td>
-			</tr>
-			<tr>
-				<td><label id="label1"></label></td>
+				<th><label for="m_id">ID</label></th>
+				<td><input value="${sessionScope.loginMember.m_id }"
+					name="m_id" id="m_id" placeholder="ID" class="" readonly="readonly">
 			</tr>
 			<tr>
 				<th><label for="m_pw">PW</label></th>
-				<td><input type="password" name="m_password" id="m_password"
-					placeholder="Password" class=""></td>
+				<td><input value="${sessionScope.loginMember.m_password }"
+					type="password" name="m_password" id="m_pw" placeholder="Password"
+					class=""></td>
 			</tr>
 			<tr>
 				<th><label for="m_pwcheck">PW확인</label></th>
-				<td><input type="password" name="m_pwcheck" id="m_pwcheck"
+				<td><input value="${sessionScope.loginMember.m_password }"
+					type="password" name="m_pwcheck" id="m_pwcheck"
 					placeholder="Password Check" class=""></td>
 			</tr>
 			<tr>
 				<th><label for="m_name">이름</label></th>
-				<td><input type="text" name="m_name" id="m_name"
-					placeholder="이름" class=""></td>
+				<td><input value="${sessionScope.loginMember.m_name }"
+					type="text" name="m_name" id="m_name" placeholder="이름" class=""></td>
 			</tr>
 			<tr>
 				<th rowspan="2"><label for="m_alias">닉네임</label></th>
-				<td>
-					<input name="m_alias" id="m_alias"
-					placeholder="닉네임" class="">
-				</td>
+				<td><input value="${sessionScope.loginMember.m_alias }"
+					name="m_alias" id="m_alias" placeholder="닉네임" class="">
+					
 			</tr>
 			<tr>
 				<td><label id="label2"></label></td>
 			</tr>
 			<tr>
-				<th><label for="m_phone">연락처</label></th>
-				<td><input type="text" name="m_phone" id="m_phone" class=""
+				<th><label for="b_phone">연락처</label></th>
+				<td><input value="${sessionScope.loginMember.m_phone }"
+					type="text" name="m_phone" id="m_phone" class=""
 					placeholder="ex) 010-xxxx-xxxx"></td>
 			</tr>
 			<tr>
@@ -198,8 +178,14 @@
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
-					<button class="btn-black" id="signupBtn">가입</button>
-
+					<button class="btn-black" id="signupBtn">수정</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center" class="signupTd">
+					<button type="button"
+						onclick="location.href='member.deletMember.go'" class="btn-black"
+						id="deletBtn">회원 탈퇴</button>
 				</td>
 			</tr>
 		</table>

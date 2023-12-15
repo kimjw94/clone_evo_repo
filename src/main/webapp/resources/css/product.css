@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.proContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;	
+}
+
+.photo {
+	flex: 1;
+
+}
+
+#p_image {
+	width: 200px;
+	height: 200px;
+	padding: 20px;
+}
+
+.p_title {
+	font-weight: bold;
+}

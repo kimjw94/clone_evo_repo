@@ -95,7 +95,7 @@
 		<ul>
 			<li onclick="toggleSubMenu(event)"><strong>상의</strong>&nbsp;<span>Top</span>
 				<ul class="submenu">
-					<li><a href="product.showUpperWear">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=상의">전체</a></li>
 					<li><a href="#">후드티</a></li>
 					<li><a href="#">니트/스웨터</a></li>
 					<li><a href="#">맨투맨</a></li>
@@ -107,7 +107,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><strong>아우터</strong>&nbsp;<span>Outer</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=아우터">전체</a></li>
 					<li><a href="#">후드 집업</a></li>
 					<li><a href="#">무스탕</a></li>
 					<li><a href="#">가디건</a></li>
@@ -119,7 +119,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><strong>하의</strong>&nbsp;<span>Bottom</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=바지">전체</a></li>
 					<li><a href="#">데님 팬츠</a></li>
 					<li><a href="#">코튼 팬츠</a></li>
 					<li><a href="#">트레이닝/조거팬츠</a></li>
@@ -130,7 +130,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>원피스</Strong>&nbsp;<span>Onepiece</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=원피스">전체</a></li>
 					<li><a href="#">미니 원피스</a></li>
 					<li><a href="#">미디 원피스</a></li>
 					<li><a href="#">맥시 원피스</a></li>
@@ -138,7 +138,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>스커트</Strong>&nbsp;<span>Skirt</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=스커트">전체</a></li>
 					<li><a href="#">미니 원피스</a></li>
 					<li><a href="#">미디 원피스</a></li>
 					<li><a href="#">맥시 원피스</a></li>
@@ -146,7 +146,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>신발</Strong>&nbsp;<span>Shoes</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=신발">전체</a></li>
 					<li><a href="#">구두</a></li>
 					<li><a href="#">로퍼</a></li>
 					<li><a href="#">플랫 슈즈</a></li>
@@ -158,7 +158,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>가방</Strong>&nbsp;<span>Bag</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=가방">전체</a></li>
 					<li><a href="#">백팩</a></li>
 					<li><a href="#">메신저/크로스백</a></li>
 					<li><a href="#">숄더백</a></li>
@@ -170,7 +170,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>모자</Strong>&nbsp;<span>Headwear</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=모자">전체</a></li>
 					<li><a href="#">캡/야구모자</a></li>
 					<li><a href="#">비니</a></li>
 					<li><a href="#">베레모</a></li>
@@ -179,7 +179,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>액세서리</Strong>&nbsp;<span>Accessory</span>
 				<ul class="submenu">
-					<li><a href="#">전체</a></li>
+					<li><a href="product.showProduct.all?categoryName=액세서리">전체</a></li>
 					<li><a href="#">귀걸이</a></li>
 					<li><a href="#">머플러</a></li>
 					<li><a href="#">장갑</a></li>

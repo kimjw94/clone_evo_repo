@@ -49,34 +49,18 @@ public class ProductController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/product.showAll", method = RequestMethod.GET)
-	public String viewProducts(Product p, HttpServletRequest req) {
-		pDAO.viewProducts(p, req);
-		req.setAttribute("cp", "product/productView.jsp");
-		return "index";
-	}
-
-	@RequestMapping(value = "/product.modiProduct.go", method = RequestMethod.GET)
+		@RequestMapping(value = "/product.modiProduct.go", method = RequestMethod.GET)
 	public String modiProduct(HttpServletRequest req) {
 		req.setAttribute("cp", "product/modiProduct.jsp");
 		return "index";
 	}
 
-	@RequestMapping(value = "/product.viewDetail", method = RequestMethod.GET)
-	public String viewProductDetail(HttpServletRequest req, @RequestParam("p_product_no") BigDecimal p_product_no) {
-	    // 여기서 p_product_no를 통해 해당 상품 정보를 가져와서 req에 저장하고, 상세페이지로 이동
-	    // 상품 정보 가져오는 코드 작성
-	    Product product = pDAO.getProductByProductNo(p_product_no);
-	    req.setAttribute("product", product);
-	    req.setAttribute("cp", "product/productDetail.jsp");
-	    return "index";
-}
+		@RequestMapping(value="/product.showProduct.all", method=RequestMethod.GET)
+		public String showProductUpperWear(HttpServletRequest req, @RequestParam("categoryName") String categoryName) {
+			pDAO.getProductsUpperWearWithImage(req,categoryName);
+			req.setAttribute("cp", "product/showProductUpperWear.jsp");
+			return "index";
+		}
 	
-	@RequestMapping(value="/product.showUpperWear",method=RequestMethod.GET)
-	public String viewProuctsUpperWear(HttpServletRequest req) {
-		pDAO.getUpperWearProducts(req);
-		req.setAttribute("cp", "product/productAllUpperWearView.jsp");
-		return "index";
-	}
-	
+		
 }

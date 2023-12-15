@@ -211,39 +211,26 @@ public class ProductDAO {
 
 		}
 	}
-
-	public void viewProducts(Product p, HttpServletRequest req) {
+	public void getProductsUpperWearWithImage(HttpServletRequest req,String categoryName) {
+		
 		try {
-			List<Product> products = ss.getMapper(ProductMapper.class).viewProducts(p);
-
-			req.setAttribute("products", products);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public Product getProductByProductNo(BigDecimal p_product_no) {
-		try {
-			Product product = ss.getMapper(ProductMapper.class).getProductByProductNo(p_product_no);
-			return product;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	public void getUpperWearProducts(HttpServletRequest req) {
-		try {
-			List<Product> products = ss.getMapper(ProductMapper.class).getUpperWearProducts();
-			if(products.size()!=0) {
-				req.setAttribute("upperWear", products);
-			} 
-		} catch (Exception e) {
-			e.printStackTrace();
+			List<Map<String, Object>> ProductsUpperwear = ss.getMapper(ProductMapper.class).getProductsUpperWearWithImage(categoryName);
+				if(ProductsUpperwear.size()!=0) {
+				req.setAttribute("ProductsUpperwear", ProductsUpperwear);
+			}else{
+				System.out.println("해당 카테고리에 제품 없음");
+			}
 			
+		} catch (Exception e) {
+		e.printStackTrace();
+		System.out.println("db에 문제있음 ㅠ");
 		}
-
+		
 	}
+	
+	
+	
+	
+	
 
 }

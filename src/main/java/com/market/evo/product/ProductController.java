@@ -22,7 +22,7 @@ public class ProductController {
 	@RequestMapping(value = "/product.viewAddProduct", method = RequestMethod.GET)
 	public String viewAddProduct(HttpServletRequest req) {
 		pDAO.getCategoryName(req);
-		req.setAttribute("cp", "product/addProduct.jsp");
+		req.setAttribute("cp", "product/addProducts.jsp");
 		return "index";
 	}
 

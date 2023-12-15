@@ -95,6 +95,7 @@
 		<ul>
 			<li onclick="toggleSubMenu(event)"><strong>상의</strong>&nbsp;<span>Top</span>
 				<ul class="submenu">
+				
 					<li><a href="product.showProduct.all?categoryName=상의">전체</a></li>
 					<li><a href="product.showProduct.detailCategory?categoryDetailName=후드티">후드티</a></li>
 					<li><a href="product.showProduct.detailCategory?categoryDetailName=니트/스웨터">니트/스웨터</a></li>

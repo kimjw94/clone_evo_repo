@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<c:forEach var="p" items="${ProductsCategory}">
 		<div class="photo">
 			<div>

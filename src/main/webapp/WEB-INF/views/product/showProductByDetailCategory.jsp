@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
 	<c:forEach var="p" items="${ProductsDetailCategory}">
 		<div class="photo">
 			<div>

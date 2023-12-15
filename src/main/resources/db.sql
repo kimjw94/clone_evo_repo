@@ -40,8 +40,19 @@ create table evo_product(
    p_view decimal(10, 0) default 0
 );
 
+--시퀀스 생성 및 삭제--
 create sequence seq_p_product_no;
+drop sequence seq_p_product_no;
 
+-- 상품 추가 예시 --
+insert into evo_product values(seq_p_product_no.nextval,'test','123',10001,22000,'상품정보테스트',default,default,default);
+insert into evo_product values(seq_p_product_no.nextval,'test','123',30001,22000,'상품정보테스트',default,default,default);
+
+-- 상품 테이블 보기 -- 
+select * from evo_product;
+
+-- 상품 테이블 삭제 --
+drop table evo_product cascade constraint purge;
 
 
 -- product 상품 추가 시 이미지 테이블에 넣을 product_no 가져오는 쿼리
@@ -55,9 +66,41 @@ where p_addDay = (select max(p_addDay) from (
 ;
 
 
-select * from evo_product;
 
-drop table evo_product cascade constraint purge;
+
+
+select p.*, I.IM_THUMBNAIL_IMAGE
+		from evo_product p join evo_category_detail d
+		on p.p_category_code = d.d_category_detail_code
+		join evo_category c on c.c_category_code = d.d_category_code
+		join evo_product_image i on p.p_product_no = i.im_p_product_no
+		where p.p_category_code = d.d_category_detail_code
+		and d.d_category_code = c.c_category_code
+		and	c.c_category_name= '바지';
+
+
+
+-- 상품 정보 가져오기 카테고리 써서 이미지와 상품정보 전체 가져오기 
+select p.*, I.IM_THUMBNAIL_IMAGE
+  from evo_product p join evo_category_detail d on p.p_category_code = d.d_category_detail_code
+             join evo_category c on c.c_category_code = d.d_category_code 
+            join evo_product_image i on p.p_product_no = i.im_p_product_no
+ where p.p_category_code =  d.d_category_detail_code
+   and d.d_category_code = c.c_category_code and c.c_category_name='하의';
+
+		
+SELECT * 
+FROM (
+    SELECT p.*, i.IM_THUMBNAIL_IMAGE, ROWNUM AS rnum
+    FROM evo_product p
+    JOIN evo_category_detail d ON p.p_category_code = d.d_category_detail_code
+    JOIN evo_category c ON c.c_category_code = d.d_category_code 
+    JOIN evo_product_image i ON p.p_product_no = i.im_p_product_no
+    WHERE p.p_category_code = d.d_category_detail_code
+      AND d.d_category_code = c.c_category_code 
+      AND c.c_category_name = '상의'
+WHERE rnum BETWEEN 1 AND 10;
+
  
  
  
@@ -83,6 +126,12 @@ create table evo_product_image(
 	im_info_image varchar(100 char)
 );
 
+
+-- 이미지 테이블 삽입 예시
+insert into evo_product_image values(1,'no.png',null);
+insert into evo_product_image values(21,'no.png',null);
+insert into evo_product_image values(22,'no.png',null);
+
 select * from evo_product_image;
 
 
@@ -97,7 +146,15 @@ select p.p_product_no,
             left join evo_category c on c.c_category_code = d.d_category_code 
  where p.p_category_code =  d.d_category_detail_code
    and d.d_category_code = c.c_category_code
-;
+   
+select p.*, I.IM_THUMBNAIL_IMAGE
+		from evo_product p join evo_category_detail d
+		on p.p_category_code = d.d_category_detail_code
+		join evo_category c on c.c_category_code = d.d_category_code
+		join evo_product_image i on p.p_product_no = i.im_p_product_no
+		where p.p_category_code = d.d_category_detail_code
+		and d.d_category_code = c.c_category_code
+		and	c.c_category_name= '바지';
 
 
 -- 상품 카테고리 테이블
@@ -141,7 +198,6 @@ select * from evo_category_detail;
 -- 세부 카테고리 데이터 추가
 insert into evo_category_detail values(10000, 10001, '후드티');
 insert into evo_category_detail values(10000, 10002, '니트/스웨터');
-insert into evo_category_detail values(10000, 10003, '맨투맨');
 insert into evo_category_detail values(10000, 10004, '긴소매티셔츠');
 insert into evo_category_detail values(10000, 10005, '반소매티셔츠');
 insert into evo_category_detail values(10000, 10006, '셔츠/블라우스');

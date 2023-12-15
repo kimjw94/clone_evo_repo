@@ -32,28 +32,34 @@
 		default
 		)
 	</insert>
-	
+
 	<!-- 상품 이미지 추가 -->
 	<insert id="addImage" parameterType="map">
-		insert into evo_product_image
-		 values(
-		 		#{im_p_product_no},
-		 		#{im_thumbnail_image},
-		 		#{im_info_image}
-		 )
+		insert into
+		evo_product_image
+		values(
+		#{im_p_product_no},
+		#{im_thumbnail_image},
+		#{im_info_image}
+		)
 	</insert>
-	
+
 	<!-- 상품 번호 불러오는거 -->
-	<select id="getProNo" parameterType="com.market.evo.product.Product" resultType="int">
-		select p_product_no 
-		  from evo_product
-	     where p_addDay = (select max(p_addDay) from (
-							select p_addDay
-							  from evo_product
-							 where p_product_name = #{p_product_name}
-							   and p_m_id = #{p_m_id}
-							   and p_category_code = #{p_category_code}))
-;
+	<select id="getProNo"
+		parameterType="com.market.evo.product.Product" resultType="int">
+		select
+		p_product_no
+		from evo_product
+		where p_addDay = (select max(p_addDay)
+		from (
+		select p_addDay
+		from evo_product
+		where p_product_name =
+		#{p_product_name}
+		and p_m_id = #{p_m_id}
+		and p_category_code =
+		#{p_category_code}))
+		;
 	</select>
 
 	<select id="idViewProduct" parameterType="String"
@@ -63,26 +69,18 @@
 		from evo_product
 		where p_m_id = #{p_m_id}
 	</select>
-	<select id="viewProducts"
-		resultType="com.market.evo.product.Product">
-		select * from evo_product
+	<!--상의라는 카테고리에 포함되는 상품정보,상품이미지 가져오기 -->
+	<select id="getProductsUpperWearWithImage" resultType="map">
+		select p.*, I.IM_THUMBNAIL_IMAGE
+		from evo_product p join evo_category_detail d
+		on p.p_category_code = d.d_category_detail_code
+		join evo_category c on c.c_category_code = d.d_category_code
+		join evo_product_image i on p.p_product_no = i.im_p_product_no
+		where p.p_category_code = d.d_category_detail_code
+		and d.d_category_code = c.c_category_code
+		and	c.c_category_name= #{categoryName}
 	</select>
 
-	<select id="getProductByProductNo"
-		parameterType="java.math.BigDecimal"
-		resultType="com.market.evo.product.Product">
-		SELECT * FROM evo_product WHERE p_product_no =
-		#{p_product_no}
-	</select>
 
 
-	<select id="getUpperWearProducts"
-		parameterType="com.market.evo.product.Product"
-		resultType="com.market.evo.product.Product">
-		SELECT * FROM evo_product p
-		JOIN evo_category_detail cd ON p.p_category_code =
-		cd.d_category_detail_code
-		JOIN evo_category c ON cd.d_category_code = c.c_category_code
-		WHERE c.c_category_name = '상의'
-	</select>
 </mapper>

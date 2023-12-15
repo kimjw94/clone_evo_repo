@@ -96,95 +96,96 @@
 			<li onclick="toggleSubMenu(event)"><strong>상의</strong>&nbsp;<span>Top</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=상의">전체</a></li>
-					<li><a href="#">후드티</a></li>
-					<li><a href="#">니트/스웨터</a></li>
-					<li><a href="#">맨투맨</a></li>
-					<li><a href="#">긴소매티셔츠</a></li>
-					<li><a href="#">반소매티셔츠</a></li>
-					<li><a href="#">셔츠/블라우스</a></li>
-					<li><a href="#">기타 상의</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=후드티">후드티</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=니트/스웨터">니트/스웨터</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=맨투맨">맨투맨</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=긴소매티셔츠">긴소매티셔츠</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=반소매티셔츠">반소매티셔츠</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=셔츠/블라우스">셔츠/블라우스</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=기타 상의">기타 상의</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><strong>아우터</strong>&nbsp;<span>Outer</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=아우터">전체</a></li>
-					<li><a href="#">후드 집업</a></li>
-					<li><a href="#">무스탕</a></li>
-					<li><a href="#">가디건</a></li>
-					<li><a href="#">플리스/뽀글이</a></li>
-					<li><a href="#">롱패딩</a></li>
-					<li><a href="#">숏패딩</a></li>
-					<li><a href="#">기타 아우터</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=후드집업">후드 집업</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=무스탕">무스탕</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=가디건">가디건</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=플리스/뽀글이">플리스/뽀글이</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=롱패딩">롱패딩</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=숏패딩">숏패딩</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=기타 아우터">기타 아우터</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><strong>하의</strong>&nbsp;<span>Bottom</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=바지">전체</a></li>
-					<li><a href="#">데님 팬츠</a></li>
-					<li><a href="#">코튼 팬츠</a></li>
-					<li><a href="#">트레이닝/조거팬츠</a></li>
-					<li><a href="#">숏 팬츠</a></li>
-					<li><a href="#">슈트팬츠/슬랙스</a></li>
-					<li><a href="#">기타 바지</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=데님 팬츠">데님 팬츠</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=코튼 팬츠">코튼 팬츠</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=트레이닝/조거팬츠">트레이닝/조거팬츠</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=숏 팬츠">숏 팬츠</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=슈트팬츠/슬랙스">슈트팬츠/슬랙스</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=기타 바지">기타 바지</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>원피스</Strong>&nbsp;<span>Onepiece</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=원피스">전체</a></li>
-					<li><a href="#">미니 원피스</a></li>
-					<li><a href="#">미디 원피스</a></li>
-					<li><a href="#">맥시 원피스</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=미니 원피스">미니 원피스</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=미디 원피스">미디 원피스</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=맥시 원피스">맥시 원피스</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>스커트</Strong>&nbsp;<span>Skirt</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=스커트">전체</a></li>
-					<li><a href="#">미니 원피스</a></li>
-					<li><a href="#">미디 원피스</a></li>
-					<li><a href="#">맥시 원피스</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=미니 스커트">미니 스커트</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=미디 스커트">미디 스커트</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=롱 원피스">롱스커트</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>신발</Strong>&nbsp;<span>Shoes</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=신발">전체</a></li>
-					<li><a href="#">구두</a></li>
-					<li><a href="#">로퍼</a></li>
-					<li><a href="#">플랫 슈즈</a></li>
-					<li><a href="#">슬리퍼</a></li>
-					<li><a href="#">샌들</a></li>
-					<li><a href="#">부츠</a></li>
-					<li><a href="#">기타 신발</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=구두">구두</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=로퍼">로퍼</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=플랫 슈즈">플랫 슈즈</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=슬리퍼">슬리퍼</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=샌들">샌들</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=부츠">부츠</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=기타 신발">기타 신발</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>가방</Strong>&nbsp;<span>Bag</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=가방">전체</a></li>
-					<li><a href="#">백팩</a></li>
-					<li><a href="#">메신저/크로스백</a></li>
-					<li><a href="#">숄더백</a></li>
-					<li><a href="#">에코백</a></li>
-					<li><a href="#">캐리어</a></li>
-					<li><a href="#">클러치백</a></li>
-					<li><a href="#">기타 가방</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=백팩">백팩</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=메신저/크로스백">메신저/크로스백</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=숄더백">숄더백</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=에코백">에코백</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=캐리어">캐리어</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=클러치백">클러치백</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=기타 가방">기타 가방</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>모자</Strong>&nbsp;<span>Headwear</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=모자">전체</a></li>
-					<li><a href="#">캡/야구모자</a></li>
-					<li><a href="#">비니</a></li>
-					<li><a href="#">베레모</a></li>
-					<li><a href="#">기타 모자</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=캡/야구모자">캡/야구모자</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=비니">비니</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=베레모">베레모</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=기타 모자">기타 모자</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>액세서리</Strong>&nbsp;<span>Accessory</span>
 				<ul class="submenu">
 					<li><a href="product.showProduct.all?categoryName=액세서리">전체</a></li>
-					<li><a href="#">귀걸이</a></li>
-					<li><a href="#">머플러</a></li>
-					<li><a href="#">장갑</a></li>
-					<li><a href="#">마스크</a></li>
-					<li><a href="#">기타 악세사리</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=귀걸이">귀걸이</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=목걸이">목걸이</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=머플러">머플러</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=장갑">장갑</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=마스크">마스크</a></li>
+					<li><a href="product.showProduct.detailCategory?categoryDetailName=기타 악세서리">기타 악세사리</a></li>
 					<!-- 추가적인 하위 메뉴 항목들을 이곳에 추가하세요 -->
 				</ul></li>
 		</ul>

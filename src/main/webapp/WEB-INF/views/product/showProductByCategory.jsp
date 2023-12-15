@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach var="p" items="${ProductsUpperwear}">
+	<c:forEach var="p" items="${ProductsCategory}">
 		<div class="photo">
 			<div>
 				<img src="resources/productImg/${p.IM_THUMBNAIL_IMAGE}" id="p_image">

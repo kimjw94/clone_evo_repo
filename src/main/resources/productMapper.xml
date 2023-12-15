@@ -70,7 +70,7 @@
 		where p_m_id = #{p_m_id}
 	</select>
 	<!--상의라는 카테고리에 포함되는 상품정보,상품이미지 가져오기 -->
-	<select id="getProductsUpperWearWithImage" resultType="map">
+	<select id="getProductsWithImagebyCategory" resultType="map">
 		select p.*, I.IM_THUMBNAIL_IMAGE
 		from evo_product p join evo_category_detail d
 		on p.p_category_code = d.d_category_detail_code
@@ -80,7 +80,14 @@
 		and d.d_category_code = c.c_category_code
 		and	c.c_category_name= #{categoryName}
 	</select>
-
+	<select id="getProductswithImagebyDetailCategory" resultType="map">
+	select p.*, I.IM_THUMBNAIL_IMAGE
+		from evo_product p 
+		join evo_category_detail d on p.p_category_code = d.d_category_detail_code
+		join evo_product_image i on p.p_product_no = i.im_p_product_no
+		where p.p_category_code = d.d_category_detail_code
+		and	d.d_category_detail_name= #{categoryDetailName}
+	</select>
 
 
 </mapper>

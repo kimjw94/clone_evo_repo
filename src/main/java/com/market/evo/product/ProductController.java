@@ -56,9 +56,15 @@ public class ProductController {
 	}
 
 		@RequestMapping(value="/product.showProduct.all", method=RequestMethod.GET)
-		public String showProductUpperWear(HttpServletRequest req, @RequestParam("categoryName") String categoryName) {
-			pDAO.getProductsUpperWearWithImage(req,categoryName);
-			req.setAttribute("cp", "product/showProductUpperWear.jsp");
+		public String showProductByCategory(HttpServletRequest req, @RequestParam("categoryName") String categoryName) {
+			pDAO.getProductsWithImagebyCategory(req,categoryName);
+			req.setAttribute("cp", "product/showProductByCategory.jsp");
+			return "index";
+		}
+		@RequestMapping(value="/product.showProduct.detailCategory", method=RequestMethod.GET)
+		public String showProductbyCategoryDetail(HttpServletRequest req, @RequestParam("categoryDetailName") String categoryDetailName) {
+			pDAO.getProductswithImagebyDetailCategory(req,categoryDetailName);
+			req.setAttribute("cp", "product/showProductByDetailCategory.jsp");
 			return "index";
 		}
 	

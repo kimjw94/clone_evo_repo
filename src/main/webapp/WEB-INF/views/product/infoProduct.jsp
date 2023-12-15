@@ -17,8 +17,7 @@
 				<a href="product.viewAddProduct">상품 추가</a>
 			</div>
 			<hr style="border:dotted 2px lightgray"/>
-			<div><jsp:include page="${p }" />
-			</div>
+			<div align="center" class="nfont">${p }</div>
 			<div class="proContainer" align="center">
 				<c:forEach var="p" items="${idProduct}" >
 					<div class="photo">

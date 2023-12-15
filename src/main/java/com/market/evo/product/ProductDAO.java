@@ -1,17 +1,16 @@
 package com.market.evo.product;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,29 +111,48 @@ public class ProductDAO {
 				String thumName = mr.getFilesystemName("im_thumbnail_image");
 				String infoName = mr.getFilesystemName("im_info_image");
 				
-				System.out.println("썸네일 기존 파일 이름 : " + thumName);
-				System.out.println("info 기존 파일 이름 : " + infoName);
-				
+				// 지금 시간 조회
 				String now = new SimpleDateFormat("yyMMddHmsS").format(new Date());
-
-				String thumName2 = now + thumName;
-				String infoName2 = now + infoName;
-				System.out.println("수정한 섬네일 파일 이름 : " + thumName2);
-				System.out.println("수정한 info 파일 이름 : " + infoName2);
-				
 				
 				// 썸네일이미지 파일
+				String thumName2 = now + thumName;
+				String infoName2 = null;
+
 				File oldPhoto = new File(path1 + thumName);
 				File newPhoto = new File(path1 + thumName2);
 				oldPhoto.renameTo(newPhoto);
 				
-				//정보 이미지 파일
-				oldPhoto = new File(path1 + infoName);
-				newPhoto = new File(path2 + infoName2);
-				oldPhoto.renameTo(newPhoto);
+				if(infoName != null) {
+					infoName2 = now + infoName;
+
+				
+					//정보 이미지 파일
+					oldPhoto = new File(path1 + infoName);
+					newPhoto = new File(path2 + infoName2);
+					oldPhoto.renameTo(newPhoto);
+				} else if(infoName == null) {
+					File f = new File(path1 + "/" + infoName);
+					f.delete();
+				}
 				
 			
+				List<Map<String, String>> inventory = new ArrayList<Map<String, String>>();
+				Map<String, String> invenMap = new HashMap<String, String>();
+				
+				Enumeration<String> enumKey = mr.getParameterNames();
+				while(enumKey.hasMoreElements()) {
+					String key = enumKey.nextElement();
+					if(key.contains("i_product")) {
+						invenMap.put(key, mr.getParameter("key"));
+					}
+				}
+				
+				inventory.add(invenMap);
+				System.out.println(invenMap);
+				
 
+				
+				
 				Member m = (Member)req.getSession().getAttribute("loginMember");
 				
 				p.setP_m_id(m.getM_id());
@@ -152,27 +170,50 @@ public class ProductDAO {
 				
 				p.setP_photo(p_photo_kor);
 				
+				// 상품테이블에 추가
 				if(ss.getMapper(ProductMapper.class).addProduct(p) == 1) {
 					System.out.println("상품 추가가 완료되었습니다.");
 				}
 				
 				
-				// 이미지 따로 추가
-				List<Map<String, String>> imgList = new ArrayList<Map<String, String>>();
 				
-				Map<String, String> imgMap = new HashMap<String, String>();
+				// 상품번호 조회해오기
+				int pro_no = ss.getMapper(ProductMapper.class).getProNo(p);
+				
+				
+				// 이미지 따로 추가
+				List<Map<String, Object>> imgList = new ArrayList<Map<String, Object>>();
+				
+				Map<String, Object> imgMap = new HashMap<String, Object>();
 				
 				String thImg = URLEncoder.encode(thumName2, "UTF-8").replace("+", " ");
-				String infoImg = URLEncoder.encode(infoName2, "UTF-8").replace("+", " ");
+				String infoImg = null;
+				if(infoName2 != null) {
+					infoImg = URLEncoder.encode(infoName2, "UTF-8").replace("+", " ");
+					imgMap.put("im_info_image", infoImg);
+				}
 				
-				imgMap.put("im_thumnail_image", thImg);
-				imgMap.put("im_info_image", infoImg);
+				
+				
+				System.out.println("썸네일 이미지 : " + thImg);
+				System.out.println("상품이미지 : " + infoImg);
+				
+				imgMap.put("im_thumnail_image", thImg);			
 				
 				imgList.add(imgMap);
 				
+				System.out.println(imgList);
+
+				// 이미지 추가
 				if(ss.getMapper(ProductMapper.class).addImage(imgList) == 1) {
-					System.out.println("상품 추가가 완료되었습니다.");
+					System.out.println("이미지 추가가 완료되었습니다.");
+				} else {
+					System.out.println("이미지 추가 실패. . .");
 				}
+								
+				
+				
+				
 			} catch(Exception e) {
 				e.printStackTrace();
 				File f = new File(path1 + "/" + mr.getFilesystemName("p_photo"));

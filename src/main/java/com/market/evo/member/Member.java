@@ -144,4 +144,6 @@ public class Member {
 		this.m_account_number = m_account_number;
 	}
 	
+	
 }
+

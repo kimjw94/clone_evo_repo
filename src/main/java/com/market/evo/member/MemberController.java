@@ -1,6 +1,7 @@
 package com.market.evo.member;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class MemberController {
@@ -187,6 +189,7 @@ public class MemberController {
 
 			return "redirect:/login";
 		} else {
+			mDAO.getCategoryName(req);
 			req.setAttribute("cp", "member/helpper.jsp");
 		}
 		return "index";
@@ -217,6 +220,21 @@ public class MemberController {
 		req.getSession().setAttribute("prevPage", referer);
 
 		req.setAttribute("cp", "member/loginPage.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value = "/member.getDetailCategory", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String, Object>> detailCategory(HttpServletRequest req, @RequestParam int categoryCode) {
+		List<Map<String, Object>> list = mDAO.getDetailCateName(req, categoryCode);
+
+		return list;
+	}
+	
+	@RequestMapping(value = "/member.helpper", method = RequestMethod.POST)
+	public String cont(Helpper h, HttpServletRequest req) {
+		mDAO.cont(h, req);
+		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
 

@@ -1,6 +1,7 @@
 package com.market.evo.member;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MemberMapper {
 
@@ -14,5 +15,10 @@ public interface MemberMapper {
 	public abstract List<Member> getMemberByAl(Member m);
 	public abstract Member searchId(Member m);
 	public abstract Member searchPw(Member m);
+	
+	//고객센터 관련
+	public abstract int cont(Helpper h);
+	public List<Map<String, Object>> categoryList();
+	public List<Map<String, Object>> detailCateList(int categorycode);
 }
 

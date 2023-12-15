@@ -1,12 +1,20 @@
 package com.market.evo.member;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartRequest;
+
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 
 @Service
 public class MemberDAO {
@@ -182,6 +190,73 @@ public class MemberDAO {
 	        return null;
 	    }
 	}
+	//고객센터 쪽
+	public void getCategoryName(HttpServletRequest req) {
+		try {
+			List<Map<String, Object>> category = ss.getMapper(MemberMapper.class).categoryList();
 
+			if (category.size() != 0) {
+				req.setAttribute("categoryName", category);
+			} else {
+				System.out.println("뭐가없음");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
+	}
+	
+	public List<Map<String, Object>> getDetailCateName(HttpServletRequest req, int categoryCode) {
+		try {
+
+			List<Map<String, Object>> dCategory = ss.getMapper(MemberMapper.class).detailCateList(categoryCode);
+
+			if (dCategory.size() != 0) {
+				req.setAttribute("detailCateName", dCategory);
+
+				return dCategory;
+			}
+
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("DB에 문제있다!!!");
+			return null;
+		}
+	}
+	
+	public void cont(Helpper h, HttpServletRequest req) {
+	    try {
+	        String path = req.getSession().getServletContext().getRealPath("/resources/helpperImage/");
+	        System.out.println("상품 사진" + path);
+
+	        File folder = new File(path);
+	        if (!folder.exists()) {
+	            folder.mkdir();
+	            System.out.println("상품사진 폴더가 생성되었습니다.");
+	        }
+
+	        // 파일 이름 생성
+	       // String fileName = h.getH_num() + "_" + imageFile.getOriginalFilename();
+
+
+	        // 파일 저장
+	        //imageFile.transferTo(new File(path, fileName));
+
+
+	        // Inquiry 테이블에 데이터 삽입
+	        if(ss.getMapper(MemberMapper.class).cont(h)==1) {
+	        	req.setAttribute("r", "문의하기 완료");
+	        }else {
+	        	System.out.println("작성하기 실패");
+	        }
+	        
+	        
+
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        
+	    }
+	}
 }
 

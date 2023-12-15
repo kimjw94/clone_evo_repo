@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="resources/css/MenuBar.css">
 <link rel="stylesheet" href="resources/css/productView.css">
 <link rel="stylesheet" href="resources/css/helpper.css">
+<link rel="stylesheet" href="resources/css/myPage.css">
 <script type="text/javascript">
 	function toggleSubMenu(event) {
 		// 클릭된 요소가 링크인 경우 토글 동작을 수행하지 않음
@@ -44,14 +45,9 @@
 <body>
 	<div class="container">
 		<div class="nfont" align="right" id="loginA">
-			<c:choose>
-				<c:when test="${sessionScope.loginMember.m_id == null }">
-					<a href="login">Login</a>
-				</c:when>
-				<c:otherwise>
-					<a style="cursor: pointer;" onclick="logout()">Logout</a>
-				</c:otherwise>
-			</c:choose>
+			<c:if test="${sessionScope.loginMember.m_id == null }">
+				<a href="login">Login</a>
+			</c:if>
 		</div>
 		<div align="center">
 			<div align="center">
@@ -72,9 +68,21 @@
 					</nav>
 				</div>
 				<div class="nfont" align="right">
-					<c:if test="${sessionScope.loginMember.m_id != null }">
-						<a href="myPage">${sessionScope.loginMember.m_alias }님 환영합니다.</a>
-					</c:if>
+					<nav class="myPage">
+						<ul>
+							<c:if test="${sessionScope.loginMember.m_id != null }">
+								<li style="cursor: pointer;">${sessionScope.loginMember.m_alias }님
+									환영합니다.
+									<ul>
+										<li><a href="myPage">내정보</a></li>
+										<li><a href="">장바구니</a></li>
+										<li><a href="">위시리스트</a></li>
+										<li><a style="cursor: pointer;" onclick="logout()">로그아웃</a></li>
+									</ul>
+								</li>
+							</c:if>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -95,7 +103,7 @@
 		<ul>
 			<li onclick="toggleSubMenu(event)"><strong>상의</strong>&nbsp;<span>Top</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=상의">전체</a></li>
+					<li><a href="product.showUpperWear">전체</a></li>
 					<li><a href="#">후드티</a></li>
 					<li><a href="#">니트/스웨터</a></li>
 					<li><a href="#">맨투맨</a></li>
@@ -107,7 +115,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><strong>아우터</strong>&nbsp;<span>Outer</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=아우터">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">후드 집업</a></li>
 					<li><a href="#">무스탕</a></li>
 					<li><a href="#">가디건</a></li>
@@ -119,7 +127,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><strong>하의</strong>&nbsp;<span>Bottom</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=바지">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">데님 팬츠</a></li>
 					<li><a href="#">코튼 팬츠</a></li>
 					<li><a href="#">트레이닝/조거팬츠</a></li>
@@ -130,7 +138,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>원피스</Strong>&nbsp;<span>Onepiece</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=원피스">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">미니 원피스</a></li>
 					<li><a href="#">미디 원피스</a></li>
 					<li><a href="#">맥시 원피스</a></li>
@@ -138,7 +146,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>스커트</Strong>&nbsp;<span>Skirt</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=스커트">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">미니 원피스</a></li>
 					<li><a href="#">미디 원피스</a></li>
 					<li><a href="#">맥시 원피스</a></li>
@@ -146,7 +154,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>신발</Strong>&nbsp;<span>Shoes</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=신발">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">구두</a></li>
 					<li><a href="#">로퍼</a></li>
 					<li><a href="#">플랫 슈즈</a></li>
@@ -158,7 +166,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>가방</Strong>&nbsp;<span>Bag</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=가방">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">백팩</a></li>
 					<li><a href="#">메신저/크로스백</a></li>
 					<li><a href="#">숄더백</a></li>
@@ -170,7 +178,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>모자</Strong>&nbsp;<span>Headwear</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=모자">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">캡/야구모자</a></li>
 					<li><a href="#">비니</a></li>
 					<li><a href="#">베레모</a></li>
@@ -179,7 +187,7 @@
 				</ul></li>
 			<li onclick="toggleSubMenu(event)"><Strong>액세서리</Strong>&nbsp;<span>Accessory</span>
 				<ul class="submenu">
-					<li><a href="product.showProduct.all?categoryName=액세서리">전체</a></li>
+					<li><a href="#">전체</a></li>
 					<li><a href="#">귀걸이</a></li>
 					<li><a href="#">머플러</a></li>
 					<li><a href="#">장갑</a></li>

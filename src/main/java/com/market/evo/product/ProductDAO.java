@@ -77,10 +77,8 @@ public class ProductDAO {
 		String infoName2 = null;
 		try {		
 			
-			path1 = req.getSession().getServletContext().getRealPath("resources/thumnailImg/");
+			path1 = req.getSession().getServletContext().getRealPath("resources/thumbnailImg/");
 			path2 = req.getSession().getServletContext().getRealPath("resources/infoImg/");
-			System.out.println("섬네일사진: " + path1);
-			System.out.println("상품정보사진 : " + path2);
 		
 			File folder = new File(path1);
 			File folder2 = new File(path2);
@@ -89,7 +87,7 @@ public class ProductDAO {
 			if(!folder.exists()) {
 				try {
 					folder.mkdir();
-					System.out.println("썸네일사진(thumnailImg) 폴더가 생성되었습니다.");
+					System.out.println("썸네일사진(thumbnailImg) 폴더가 생성되었습니다.");
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -226,6 +224,71 @@ public class ProductDAO {
 		}
 	}
 	
+	public void updateProduct(Product p, HttpServletRequest req) {
+		
+		MultipartRequest mr = null;
+		
+		// 섬네일 사진 경로
+		String path1 = null;
+		// 상품 사진 경로
+		String path2 = null;
+		
+		// 변경된 사진 이름들
+		String thumName2 = null;
+		String infoName2 = null;
+		
+		try { 
+			path1 = req.getSession().getServletContext().getRealPath("resources/thumbnailImg/");
+			path2 = req.getSession().getServletContext().getRealPath("resources/infoImg/");
+			
+			File folder = new File(path1);
+			File folder2 = new File(path2);
+			
+			// 폴더 존재 확인 다시 한번
+			if(!folder.exists()) {
+				System.out.println("썸네일이미지폴더가 없습니다.");
+				return;
+			} else if(!folder2.exists()) {
+				System.out.println("상품정보 이미지 폴더가 없어요");
+			}
+			
+			
+			mr = new MultipartRequest(req, path1, 30 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+		
+			// 파일명에 시간추가하기
+			String thumName = mr.getFilesystemName("im_thumbnail_image");
+			String infoName = mr.getFilesystemName("im_info_image");
+			
+			// 지금 시간 조회
+			String now = new SimpleDateFormat("yyMMddHmsS").format(new Date());
+			
+			// 썸네일이미지 파일
+			thumName2 = now + thumName;
+			infoName2 = null;
+
+			File oldPhoto = new File(path1 + thumName);
+			File newPhoto = new File(path1 + thumName2);
+			oldPhoto.renameTo(newPhoto);
+			
+			if(infoName != null) {
+				infoName2 = now + infoName;
+
+				//정보 이미지 파일
+				oldPhoto = new File(path1 + infoName);
+				newPhoto = new File(path2 + infoName2);
+				oldPhoto.renameTo(newPhoto);
+			}	
+		
+		
+		
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.out.println("사진 용량이 너무 큽니다");
+			return;
+		}
+	}
+	
+	// 이미지 삭제 함수
 	public void delImg(String path1, String path2, String thumbImg, String infoImg) {
 		File f = new File(path1 + thumbImg);
 		File f2 = new File(path2 + infoImg);
@@ -262,7 +325,28 @@ public class ProductDAO {
 	}
 	
 	
-	
+	// 상품 디테일
+	public void detailProduct(HttpServletRequest req, int p_product_no) {
+		try {
+			System.out.println("상품번호 : " + p_product_no);
+			List<Map<String, Object>> dp = ss.getMapper(ProductMapper.class).detailProduct(p_product_no);
+			System.out.println("상품내용 : " + dp + " ");
+			
+			List<Map<String, Object>> di = ss.getMapper(ProductMapper.class).detailInventory(p_product_no);
+			System.out.println("재고 현황 : " + di + " ");
+			
+			
+			if(dp.size() != 0) {
+				req.setAttribute("detailProduct", dp);
+			}
+			
+			if(di.size() != 0) {
+				req.setAttribute("detailInventory", di);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void getProductsWithImagebyCategory(HttpServletRequest req,String categoryName) {
 		

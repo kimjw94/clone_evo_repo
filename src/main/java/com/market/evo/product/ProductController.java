@@ -48,25 +48,30 @@ public class ProductController {
 		req.setAttribute("cp", "product/infoProduct.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/product.detailProduct", method=RequestMethod.GET)
+	public String detailPro(HttpServletRequest req) {
+		return "index";
+	}
 
-		@RequestMapping(value = "/product.modiProduct.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/product.modiProduct.go", method = RequestMethod.GET)
 	public String modiProduct(HttpServletRequest req) {
 		req.setAttribute("cp", "product/modiProduct.jsp");
 		return "index";
 	}
 
-		@RequestMapping(value="/product.showProduct.all", method=RequestMethod.GET)
-		public String showProductByCategory(HttpServletRequest req, @RequestParam("categoryName") String categoryName) {
-			pDAO.getProductsWithImagebyCategory(req,categoryName);
-			req.setAttribute("cp", "product/showProductByCategory.jsp");
-			return "index";
-		}
-		@RequestMapping(value="/product.showProduct.detailCategory", method=RequestMethod.GET)
-		public String showProductbyCategoryDetail(HttpServletRequest req, @RequestParam("categoryDetailName") String categoryDetailName) {
-			pDAO.getProductswithImagebyDetailCategory(req,categoryDetailName);
-			req.setAttribute("cp", "product/showProductByDetailCategory.jsp");
-			return "index";
-		}
+	@RequestMapping(value="/product.showProduct.all", method=RequestMethod.GET)
+	public String showProductByCategory(HttpServletRequest req, @RequestParam("categoryName") String categoryName) {
+		pDAO.getProductsWithImagebyCategory(req,categoryName);
+		req.setAttribute("cp", "product/showProductByCategory.jsp");
+		return "index";
+	}
+	@RequestMapping(value="/product.showProduct.detailCategory", method=RequestMethod.GET)
+	public String showProductbyCategoryDetail(HttpServletRequest req, @RequestParam("categoryDetailName") String categoryDetailName) {
+		pDAO.getProductswithImagebyDetailCategory(req,categoryDetailName);
+		req.setAttribute("cp", "product/showProductByDetailCategory.jsp");
+		return "index";
+	}
 	
 		
 }

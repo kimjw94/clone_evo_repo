@@ -1,18 +1,19 @@
 package com.market.evo.member;
 
 import java.io.File;
-import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartRequest;
 
+import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 
@@ -226,22 +227,68 @@ public class MemberDAO {
 	}
 	
 	public void cont(Helpper h, HttpServletRequest req) {
-	    try {
-	        String path = req.getSession().getServletContext().getRealPath("/resources/helpperImage/");
-	        System.out.println("상품 사진" + path);
+	    
+		String path1 = null;
+		
+		String infoName1 = null;
+		
+		MultipartRequest mr = null;
+		
+		
+		
+		try {
+	        path1 = req.getSession().getServletContext().getRealPath("/resources/helpperImage/");
+//	        System.out.println("상품 사진 : " + path1);
 
-	        File folder = new File(path);
+	        File folder = new File(path1);
 	        if (!folder.exists()) {
-	            folder.mkdir();
-	            System.out.println("상품사진 폴더가 생성되었습니다.");
+	            try {
+	            	folder.mkdir();
+		            System.out.println("상품사진 폴더가 생성되었습니다.");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	        	
 	        }
-
-	        // 파일 이름 생성
-	       // String fileName = h.getH_num() + "_" + imageFile.getOriginalFilename();
-
-
-	        // 파일 저장
-	        //imageFile.transferTo(new File(path, fileName));
+	        
+	        mr = new MultipartRequest(req, path1, 30 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+	        
+	        try {
+	        	infoName1 = mr.getFilesystemName("imageFile");
+	        	System.out.println(infoName1);
+	        	if (infoName1 != null) {
+	                String renamedFileName = renameFile(infoName1);
+	                File oldFile = new File(path1, infoName1);
+	                File newFile = new File(path1, renamedFileName);
+	                if (oldFile.renameTo(newFile)) {
+	                    req.setAttribute("r", "파일 이름이 변경되었습니다.");
+	                    h.setImageFileName(renamedFileName);
+	                    
+	                    saveFile(newFile);
+	                } else {
+	                	req.setAttribute("r", "파일 이름이 변경이 실패했습니다.");
+	                }
+	            }
+	        	
+			} catch (Exception e) {
+				
+			}
+	        
+	        Member m = (Member) req.getSession().getAttribute("loginMember");
+	        
+	        h.setH_m_id(m.getM_id());
+	        h.setH_title(mr.getParameter("h_title"));
+	        h.setH_cont(mr.getParameter("h_cont"));
+	        h.setH_category(mr.getParameter("h_category"));
+	        h.setH_category_code(mr.getParameter("h_category_code"));
+	        
+//	        System.out.println(h.getH_num());
+//	        System.out.println(h.getH_m_id());
+//	        System.out.println(h.getH_title());
+//	        System.out.println(h.getH_cont());
+//	        System.out.println(h.getH_category());
+//	        System.out.println(h.getH_category_code());
+	        
 
 
 	        // Inquiry 테이블에 데이터 삽입
@@ -257,6 +304,25 @@ public class MemberDAO {
 	        e.printStackTrace();
 	        
 	    }
+		
 	}
+	private String renameFile(String fileName) {
+	    String baseName = FilenameUtils.getBaseName(fileName);
+	    String extension = FilenameUtils.getExtension(fileName);
+	    String timeStamp = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+	    
+//	    System.out.println("Base Name: " + baseName);
+//	    System.out.println("Extension: " + extension);
+//	    System.out.println("Time Stamp: " + timeStamp);
+	    
+	    return baseName + "_" + timeStamp + "." + extension;
+	}
+	
+	private void saveFile(File file) {
+	    
+	    System.out.println("파일 저장 중: " + file.getAbsolutePath());
+	}
+	
+
 }
 

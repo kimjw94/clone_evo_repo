@@ -74,6 +74,7 @@
 		where p.p_product_no = i.im_p_product_no
 		and m.m_id = p.p_m_id
 		and p.p_m_id = #{p_m_id}
+		
 	</select>
 	
 	

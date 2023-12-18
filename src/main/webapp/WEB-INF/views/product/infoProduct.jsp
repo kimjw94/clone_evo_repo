@@ -22,7 +22,7 @@
 			<div class="proContainer" align="center">
 				<c:forEach var="p" items="${idProduct}" >
 					<div class="photo">
-						<div><img src="resources/productImg/${p.P_PHOTO}" id="p_image"></div>
+						<div><img src="resources/thumnailImg/${p.IM_THUMBNAIL_IMAGE}" id="p_image"></div>
 						<div class="p_title"><a href="product.modiProduct.go">${p.P_PRODUCT_NAME}</a></div>
 						<div class="p_view"><a href="">${p.P_VIEW }</a></div>
 						<div><a href="p_price">￦ ${p.P_PRICE}</a></div>

@@ -56,7 +56,7 @@
 			$("#iAdd").after(
 				"<div id='delNum" + delNum + "'>"
 				+ "<input name='i_product_color" + colorNum + "' id='i_product_color" + colorNum + "' style='width:66px; margin-right: 5px; margint-top: 5px;' placeholder='색상'>"
-				+ "<input name='i_product_size" + sizeNum + "' id='i_product_size" + sizeNum + "' style='width: 66px; margin-right: 5px; margint-top: 5px;' placeholder='사이즈'>"
+				+ "<input name='i_product_size" + sizeNum + "' id='i_product_size" + sizeNum + "' style='width: 66px; margin-right: 5px; margint-top: 5px; text-transform: uppercase;' placeholder='사이즈'>"
 				+ "<input name='i_product_count" + countNum + "' id='i_product_count" + countNum + "' style='width:66px; margin-right: 5px; margin-top: 5px;' placeholder='수량'>"
 				+ "<button id='scBtn" + delNum +"' type='button' style='width:60px; height:33px' onclick='delBtn(this.id)'>삭제</button> "
 				+ "</div>"
@@ -187,7 +187,7 @@ function check() {
 				<div class="proTitle">색상 및 사이즈, 수량</div>
 				<div id="iAdd">
 					<input name="i_product_color1" id="i_product_color1" style="width:66px;" placeholder="색상">
-					<input name="i_product_size1" id="i_product_size1" style='width:66px;' placeholder="사이즈">
+					<input name="i_product_size1" id="i_product_size1" style='width:66px; text-transform: uppercase;' placeholder="사이즈">
 					<input name="i_product_count1" id="i_product_count1" style='width:66px;' type='number' placeholder="수량">
 					<button id="iAddBtn" style="width:60px; height:33px;" type="button">추가</button>	
 				</div>

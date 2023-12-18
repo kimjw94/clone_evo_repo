@@ -131,24 +131,7 @@ public class ProductDAO {
 					oldPhoto = new File(path1 + infoName);
 					newPhoto = new File(path2 + infoName2);
 					oldPhoto.renameTo(newPhoto);
-				}
-				
-			
-				List<Map<String, String>> inventory = new ArrayList<Map<String, String>>();
-				Map<String, String> invenMap = new HashMap<String, String>();
-				
-				Enumeration<String> enumKey = mr.getParameterNames();
-				while(enumKey.hasMoreElements()) {
-					String key = enumKey.nextElement();
-					if(key.contains("i_product")) {
-						invenMap.put(key, mr.getParameter(key));
-					}
-				}
-				
-				inventory.add(invenMap);
-				
-
-				
+				}	
 				
 				Member m = (Member)req.getSession().getAttribute("loginMember");
 				
@@ -185,23 +168,58 @@ public class ProductDAO {
 					imgMap.put("im_info_image", infoImg);
 				}
 				
-				imgMap.put("im_product_no", pro_no);
-				imgMap.put("im_thumnail_image", thImg);			
+				imgMap.put("im_p_product_no", pro_no);
+				imgMap.put("im_thumbnail_image", thImg);			
 				
 				imgList.add(imgMap);
-				
+				System.out.println("imgMap : " + imgMap);
+				System.out.println("imgList" + imgList);
 
 				// 이미지 추가
-				if(ss.getMapper(ProductMapper.class).addImage(imgList) == 1) {
+				if(ss.getMapper(ProductMapper.class).addImage(imgMap) == 1) {
 					System.out.println("이미지 추가가 완료되었습니다.");
 				} else {
 					System.out.println("이미지 추가 실패. . .");
 				}
 								
 				
+
+				Map<String, Object> inventory = new HashMap<String, Object>();
+				Map<String, Object> insertInven = new HashMap<String, Object>();
 				
+				// i_product로만 시작되는 inputName 불러오기
+				Enumeration<String> enumKey = mr.getParameterNames();
+				while(enumKey.hasMoreElements()) {
+					String key = enumKey.nextElement();
+					if(key.contains("i_product")) {
+						inventory.put(key, mr.getParameter(key));
+					}
+				}
 				
-			} catch(Exception e) {
+				// i_product ~ 에서 뒤에 붙은 숫자 제거하고 insert
+				for(int i = 1; i <= inventory.size() / 3; i++) {
+					String num = String.valueOf(i);
+					for(Map.Entry<String, Object> entry : inventory.entrySet()) {
+						if(entry.getKey().contains(num)) {
+							String getKey = entry.getKey();
+							String result = getKey.substring(0, getKey.length()-1);
+							insertInven.put(result, entry.getValue());
+						};
+					}
+					insertInven.put("i_p_product_no", pro_no);
+					System.out.println(insertInven + " " + i);
+					try {
+						if(ss.getMapper(ProductMapper.class).addInventory(insertInven) == 1) {
+							System.out.println("재고 추가" + i);
+						}
+						
+					} catch(Exception e) {
+						e.printStackTrace();
+						System.out.println("재고 추가할때 에러가..!");
+					}
+				}
+			}
+			 catch(Exception e) {
 				e.printStackTrace();
 				File f = new File(path1  + thumName2);
 				File f2 = new File(path2 + infoName2);

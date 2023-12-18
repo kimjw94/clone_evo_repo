@@ -63,10 +63,8 @@
 
 	<!-- 고객센터 관련 -->
 	<!-- categoryName -->
-	<insert id="cont"
-		parameterType="com.market.evo.member.Helpper">
-		INSERT INTO h_form (h_m_id, h_title, h_cont)
-		VALUES (#{h_m_id}, #{h_title}, #{h_cont})
+	<insert id="cont" parameterType="com.market.evo.member.Helpper">
+		INSERT INTO h_form VALUES (seq_h_num.nextval, #{h_m_id}, #{h_title}, #{h_cont}, #{h_category}, #{h_category_code})
 	</insert>
 	<select id="categoryList" resultType="map">
 		select * from

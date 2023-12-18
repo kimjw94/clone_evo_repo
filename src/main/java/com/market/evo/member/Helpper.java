@@ -5,17 +5,27 @@ public class Helpper {
 	private String h_m_id;
 	private String h_title;
 	private String h_cont;
+	private String h_category;
+	private String h_category_code;
+	private String imageFileName;
 	
 	public Helpper() {
     }
 
-	public Helpper(int h_num, String h_m_id, String h_title, String h_cont) {
+
+
+	public Helpper(int h_num, String h_m_id, String h_title, String h_cont, String h_category, String h_category_code, String imageFileName) {
 		super();
 		this.h_num = h_num;
 		this.h_m_id = h_m_id;
 		this.h_title = h_title;
 		this.h_cont = h_cont;
+		this.h_category = h_category;
+		this.h_category_code = h_category_code;
+		this.imageFileName = imageFileName;
 	}
+
+
 
 	public int getH_num() {
 		return h_num;
@@ -47,6 +57,42 @@ public class Helpper {
 
 	public void setH_cont(String h_cont) {
 		this.h_cont = h_cont;
+	}
+
+
+
+	public String getH_category() {
+		return h_category;
+	}
+
+
+
+	public void setH_category(String h_category) {
+		this.h_category = h_category;
+	}
+
+
+
+	public String getH_category_code() {
+		return h_category_code;
+	}
+
+
+
+	public void setH_category_code(String h_category_code) {
+		this.h_category_code = h_category_code;
+	}
+
+
+
+	public String getImageFileName() {
+		return imageFileName;
+	}
+
+
+
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
 	}
 
 }

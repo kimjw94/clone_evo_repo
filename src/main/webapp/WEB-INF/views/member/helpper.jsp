@@ -11,15 +11,15 @@
 		var colorNum = 1;
 		var sizeNum = 1;
 
-		$('#category')
+		$('#h_category')
 				.change(
 						function() {
 
-							var detailC = $("#p_category_code").find('option');
-							var category = document.getElementById("category");
+							var detailC = $("#h_category_code").find('option');
+							var h_category = document.getElementById("h_category");
 							var detailCate = document
-									.getElementById("p_category_code");
-							var cCode = (category.options[category.selectedIndex].value);
+									.getElementById("h_category_code");
+							var cCode = (h_category.options[h_category.selectedIndex].value);
 
 							// 재선택시 세부카테고리 초기화
 							if (detailC != undefined) {
@@ -36,7 +36,7 @@
 												categoryCode : cCode
 											},
 											success : function(data) {
-												if (typeof (category) != "undefined") {
+												if (typeof (h_category) != "undefined") {
 													var list = data;
 
 													$(list)
@@ -44,7 +44,7 @@
 																	function(i) {
 																		var detailCate = list[i].S_S_CATE_NAME;
 																		$(
-																				"#p_category_code")
+																				"#h_category_code")
 																				.append(
 																						"<option value=" + list[i].S_S_CATE_CODE + ">"
 																								+ detailCate
@@ -72,14 +72,14 @@
 			<div align="left">
 				<div>문의 유형</div>
 				<div>
-					<label> <select id="category">
+					<label> <select id="h_category" name="h_category">
 							<option value="choice">선택</option>
 							<c:forEach var="c" items="${categoryName }">
 								<option value="${c.R_CATE_CODE }">${c.R_CATE_NAME }</option>
 							</c:forEach>
 					</select>
-					</label> <label> <select name="p_category_code"
-						id="p_category_code">
+					</label> <label> <select name="h_category_code"
+						id="h_category_code">
 					</select>
 					</label>
 				</div>
@@ -103,12 +103,12 @@
 			<div align="left">
 				<!-- 이미지 업로드 창 -->
 				<div>
-					<input type="file" name="imageUpload">
+					<input type="file" name="imageFile">
 				</div>
 			</div>
 			<div align="right">
 				<div>
-					<button>문의하기</button>
+					<button type="submit">문의하기</button>
 				</div>
 			</div>
 		</div>

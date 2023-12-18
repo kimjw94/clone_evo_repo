@@ -156,9 +156,7 @@ public class ProductDAO {
 				int pro_no = ss.getMapper(ProductMapper.class).getProNo(p);
 				
 				
-				// 이미지 따로 추가
-				List<Map<String, Object>> imgList = new ArrayList<Map<String, Object>>();
-				
+				// 이미지 따로 추가				
 				Map<String, Object> imgMap = new HashMap<String, Object>();
 				
 				String thImg = URLEncoder.encode(thumName2, "UTF-8").replace("+", " ");
@@ -170,17 +168,11 @@ public class ProductDAO {
 				
 				imgMap.put("im_p_product_no", pro_no);
 				imgMap.put("im_thumbnail_image", thImg);			
-				
-				imgList.add(imgMap);
-				System.out.println("imgMap : " + imgMap);
-				System.out.println("imgList" + imgList);
 
 				// 이미지 추가
 				if(ss.getMapper(ProductMapper.class).addImage(imgMap) == 1) {
 					System.out.println("이미지 추가가 완료되었습니다.");
-				} else {
-					System.out.println("이미지 추가 실패. . .");
-				}
+				} 
 								
 				
 
@@ -215,18 +207,14 @@ public class ProductDAO {
 						
 					} catch(Exception e) {
 						e.printStackTrace();
+						delImg(path1, path2, thumName2, infoName2);
 						System.out.println("재고 추가할때 에러가..!");
 					}
 				}
 			}
 			 catch(Exception e) {
 				e.printStackTrace();
-				File f = new File(path1  + thumName2);
-				File f2 = new File(path2 + infoName2);
-				f.delete();
-				if(f2.exists()) {
-						f2.delete();
-					}
+				delImg(path1, path2, thumName2, infoName2);
 				System.out.println("DB 에러! 이미지 파일 삭제했습니다.");
 			}
 			
@@ -236,6 +224,17 @@ public class ProductDAO {
 			System.out.println("사진 용량이 너무 커요");
 			return;
 		}
+	}
+	
+	public void delImg(String path1, String path2, String thumbImg, String infoImg) {
+		File f = new File(path1 + thumbImg);
+		File f2 = new File(path2 + infoImg);
+		
+		f.delete();
+		if(f2.exists()) {
+			f2.delete();
+		}
+		System.out.println("이미지 삭제 완료");
 	}
 
 	// 판매자가 추가한 상품만 모아보기
@@ -262,7 +261,10 @@ public class ProductDAO {
 		}
 	}
 	
-public void getProductsWithImagebyCategory(HttpServletRequest req,String categoryName) {
+	
+	
+	
+	public void getProductsWithImagebyCategory(HttpServletRequest req,String categoryName) {
 		
 		try {
 			List<Map<String, Object>> ProductsCategory = ss.getMapper(ProductMapper.class).getProductsWithImagebyCategory(categoryName);

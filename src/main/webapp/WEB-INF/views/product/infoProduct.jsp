@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div>
-		<form action="" method="POST" enctype="multipart/form-data">
+		<form action="product.detailProduct" method="GET" enctype="multipart/form-data">
 			<div>
 				<div class="nfont" id="tpTitle" align="center">상품 정보</div>
 			</div>

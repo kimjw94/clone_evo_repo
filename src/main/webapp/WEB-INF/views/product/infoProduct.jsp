@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div>
-		<form action="" method="POST" enctype="multipart/form-data">
+		<form action="product.detailProduct" method="GET" enctype="multipart/form-data">
 			<div>
 				<div class="nfont" id="tpTitle" align="center">상품 정보</div>
 			</div>
@@ -22,7 +22,7 @@
 			<div class="proContainer" align="center">
 				<c:forEach var="p" items="${idProduct}" >
 					<div class="photo">
-						<div><img src="resources/productImg/${p.P_PHOTO}" id="p_image"></div>
+						<div><img src="resources/thumnailImg/${p.IM_THUMBNAIL_IMAGE}" id="p_image"></div>
 						<div class="p_title"><a href="product.modiProduct.go">${p.P_PRODUCT_NAME}</a></div>
 						<div class="p_view"><a href="">${p.P_VIEW }</a></div>
 						<div><a href="p_price">￦ ${p.P_PRICE}</a></div>

@@ -26,7 +26,6 @@
 		#{p_category_code},
 		#{p_price},
 		#{p_info},
-		#{p_photo},
 		default,
 		default,
 		default
@@ -36,7 +35,7 @@
 	<!-- 상품 이미지 추가 -->
 	<insert id="addImage" parameterType="map">
 		insert into
-		evo_product_image
+		evo_product_image(im_p_product_no, im_thumbnail_image, im_info_image)
 		values(
 		#{im_p_product_no},
 		#{im_thumbnail_image},
@@ -44,6 +43,17 @@
 		)
 	</insert>
 
+	<insert id="addInventory" parameterType="map">
+		insert into
+		evo_product_inventory
+		values(
+		#{i_p_product_no},
+		#{i_product_color},
+		#{i_product_size},
+		#{i_product_count}
+		)
+	</insert>
+	
 	<!-- 상품 번호 불러오는거 -->
 	<select id="getProNo" parameterType="com.market.evo.product.Product" resultType="int">
 		select p_product_no
@@ -58,10 +68,17 @@
 
 	<select id="idViewProduct" parameterType="String"
 		resultType="map">
-		select p_view, p_price, p_product_name, p_product_no
-		from evo_product
-		where p_m_id = #{p_m_id}
+		select p.p_view, p.p_price, p.p_product_name, p.p_product_no,
+		i.im_thumbnail_image
+		from evo_product p, evo_product_image i, evo_member m
+		where p.p_product_no = i.im_p_product_no
+		and m.m_id = p.p_m_id
+		and p.p_m_id = #{p_m_id}
+		
 	</select>
+	
+	
+	
 	<!--상의라는 카테고리에 포함되는 상품정보,상품이미지 가져오기 -->
 	<select id="getProductsWithImagebyCategory" resultType="map">
 		select

@@ -69,10 +69,12 @@ public class ProductDAO {
 		
 		// 섬네일 사진 경로
 		String path1 = null;
-		
 		// 상품 사진 경로
 		String path2 = null;
 		
+		// 변경된 사진 이름들
+		String thumName2 = null;
+		String infoName2 = null;
 		try {		
 			
 			path1 = req.getSession().getServletContext().getRealPath("resources/thumnailImg/");
@@ -115,8 +117,8 @@ public class ProductDAO {
 				String now = new SimpleDateFormat("yyMMddHmsS").format(new Date());
 				
 				// 썸네일이미지 파일
-				String thumName2 = now + thumName;
-				String infoName2 = null;
+				thumName2 = now + thumName;
+				infoName2 = null;
 
 				File oldPhoto = new File(path1 + thumName);
 				File newPhoto = new File(path1 + thumName2);
@@ -125,14 +127,10 @@ public class ProductDAO {
 				if(infoName != null) {
 					infoName2 = now + infoName;
 
-				
 					//정보 이미지 파일
 					oldPhoto = new File(path1 + infoName);
 					newPhoto = new File(path2 + infoName2);
 					oldPhoto.renameTo(newPhoto);
-				} else if(infoName == null) {
-					File f = new File(path1 + "/" + infoName);
-					f.delete();
 				}
 				
 			
@@ -143,12 +141,11 @@ public class ProductDAO {
 				while(enumKey.hasMoreElements()) {
 					String key = enumKey.nextElement();
 					if(key.contains("i_product")) {
-						invenMap.put(key, mr.getParameter("key"));
+						invenMap.put(key, mr.getParameter(key));
 					}
 				}
 				
 				inventory.add(invenMap);
-				System.out.println(invenMap);
 				
 
 				
@@ -163,12 +160,7 @@ public class ProductDAO {
 				p.setP_category_code(p_category_code);
 
 				int p_price = Integer.parseInt(mr.getParameter("p_price"));
-				p.setP_price(p_price);
-				
-				String p_photo = thumName2;
-				String p_photo_kor = URLEncoder.encode(p_photo, "UTF-8").replace("+", " ");
-				
-				p.setP_photo(p_photo_kor);
+				p.setP_price(p_price);			
 				
 				// 상품테이블에 추가
 				if(ss.getMapper(ProductMapper.class).addProduct(p) == 1) {
@@ -193,16 +185,11 @@ public class ProductDAO {
 					imgMap.put("im_info_image", infoImg);
 				}
 				
-				
-				
-				System.out.println("썸네일 이미지 : " + thImg);
-				System.out.println("상품이미지 : " + infoImg);
-				
+				imgMap.put("im_product_no", pro_no);
 				imgMap.put("im_thumnail_image", thImg);			
 				
 				imgList.add(imgMap);
 				
-				System.out.println(imgList);
 
 				// 이미지 추가
 				if(ss.getMapper(ProductMapper.class).addImage(imgList) == 1) {
@@ -216,8 +203,12 @@ public class ProductDAO {
 				
 			} catch(Exception e) {
 				e.printStackTrace();
-				File f = new File(path1 + "/" + mr.getFilesystemName("p_photo"));
+				File f = new File(path1  + thumName2);
+				File f2 = new File(path2 + infoName2);
 				f.delete();
+				if(f2.exists()) {
+						f2.delete();
+					}
 				System.out.println("DB 에러! 이미지 파일 삭제했습니다.");
 			}
 			

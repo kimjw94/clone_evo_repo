@@ -53,32 +53,40 @@
 		#{i_product_count}
 		)
 	</insert>
-	
+
 	<!-- 상품 번호 불러오는거 -->
-	<select id="getProNo" parameterType="com.market.evo.product.Product" resultType="int">
-		select p_product_no
+	<select id="getProNo"
+		parameterType="com.market.evo.product.Product" resultType="int">
+		select
+		p_product_no
 		from evo_product
-		where p_addDay = (select max(p_addDay) from (
+		where p_addDay = (select max(p_addDay)
+		from (
 		select p_addDay
 		from evo_product
-		where p_product_name = #{p_product_name}
+		where p_product_name =
+		#{p_product_name}
 		and p_m_id = #{p_m_id}
-		and p_category_code = #{p_category_code}))
+		and p_category_code =
+		#{p_category_code}))
 	</select>
 
 	<select id="idViewProduct" parameterType="String"
 		resultType="map">
-		select p.p_view, p.p_price, p.p_product_name, p.p_product_no,
+		select p.p_view, p.p_price, p.p_product_name,
+		p.p_product_no,
 		i.im_thumbnail_image
-		from evo_product p, evo_product_image i, evo_member m
-		where p.p_product_no = i.im_p_product_no
+		from evo_product p,
+		evo_product_image i, evo_member m
+		where p.p_product_no =
+		i.im_p_product_no
 		and m.m_id = p.p_m_id
 		and p.p_m_id = #{p_m_id}
-		
+
 	</select>
-	
-	
-	
+
+
+
 	<!--상의라는 카테고리에 포함되는 상품정보,상품이미지 가져오기 -->
 	<select id="getProductsWithImagebyCategory" resultType="map">
 		select
@@ -95,13 +103,52 @@
 		and
 		c.c_category_name= #{categoryName}
 	</select>
-	<select id="getProductswithImagebyDetailCategory" resultType="map">
-	select p.*, I.IM_THUMBNAIL_IMAGE
-		from evo_product p 
-		join evo_category_detail d on p.p_category_code = d.d_category_detail_code
+	<select id="getProductswithImagebyDetailCategory"
+		resultType="map">
+		select p.*, I.IM_THUMBNAIL_IMAGE
+		from evo_product p
+		join
+		evo_category_detail d on p.p_category_code = d.d_category_detail_code
 		join evo_product_image i on p.p_product_no = i.im_p_product_no
-		where p.p_category_code = d.d_category_detail_code
-		and	d.d_category_detail_name= #{categoryDetailName}
+		where
+		p.p_category_code = d.d_category_detail_code
+		and
+		d.d_category_detail_name= #{categoryDetailName}
+	</select>
+
+	<select id="getProductDetail" resultType="map" >
+SELECT
+    p.p_product_name,
+    p.p_m_id,
+    p.p_price,
+    p.p_info,
+    p.p_view,
+    im.im_thumbnail_image,
+    im.im_info_image,
+    c.c_category_name,
+    cd.d_category_detail_name
+FROM
+    EVO_PRODUCT p
+JOIN
+    EVO_PRODUCT_IMAGE im ON p.p_product_no = im.im_p_product_no
+JOIN
+    EVO_CATEGORY_DETAIL cd ON p.p_category_code = cd.d_category_detail_code
+JOIN
+    EVO_CATEGORY c ON cd.d_category_code = c.c_category_code
+WHERE
+    p.p_product_no = #{productNo}
+	</select>
+	
+	<select id ="getProductInventory" resultType="map">
+	
+SELECT
+  	i_product_color,
+    i_product_size
+FROM
+    evo_product_inventory
+WHERE
+    i_p_product_no = #{productNo}
+	
 	</select>
 
 

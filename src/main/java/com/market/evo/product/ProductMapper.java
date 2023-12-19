@@ -17,5 +17,7 @@ public interface ProductMapper {
 	public List<Map<String, Object>> detailInventory(int p_product_no);
 	public List<Map<String, Object>> getProductsWithImagebyCategory(String categoryName);
 	public List<Map<String, Object>> getProductswithImagebyDetailCategory(String categoryDetailName);
-	public abstract int updateProduct(Map<String, Object> updateList);
+	public List<Map<String, Object>> getProductDetail(String productNo);
+	public List<Map<String, Object>> getProductInventory(String productNo);
+
 }

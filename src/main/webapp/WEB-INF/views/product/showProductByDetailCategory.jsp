@@ -12,18 +12,20 @@
 
 	<c:forEach var="p" items="${ProductsDetailCategory}">
 		<div class="photo">
+		<a href="product.showProduct.detail?productNo=${p.P_PRODUCT_NO }">
 			<div>
-				<img src="resources/productImg/${p.IM_THUMBNAIL_IMAGE}" id="p_image">
+				<img src="resources/thumnailImg/${p.IM_THUMBNAIL_IMAGE}" id="p_image">
 			</div>
 			<div class="p_title">
-				<a href="">${p.P_PRODUCT_NAME}</a>
+				${p.P_PRODUCT_NAME}
 			</div>
 			<div class="p_view">
-				<a href="">${p.P_VIEW }</a>
+				${p.P_VIEW }
 			</div>
 			<div>
-				<a href="p_price">￦ ${p.P_PRICE}</a>
+				￦ ${p.P_PRICE}
 			</div>
+			</a>
 		</div>
 	</c:forEach>
 

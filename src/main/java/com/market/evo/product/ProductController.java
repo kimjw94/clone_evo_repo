@@ -76,5 +76,11 @@ public class ProductController {
 		return "index";
 	}
 	
+	@RequestMapping(value="/product.showProduct.detail",method=RequestMethod.GET)
+	public String showProductDetail(HttpServletRequest req,@RequestParam("productNo") String productNo) {
+		pDAO.getProductDetail(req, productNo);
+		req.setAttribute("cp","product/ProductDetail.jsp");
+		return "index";
+	}
 		
 }

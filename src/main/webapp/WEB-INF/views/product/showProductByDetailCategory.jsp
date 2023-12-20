@@ -23,7 +23,7 @@
 				${p.P_VIEW }
 			</div>
 			<div>
-				￦ ${p.P_PRICE}
+				 ${p.P_PRICE} 원
 			</div>
 			</a>
 		</div>

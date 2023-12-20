@@ -10,7 +10,7 @@
 <body>
 	
 	<c:forEach var="p" items="${ProductsCategory}">
-		<div class="photo">
+		<div  class="photo">
 			<a href="product.showProduct.detail?productNo=${p.P_PRODUCT_NO }">
 				<div>
 					<img src="resources/thumnailImg/${p.IM_THUMBNAIL_IMAGE}"
@@ -18,7 +18,7 @@
 				</div>
 				<div class="p_title">${p.P_PRODUCT_NAME}</div>
 				<div class="p_view">${p.P_VIEW}</div>
-				<div>￦ ${p.P_PRICE}</div>
+				<div > ${p.P_PRICE} 원</div>
 			</a>
 		</div>
 	</c:forEach>

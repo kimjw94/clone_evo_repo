@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="resources/css/productView.css">
 <link rel="stylesheet" href="resources/css/helpper.css">
 <link rel="stylesheet" href="resources/css/myPage.css">
+<link rel="stylesheet" href="resources/css/ProductDetail.css">
 <script type="text/javascript">
 	function toggleSubMenu(event) {
 		// 클릭된 요소가 링크인 경우 토글 동작을 수행하지 않음

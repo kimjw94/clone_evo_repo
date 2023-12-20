@@ -8,21 +8,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	
 	<c:forEach var="p" items="${ProductsCategory}">
 		<div class="photo">
-			<div>
-				<img src="resources/productImg/${p.IM_THUMBNAIL_IMAGE}" id="p_image">
-			</div>
-			<div class="p_title">
-				<a href="">${p.P_PRODUCT_NAME}</a>
-			</div>
-			<div class="p_view">
-				<a href="">${p.P_VIEW }</a>
-			</div>
-			<div>
-				<a href="p_price">￦ ${p.P_PRICE}</a>
-			</div>
+			<a href="product.showProduct.detail?productNo=${p.P_PRODUCT_NO }">
+				<div>
+					<img src="resources/thumnailImg/${p.IM_THUMBNAIL_IMAGE}"
+						id="p_image">
+				</div>
+				<div class="p_title">${p.P_PRODUCT_NAME}</div>
+				<div class="p_view">${p.P_VIEW}</div>
+				<div>￦ ${p.P_PRICE}</div>
+			</a>
 		</div>
 	</c:forEach>
 

@@ -85,7 +85,27 @@
 
 	</select>
 
-
+	
+	<!-- 삼풍 상세정보 불러오기 (재고 빼고) -->
+	<select id="detailProduct" parameterType="int" resultType="map">
+		select  p.p_product_name, p.p_price, p.p_info,
+				c.c_category_name, d.d_category_detail_name,
+				im.im_thumbnail_image, im.im_info_image
+  		from evo_product p, evo_product_image im,
+  				evo_category c, evo_category_detail d
+ 		where p.p_product_no = #{p_product_no}
+   			and p.p_category_code = d.d_category_detail_code
+   			and d.d_category_code = c.c_category_code
+   			and im.im_p_product_no = p.p_product_no
+	</select>
+	
+	<!-- 재고만 따로 불러오기 -->
+	<select id="detailInventory" parameterType="int" resultType="map">
+		select * from evo_product_inventory
+		  where i_p_product_no = #{p_product_no}
+	
+	</select>
+	
 
 	<!--상의라는 카테고리에 포함되는 상품정보,상품이미지 가져오기 -->
 	<select id="getProductsWithImagebyCategory" resultType="map">

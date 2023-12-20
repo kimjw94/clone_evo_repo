@@ -20,3 +20,27 @@
 .p_title {
 	font-weight: bold;
 }
+
+.prodContainer {
+	margin-left: 400px;
+	font-family: "a109";
+}
+
+.proTitle {
+	font-weight: bold;
+	margin-top: 40px;
+	margin-bottom: 8px;
+}
+
+.addBtn {
+	padding: 20px;	
+	margin-top: 40px;
+}
+
+#productAddBtn {
+	width: 70px;
+}
+
+button, #p_category_code, #p_info {
+	font-family: "a109";
+}

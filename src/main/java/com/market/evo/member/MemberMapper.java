@@ -3,6 +3,9 @@ package com.market.evo.member;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+
 public interface MemberMapper {
 
 	public abstract int Signup(Member m);
@@ -20,5 +23,10 @@ public interface MemberMapper {
 	public abstract int cont(Helpper h);
 	public List<Map<String, Object>> categoryList();
 	public List<Map<String, Object>> detailCateList(int categorycode);
+	public List<Helpper> helpperList(Helpper h);
+	public List<Helpper> helpperListWithPagination(@Param("h") Helpper h,
+            @Param("startIndex") int startIndex,
+            @Param("itemsPerPage") int itemsPerPage);
+	public int getTotalHelpperCount();
 }
 

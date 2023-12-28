@@ -88,8 +88,9 @@
 	
 	<!-- 삼풍 상세정보 불러오기 (재고 빼고) -->
 	<select id="detailProduct" parameterType="int" resultType="map">
-		select  p.p_product_name, p.p_price, p.p_info,
-				c.c_category_name, d.d_category_detail_name,
+		select  p.p_product_no, p.p_product_name, p.p_price, p.p_info,
+				c.c_category_name, c.c_category_code,
+				d.d_category_detail_name, d.d_category_detail_code,
 				im.im_thumbnail_image, im.im_info_image
   		from evo_product p, evo_product_image im,
   				evo_category c, evo_category_detail d
@@ -102,10 +103,58 @@
 	<!-- 재고만 따로 불러오기 -->
 	<select id="detailInventory" parameterType="int" resultType="map">
 		select * from evo_product_inventory
-		  where i_p_product_no = #{p_product_no}
-	
+		 where i_p_product_no = #{p_product_no}
 	</select>
 	
+	<!-- 재고만 업데이트 -->
+	<update id="updateInven" parameterType="map">
+		update evo_product_inventory
+		   set i_product_size = #{i_product_size},
+		       i_product_color = #{i_product_color},
+		       i_product_count = #{i_product_count}
+		 where i_product_size = #{i_product_sizeo}
+		   and i_product_color = #{i_product_coloro}
+		   and i_product_count = #{i_product_counto}
+		   and i_p_product_no = #{i_product_no}
+	</update>
+	
+	<!-- 상품만 수정 -->
+	<update id="updatePro" parameterType="com.market.evo.product.Product">
+		update evo_product
+		   set p_product_name = #{p_product_name},
+		   		p_price = #{p_price},
+		   		p_info = #{p_info},
+		   		p_updateDay = default
+		 where p_product_no = #{p_product_no}
+	</update>
+	
+	<!-- 썸네일 이미지만 수정 -->
+	<update id="updateThumbImg" parameterType="map">
+		update evo_product_image
+		   set im_thumbnail_image = #{im_thumbnail_image}
+		 where im_p_product_no = #{im_p_product_no}
+	</update>
+	
+	<!-- 상품설명 이미지만 수정 -->
+	<update id="updateInfoImg" parameterType="map">
+		update evo_product_image
+		   set im_info_image = #{im_info_image}
+		 where im_p_product_no = #{im_p_product_no}
+	</update>
+	
+	<!-- 재고 삭제 -->
+	<delete id="deleteInven" parameterType="map">
+		delete from evo_product_inventory
+		 where i_product_size = #{i_product_sizeo}
+		   and i_product_color = #{i_product_coloro}
+		   and i_product_count = #{i_product_counto}
+		   and i_p_product_no = #{i_product_no}
+	</delete>
+	
+	<!-- 상품 및 이미지 삭제 -->
+	<delete id="deletePro" parameterType="com.market.evo.product.Product">
+		delete from evo_product 
+	</delete>
 
 	<!--상의라는 카테고리에 포함되는 상품정보,상품이미지 가져오기 -->
 	<select id="getProductsWithImagebyCategory" resultType="map">
@@ -123,6 +172,7 @@
 		and
 		c.c_category_name= #{categoryName}
 	</select>
+	
 	<select id="getProductswithImagebyDetailCategory"
 		resultType="map">
 		select p.*, I.IM_THUMBNAIL_IMAGE

@@ -20,8 +20,9 @@ public interface ProductMapper {
 	public abstract int updateInfoImg(Map<String, Object> imgMap);
 	public abstract int updateInven(Map<String, Object> invenList);
 	public abstract int deleteInven(Map<String, Object> invenList);
-	public abstract int deletePro(Product p);
-	public abstract int deleteImg(Map<String, Object> imgMap);
+	public abstract int deleteInv(int p_product_no);
+	public abstract int deletePro(int p_product_no);
+	public abstract int deleteImg(int p_product_no);
 	public List<Map<String, Object>> getProductsWithImagebyCategory(String categoryName);
 	public List<Map<String, Object>> getProductswithImagebyDetailCategory(String categoryDetailName);
 	public List<Map<String, Object>> getProductDetail(String productNo);

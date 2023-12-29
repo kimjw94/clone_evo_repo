@@ -173,6 +173,7 @@ public class ProductDAO {
 
 				imgMap.put("im_p_product_no", pro_no);
 				imgMap.put("im_thumbnail_image", thImg);
+				
 
 				// 이미지 추가
 				if (ss.getMapper(ProductMapper.class).addImage(imgMap) == 1) {
@@ -210,6 +211,7 @@ public class ProductDAO {
 					} catch (Exception e) {
 						e.printStackTrace();
 						delImg(path1, path2, thumbName2, infoName2);
+						deleteProduct(req);
 						System.out.println("재고 추가할때 에러가..!");
 					}
 				}
@@ -478,6 +480,32 @@ public class ProductDAO {
 			if(di.size() != 0) {
 				req.setAttribute("detailInventory", di);
 			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteProduct(HttpServletRequest req) {
+		try {
+			int p_product_no = Integer.parseInt(req.getParameter("p_product_no"));
+			
+			
+			// 상품 삭제
+			if(ss.getMapper(ProductMapper.class).deletePro(p_product_no) == 1) {
+				System.out.println("상품 삭제");
+			}
+			
+			// 이미지 삭제
+			if(ss.getMapper(ProductMapper.class).deleteImg(p_product_no) == 1) {
+				System.out.println("이미지 삭제");
+			}
+			
+			// 재고 삭제
+			if(ss.getMapper(ProductMapper.class).deleteInv(p_product_no) == 1) {
+				System.out.println("재고 삭제");
+			}
+			
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

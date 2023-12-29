@@ -91,7 +91,7 @@ public class ProductController {
 	
 	@RequestMapping(value="/product.deleteProduct", method=RequestMethod.POST)
 	public String deleteProduct(HttpServletRequest req) {
-		
+		pDAO.deleteProduct(req);
 		pDAO.idViewProduct(req);
 		req.setAttribute("cp", "product/infoProduct.jsp");
 		return "index";

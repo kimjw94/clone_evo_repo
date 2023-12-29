@@ -35,11 +35,19 @@
 	<!-- 상품 이미지 추가 -->
 	<insert id="addImage" parameterType="map">
 		insert into
-		evo_product_image(im_p_product_no, im_thumbnail_image, im_info_image)
+		evo_product_image(im_p_product_no, im_thumbnail_image
+		<if test="im_info_image != null">
+			,im_info_image
+		</if>
+		)
 		values(
 		#{im_p_product_no},
-		#{im_thumbnail_image},
-		#{im_info_image}
+		#{im_thumbnail_image}
+		
+		<if test="im_info_image != null">
+		,#{im_info_image}
+		</if>
+		
 		)
 	</insert>
 
@@ -145,15 +153,26 @@
 	<!-- 재고 삭제 -->
 	<delete id="deleteInven" parameterType="map">
 		delete from evo_product_inventory
-		 where i_product_size = #{i_product_sizeo}
+		where i_product_size = #{i_product_sizeo}
 		   and i_product_color = #{i_product_coloro}
 		   and i_product_count = #{i_product_counto}
 		   and i_p_product_no = #{i_product_no}
 	</delete>
 	
-	<!-- 상품 및 이미지 삭제 -->
-	<delete id="deletePro" parameterType="com.market.evo.product.Product">
+	<delete id="deleteInv" parameterType="int">
+		delete from evo_product_inventory
+		where i_p_product_no = #{p_product_no}
+	</delete>
+	
+	<!-- 상품 삭제 -->
+	<delete id="deletePro" parameterType="int">
 		delete from evo_product 
+		 where p_product_no = #{p_product_no}
+	</delete>
+	
+	<delete id="deleteImg" parameterType="int">
+		delete from evo_product_image
+		 where im_p_product_no = #{p_product_no}
 	</delete>
 
 	<!--상의라는 카테고리에 포함되는 상품정보,상품이미지 가져오기 -->

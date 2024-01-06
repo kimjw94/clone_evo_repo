@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class MemberController {
@@ -194,6 +195,18 @@ public class MemberController {
 		return "index";
 	}
 
+	@RequestMapping(value = "/member.helpperList.go", method = RequestMethod.GET)
+	public String helpperList(HttpServletRequest req) {
+		if (req.getSession().getAttribute("loginMember") == null) {
+
+			return "redirect:/login";
+		} else {
+
+			req.setAttribute("cp", "member/helpperList.jsp");
+			return "index";
+		}
+	}
+
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homePage(HttpServletRequest req) {
 		req.setAttribute("cp", "home.jsp");
@@ -224,59 +237,27 @@ public class MemberController {
 		req.setAttribute("cp", "home.jsp");
 		return "index";
 	}
-	
 
-	@RequestMapping(value = "/member.helpperList.go", method = RequestMethod.GET)
-	public String helpperListGo(@RequestParam(value = "page", defaultValue = "1") int page,
-	                          Helpper h, HttpServletRequest req, Model model) {
-
-	    if (req.getSession().getAttribute("loginMember") == null) {
-	        return "redirect:/login";
-	    } else {
-	        // 페이지당 항목 수 설정 (원하는대로 조정)
-	        int itemsPerPage = 10;
-
-	        // 전체 항목 수 및 총 페이지 수 계산 로직
-	        int totalItems = mDAO.getTotalHelpperCount(); // 이 메서드는 전체 항목 수를 가져오는 메서드여야 합니다.
-	        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
-
-	        // 페이지에 따른 목록 가져오기
-	        List<Helpper> helpperList = mDAO.helpperList(page, itemsPerPage, h, req);
-
-	        model.addAttribute("helpperList", helpperList);
-	        model.addAttribute("pageCount", totalPages);
-	        model.addAttribute("currentPage", page); // 현재 페이지 정보를 모델에 추가
-
-	        req.setAttribute("cp", "member/helpperList.jsp");
-	        return "index";
-	    }
-	}
-	
-	@RequestMapping(value = "/member.helpperList", method = RequestMethod.POST)
-	public String helpperList(@RequestParam(value = "page", defaultValue = "1") int page,
-	                          Helpper h, HttpServletRequest req, Model model) {
-
-	    if (req.getSession().getAttribute("loginMember") == null) {
-	        return "redirect:/login";
-	    } else {
-	        // 페이지당 항목 수 설정 (원하는대로 조정)
-	        int itemsPerPage = 10;
-
-	        // 전체 항목 수 및 총 페이지 수 계산 로직
-	        int totalItems = mDAO.getTotalHelpperCount(); // 이 메서드는 전체 항목 수를 가져오는 메서드여야 합니다.
-	        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
-
-	        // 페이지에 따른 목록 가져오기
-	        List<Helpper> helpperList = mDAO.helpperList(page, itemsPerPage, h, req);
-
-	        model.addAttribute("helpperList", helpperList);
-	        model.addAttribute("pageCount", totalPages);
-	        model.addAttribute("currentPage", page); // 현재 페이지 정보를 모델에 추가
-
-	        req.setAttribute("cp", "member/helpperList.jsp");
-	        return "index";
-	    }
-	}
-	
-
+//	@RequestMapping(value = "/member.login", method = RequestMethod.POST)
+//	public String login(Member m, HttpServletRequest req) {
+//		// 로그인 처리 로직
+//		mDAO.GetIDForLogin(m, req);
+//		boolean loginSuccess = mDAO.loginCheck(req);
+//		String prevPage = (String) req.getSession().getAttribute("prevPage");
+//		if (loginSuccess) {
+//			// 성공 시 이전 페이지로 리다이렉트
+//			
+//			if (prevPage != null) {
+//				req.getSession().removeAttribute("prevPage");
+//				return "redirect:" + prevPage;
+//			} else {
+//				// 이전 페이지 정보가 없으면 홈페이지로 리다이렉트 또는 다른 처리 수행
+//				req.setAttribute("cp", "home.jsp");
+//				return "index";
+//			}
+//			
+//		}
+//		return "index";
+//
+//	}
 }

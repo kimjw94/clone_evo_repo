@@ -86,18 +86,10 @@
 			</div>
 			<div>
 				<div>
-					<label for="h_title">문의 제목</label>
+					<label for="h_title">주문 번호</label>
 				</div>
 				<div>
 					<input type="text" id="h_title" name="h_title" >
-				</div>
-			</div>
-			<div>
-				<div>
-					<label for="h_title">상품 번호</label>
-				</div>
-				<div>
-					<input type="text" id="h_productNum" name="h_productNum" >
 				</div>
 			</div>
 			<div>

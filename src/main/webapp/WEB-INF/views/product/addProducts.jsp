@@ -8,7 +8,10 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function() {
-		
+		var colorNum = 2;
+		var sizeNum = 2;
+		var countNum = 2;
+		var delNum = 1;
 		
 		$('#category').change(function() {
 			
@@ -49,9 +52,9 @@
 		})
 		
 		
-		$("#iAdddBtn").click(function() {
-			$("#iAdd" + delNum).after(
-				"<div id='iAdd" + delNum2 + "'>"
+		$("#iAddBtn").click(function() {
+			$("#iAdd").after(
+				"<div id='delNum" + delNum + "'>"
 				+ "<input name='i_product_color" + colorNum + "' id='i_product_color" + colorNum + "' style='width:66px; margin-right: 5px; margint-top: 5px;' placeholder='색상'>"
 				+ "<input name='i_product_size" + sizeNum + "' id='i_product_size" + sizeNum + "' style='width: 66px; margin-right: 5px; margint-top: 5px; text-transform: uppercase;' placeholder='사이즈'>"
 				+ "<input name='i_product_count" + countNum + "' id='i_product_count" + countNum + "' style='width:66px; margin-right: 5px; margin-top: 5px;' placeholder='수량'>"
@@ -63,70 +66,13 @@
 			countNum = parseInt(countNum) + 1;
 			colorNum = parseInt(colorNum) + 1;
 			delNum = parseInt(delNum) + 1;
-			delNum2 = parseInt(delNum) + 1;
 		})
-		
-		// 엔터키 입력 시 추가 이벤트
-		$(document).on("keydown", 'input', function(e) {
-			var count = 2;
-			var idx = $('input').index(this);
-			var addInput = document.querySelector('#iAdd' + count);
-			
-			console.log(idx);
-			
-			if(e.keyCode === 13) {
-				e.preventDefault();
-				$('input').eq(idx+1).focus();
-				
-				if(idx % 3 == 2) {
-					addInven();
-					$('input').eq(idx+1).focus();
-					
-				}
-			}
-		})
-		
 	});
-
-	var colorNum = 2;
-	var sizeNum = 2;
-	var countNum = 2;
-	var delNum = 1;
-	var delNum2 = 2;
-	
-function addInven() {
-	
-	var resetAdd = document.getElementById("iAdd1").nextElementSibling;
-	
-	if(resetAdd == null) {
-		colorNum = 2;
-		sizeNum = 2;
-		countNum = 2;
-		delNum = 1;
-		delNum2 = 2;
-	}
-	
-	$("#iAdd" + delNum).after(
-			"<div id='iAdd" + delNum2 + "'>"
-			+ "<input name='i_product_color" + colorNum + "' id='i_product_color" + colorNum + "' style='width:66px; margin-right: 5px; margint-top: 5px;' placeholder='색상'>"
-			+ "<input name='i_product_size" + sizeNum + "' id='i_product_size" + sizeNum + "' style='width: 66px; margin-right: 5px; margint-top: 5px; text-transform: uppercase;' placeholder='사이즈'>"
-			+ "<input name='i_product_count" + countNum + "' id='i_product_count" + countNum + "' style='width:66px; margin-right: 5px; margin-top: 5px;' placeholder='수량'>"
-			+ "<button id='scBtn" + delNum +"' type='button' style='width:60px; height:33px' onclick='delBtn(this.id)'>삭제</button> "
-			+ "</div>"
-		);
-		
-	sizeNum = parseInt(sizeNum) + 1;
-	countNum = parseInt(countNum) + 1;
-	colorNum = parseInt(colorNum) + 1;
-	delNum = parseInt(delNum) + 1;
-	delNum2 = parseInt(delNum) + 1;
-}
 	
 function delBtn(click_id) {
 	var delTr = $('#' + click_id).parent().attr("id");
 	$('div').remove('#' + delTr);
 }
-
 
 function check() {
 	let productName = document.getElementById("p_product_name");
@@ -239,11 +185,11 @@ function check() {
 			</div>
 			<div>
 				<div class="proTitle">색상 및 사이즈, 수량</div>
-				<div id="iAdd1">
+				<div id="iAdd">
 					<input name="i_product_color1" id="i_product_color1" style="width:66px;" placeholder="색상">
 					<input name="i_product_size1" id="i_product_size1" style='width:66px; text-transform: uppercase;' placeholder="사이즈">
 					<input name="i_product_count1" id="i_product_count1" style='width:66px;' type='number' placeholder="수량">
-					<button id="iAddBtn" style="width:60px; height:33px;" type="button" onclick="addInven()">추가</button>
+					<button id="iAddBtn" style="width:60px; height:33px;" type="button">추가</button>	
 				</div>
 			</div>
 			<div>

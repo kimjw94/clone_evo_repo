@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class ProductDAO {
 	SqlSession ss;
 
 	Map<String, Object> originalInven = new HashMap<String, Object>();
-	
+
 	// 카테고리
 	public List<Map<String, Object>> getCategoryName(HttpServletRequest req) {
 		try {
@@ -67,8 +68,6 @@ public class ProductDAO {
 			return null;
 		}
 	}
-	
-	
 
 	// 상품추가
 	public void addProduct(Product p, HttpServletRequest req) {
@@ -84,11 +83,10 @@ public class ProductDAO {
 		String thumbName2 = null;
 		String infoName2 = null;
 
-		try {		
-			
+		try {
+
 			path1 = req.getSession().getServletContext().getRealPath("resources/thumbnailImg/");
 			path2 = req.getSession().getServletContext().getRealPath("resources/infoImg/");
-		
 
 			File folder = new File(path1);
 			File folder2 = new File(path2);
@@ -99,7 +97,7 @@ public class ProductDAO {
 					folder.mkdir();
 
 					System.out.println("썸네일사진(thumbnailImg) 폴더가 생성되었습니다.");
-				} catch(Exception e) {
+				} catch (Exception e) {
 
 					e.printStackTrace();
 				}
@@ -120,7 +118,7 @@ public class ProductDAO {
 				// 파일명에 시간추가하기
 				String thumbName = mr.getFilesystemName("im_thumbnail_image");
 				String infoName = mr.getFilesystemName("im_info_image");
-				
+
 				// 지금 시간 조회
 				String now = new SimpleDateFormat("yyMMddHmsS").format(new Date());
 
@@ -173,7 +171,6 @@ public class ProductDAO {
 
 				imgMap.put("im_p_product_no", pro_no);
 				imgMap.put("im_thumbnail_image", thImg);
-				
 
 				// 이미지 추가
 				if (ss.getMapper(ProductMapper.class).addImage(imgMap) == 1) {
@@ -205,7 +202,7 @@ public class ProductDAO {
 					insertInven.put("i_p_product_no", pro_no);
 					try {
 						if (ss.getMapper(ProductMapper.class).addInventory(insertInven) == 1) {
-							
+
 						}
 
 					} catch (Exception e) {
@@ -228,7 +225,7 @@ public class ProductDAO {
 		}
 	}
 
-	public void getOriginalInven(HttpServletRequest req, Map<String, Object> originInven) {
+public void getOriginalInven(HttpServletRequest req, Map<String, Object> originInven) {
 		
 		try {
 			if(originInven.get("o") != null) {
@@ -594,6 +591,65 @@ public class ProductDAO {
 			System.out.println("db에 문제있음 ㅠ");
 		}
 
+	}
+
+	public void insertProductOrdersNonMember(List<ProductOrder_NonMember> productOrders, HttpServletResponse response) {
+		try {
+			System.out.println(productOrders);
+			System.out.println("총" + productOrders.size() + "개 항목 장바구니 담음");
+
+			for (ProductOrder_NonMember order : productOrders) {
+				if (ss.getMapper(ProductMapper.class).insertProductOrder_NonMember(order) != 0) {
+					System.out.println("주문내역데이터 삽입 성공");
+				} else {
+					// 실패 상태 코드와 메시지를 클라이언트에게 전송
+					System.out.println("주문내역데이터 삽입 실패");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
+	}
+
+	public void insertProductOrdersMember(List<ProductOrder_Member> productOrders, HttpServletResponse response) {
+
+		try {
+			System.out.println(productOrders);
+			System.out.println("총" + productOrders.size() + "개 항목 장바구니 담음");
+
+			for (ProductOrder_Member order : productOrders) {
+				if (ss.getMapper(ProductMapper.class).insertProductOrder_Member(order) != 0) {
+					System.out.println("주문내역데이터 삽입 성공");
+				} else {
+					System.out.println("주문내역데이터 삽입 실패");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
+
+	}
+
+	public void getProductOrdersByCookieID(HttpServletRequest req, String cookieID) {
+		try {
+
+			System.out.println("넣어볼게");
+			List<Map<String, String>> nonmemberOrder = ss.getMapper(ProductMapper.class)
+					.selectProductOrdersByCookieID(cookieID);
+			System.out.println(nonmemberOrder);
+			if (nonmemberOrder.size() != 0) {
+				req.setAttribute("nonMemberOrder", nonmemberOrder);
+				System.out.println(nonmemberOrder);
+			} else {
+				System.out.println("장바구니없는데요?");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
 	}
 
 }

@@ -8,9 +8,11 @@
 <title>Insert title here</title>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	
-	 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 
 
@@ -66,7 +68,40 @@
 
 	}
 	
-	
+	document.addEventListener('DOMContentLoaded', function () {
+        updateTotalPriceDisplay();
+    });
+
+    // 주문 테이블에서 수량과 가격이 변경될 때마다 총 가격을 업데이트
+    var orderTable = document.getElementById('order-table');
+    orderTable.addEventListener('input', function (event) {
+        var target = event.target;
+        
+        // 수량 또는 가격이 변경된 경우에만 업데이트 수행
+        if (target.classList.contains('product-quantity') || target.classList.contains('product-price')) {
+            updateTotalPriceDisplay();
+        }
+    });
+
+    function calculateTotalPrice() {
+        var totalPrice = 0;
+        var orderRows = document.querySelectorAll('.order-row');
+
+        orderRows.forEach(function (row) {
+            var quantity = parseInt(row.querySelector('.product-quantity').innerText, 10);
+            var price = parseFloat(row.querySelector('.product-price').innerText);
+            totalPrice += quantity * price;
+        });
+
+        return totalPrice.toFixed(0); // 달러 표시를 하지 않고 원으로 표시
+    }
+
+    // 총 가격을 화면에 출력하는 함수
+    function updateTotalPriceDisplay() {
+        var totalPrice = calculateTotalPrice();
+        document.getElementById('total-price-display').innerText = '총 가격: ' + totalPrice + '원';
+    }
+    
     function startPayment() {
         // 여기에서 결제 정보를 설정합니다.
         const paymentData = {
@@ -111,7 +146,7 @@
 				<li class="oreder__item order__item--name"><span
 					class="order__item__label">이름</span>
 					<div class="order_item_area">
-						<input type="text" class="order_input" name="order_name" 
+						<input type="text" class="order_input" name="order_name"
 							placeholder="이름을 입력해주세요." maxlength="20">
 					</div></li>
 				<li class="oreder__item oreder__item--phone"><span
@@ -139,7 +174,7 @@
 		<h2>비회원 장바구니</h2>
 
 		<c:if test="${not empty nonMemberOrder}">
-			<table border="1">
+			<table border="1" id="order-table">
 				<thead>
 					<tr>
 						<th>썸네일 이미지</th>
@@ -148,19 +183,19 @@
 						<th>제품 크기</th>
 						<th>총 수량</th>
 						<th>총 가격</th>
-					
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="order" items="${nonMemberOrder}">
-						<tr>
-							<td><img src="resources/thumnailImg/${order.IM_THUMBNAIL_IMAGE}" alt="썸네일 이미지" width=50px; height=50px;></td>
+						<tr class="order-row">
+							<td><img
+								src="resources/thumnailImg/${order.IM_THUMBNAIL_IMAGE}"
+								alt="썸네일 이미지" width="50px" height="50px;"></td>
 							<td>${order.NORDER_PRODUCTNAME}</td>
 							<td>${order.NORDER_PRODUCTCOLOR}</td>
 							<td>${order.NORDER_PRODUCTSIZE}</td>
-							<td>${order.NORDER_PRODUCTQUANTITY}</td>
-							<td>${order.NORDER_PRODUCTPRICE}</td>
-						
+							<td class="product-quantity">${order.NORDER_PRODUCTQUANTITY}</td>
+							<td class="product-price">${order.NORDER_PRODUCTPRICE}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -170,11 +205,13 @@
 				<p>주문 내역이 없습니다.</p>
 			</c:if>
 		</c:if>
-		
-		
+
+		<div id="total-price-display">총 가격: 0원</div>
+
+
 		<div class="section order_payment">
-    <button type="button" onclick="startPayment()" class="btn-payment">결제하기</button>
-</div>
+			<button type="button" onclick="startPayment()" class="btn-payment">결제하기</button>
+		</div>
 	</div>
 
 </body>

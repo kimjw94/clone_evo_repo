@@ -22,7 +22,6 @@ public class ProductOrder_NonMember {
 			@JsonProperty("NOrder_productSize") String NOrder_productSize,
 			@JsonProperty("NOrder_productQuantity") int NOrder_productQuantity,
 			@JsonProperty("NOrder_productPrice") BigDecimal NOrder_productPrice) {
-		// Convert the string to BigDecimal or handle the conversion error appropriately
 		this.NOrder_productNo = new BigDecimal(NOrder_productNo);
 		this.NOrder_cookieID = NOrder_cookieID;
 		this.NOrder_productName = NOrder_productName;
@@ -32,6 +31,7 @@ public class ProductOrder_NonMember {
 		this.NOrder_productPrice = NOrder_productPrice;
 	}
 
+	
 	public BigDecimal getNOrder_productNo() {
 		return NOrder_productNo;
 	}

@@ -19,6 +19,14 @@ public interface ProductMapper {
 	public abstract int addInventory(Map<String, Object> invenList);
 	public List<Map<String, Object>> detailProduct(int p_product_no);
 	public List<Map<String, Object>> detailInventory(int p_product_no);
+	public abstract int updatePro(Product p);
+	public abstract int updateThumbImg(Map<String, Object> imgMap);
+	public abstract int updateInfoImg(Map<String, Object> imgMap);
+	public abstract int updateInven(Map<String, Object> invenList);
+	public abstract int deleteInven(Map<String, Object> invenList);
+	public abstract int deleteInv(int p_product_no);
+	public abstract int deletePro(int p_product_no);
+	public abstract int deleteImg(int p_product_no);
 	public List<Map<String, Object>> getProductsWithImagebyCategory(String categoryName);
 	public List<Map<String, Object>> getProductswithImagebyDetailCategory(String categoryDetailName);
 	public List<Map<String, Object>> getProductDetail(String productNo);

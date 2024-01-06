@@ -36,6 +36,14 @@ public class ProductController {
 		req.setAttribute("cp", "product/addProducts.jsp");
 		return "index";
 	}
+	
+	@RequestMapping(value = "/product.getCategory", method = RequestMethod.POST)
+	@ResponseBody
+	public List<Map<String, Object>> detailCategory(HttpServletRequest req) {
+		List<Map<String, Object>> list = pDAO.getCategoryName(req);
+		
+		return list;
+	}
 
 	@RequestMapping(value = "/product.getDetailCategory", method = RequestMethod.POST)
 	@ResponseBody
@@ -67,9 +75,36 @@ public class ProductController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/product.modiProduct.go", method = RequestMethod.GET)
-	public String modiProduct(HttpServletRequest req) {
-		req.setAttribute("cp", "product/modiProduct.jsp");
+	@RequestMapping(value = "/product.modiProduct", method = RequestMethod.POST)
+	public String modiProduct(HttpServletRequest req, Product p) {
+		int pro_no = pDAO.updateProduct(p, req);
+		pDAO.detailProduct(req, pro_no);
+		req.setAttribute("cp", "product/detailProduct.jsp");
+		return "index";
+	}
+	
+
+	@RequestMapping(value="/product.originalInven", method=RequestMethod.POST)
+	@ResponseBody
+	public String getOriginalInven(HttpServletRequest req, @RequestBody Map<String, Object> originInven) {
+		pDAO.getOriginalInven(req, originInven);
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/product.updateInven", method=RequestMethod.POST)
+	@ResponseBody
+	public String updateProInven(HttpServletRequest req, @RequestBody Map<String, Object> inven) {
+		pDAO.updateProInven(req, inven);
+		
+		return "success";
+	}
+	
+	@RequestMapping(value="/product.deleteProduct", method=RequestMethod.POST)
+	public String deleteProduct(HttpServletRequest req) {
+		pDAO.deleteProduct(req);
+		pDAO.idViewProduct(req);
+		req.setAttribute("cp", "product/infoProduct.jsp");
 		return "index";
 	}
 

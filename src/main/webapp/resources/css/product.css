@@ -44,3 +44,18 @@
 button, #p_category_code, #p_info {
 	font-family: "a109";
 }
+
+#p_category_code, #category{
+	font-size: 15px;
+	padding: 2px;
+}
+.detailPro {
+	width: 66px;
+	margin-bottom: 15px;
+}
+
+#infoI, #thumbI {
+	font-size: 9pt;
+	color: gray;
+	margin-top: 10px;
+}

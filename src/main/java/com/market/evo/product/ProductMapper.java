@@ -3,6 +3,10 @@ package com.market.evo.product;
 import java.util.List;
 import java.util.Map;
 
+import com.market.evo.product.Product;
+import com.market.evo.product.ProductOrder_Member;
+import com.market.evo.product.ProductOrder_NonMember;
+
 
 public interface ProductMapper {
 
@@ -19,5 +23,8 @@ public interface ProductMapper {
 	public List<Map<String, Object>> getProductswithImagebyDetailCategory(String categoryDetailName);
 	public List<Map<String, Object>> getProductDetail(String productNo);
 	public List<Map<String, Object>> getProductInventory(String productNo);
+	public abstract int insertProductOrder_NonMember(ProductOrder_NonMember order);
+	public abstract int insertProductOrder_Member(ProductOrder_Member order);
+	public List<Map<String,String>> selectProductOrdersByCookieID(String cookieID); 
 
 }

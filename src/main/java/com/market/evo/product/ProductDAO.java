@@ -1,6 +1,7 @@
 package com.market.evo.product;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -11,12 +12,18 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertyOverrideConfigurer;
 import org.springframework.stereotype.Service;
 
 import com.market.evo.member.Member;
+import com.market.evo.product.Product;
+import com.market.evo.product.ProductMapper;
+import com.market.evo.product.ProductOrder_Member;
+import com.market.evo.product.ProductOrder_NonMember;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -76,11 +83,10 @@ public class ProductDAO {
 		String thumName2 = null;
 		String infoName2 = null;
 
-		try {		
-			
+		try {
+
 			path1 = req.getSession().getServletContext().getRealPath("resources/thumbnailImg/");
 			path2 = req.getSession().getServletContext().getRealPath("resources/infoImg/");
-		
 
 			File folder = new File(path1);
 			File folder2 = new File(path2);
@@ -91,7 +97,7 @@ public class ProductDAO {
 					folder.mkdir();
 
 					System.out.println("썸네일사진(thumbnailImg) 폴더가 생성되었습니다.");
-				} catch(Exception e) {
+				} catch (Exception e) {
 
 					e.printStackTrace();
 				}
@@ -220,45 +226,43 @@ public class ProductDAO {
 		}
 	}
 
-	
 	public void updateProduct(Product p, HttpServletRequest req) {
-		
+
 		MultipartRequest mr = null;
-		
+
 		// 섬네일 사진 경로
 		String path1 = null;
 		// 상품 사진 경로
 		String path2 = null;
-		
+
 		// 변경된 사진 이름들
 		String thumName2 = null;
 		String infoName2 = null;
-		
-		try { 
+
+		try {
 			path1 = req.getSession().getServletContext().getRealPath("resources/thumbnailImg/");
 			path2 = req.getSession().getServletContext().getRealPath("resources/infoImg/");
-			
+
 			File folder = new File(path1);
 			File folder2 = new File(path2);
-			
+
 			// 폴더 존재 확인 다시 한번
-			if(!folder.exists()) {
+			if (!folder.exists()) {
 				System.out.println("썸네일이미지폴더가 없습니다.");
 				return;
-			} else if(!folder2.exists()) {
+			} else if (!folder2.exists()) {
 				System.out.println("상품정보 이미지 폴더가 없어요");
 			}
-			
-			
+
 			mr = new MultipartRequest(req, path1, 30 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
-		
+
 			// 파일명에 시간추가하기
 			String thumName = mr.getFilesystemName("im_thumbnail_image");
 			String infoName = mr.getFilesystemName("im_info_image");
-			
+
 			// 지금 시간 조회
 			String now = new SimpleDateFormat("yyMMddHmsS").format(new Date());
-			
+
 			// 썸네일이미지 파일
 			thumName2 = now + thumName;
 			infoName2 = null;
@@ -266,25 +270,23 @@ public class ProductDAO {
 			File oldPhoto = new File(path1 + thumName);
 			File newPhoto = new File(path1 + thumName2);
 			oldPhoto.renameTo(newPhoto);
-			
-			if(infoName != null) {
+
+			if (infoName != null) {
 				infoName2 = now + infoName;
 
-				//정보 이미지 파일
+				// 정보 이미지 파일
 				oldPhoto = new File(path1 + infoName);
 				newPhoto = new File(path2 + infoName2);
 				oldPhoto.renameTo(newPhoto);
-			}	
-		
-		
-		
-		} catch(Exception e) {
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("사진 용량이 너무 큽니다");
 			return;
 		}
 	}
-	
+
 	// 이미지 삭제 함수
 
 	public void delImg(String path1, String path2, String thumbImg, String infoImg) {
@@ -322,33 +324,29 @@ public class ProductDAO {
 		}
 	}
 
-	
-	
 	// 상품 디테일
 	public void detailProduct(HttpServletRequest req, int p_product_no) {
 		try {
 			System.out.println("상품번호 : " + p_product_no);
 			List<Map<String, Object>> dp = ss.getMapper(ProductMapper.class).detailProduct(p_product_no);
 			System.out.println("상품내용 : " + dp + " ");
-			
+
 			List<Map<String, Object>> di = ss.getMapper(ProductMapper.class).detailInventory(p_product_no);
 			System.out.println("재고 현황 : " + di + " ");
-			
-			
-			if(dp.size() != 0) {
+
+			if (dp.size() != 0) {
 				req.setAttribute("detailProduct", dp);
 			}
-			
-			if(di.size() != 0) {
+
+			if (di.size() != 0) {
 				req.setAttribute("detailInventory", di);
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void getProductsWithImagebyCategory(HttpServletRequest req,String categoryName) {
-		
+
+	public void getProductsWithImagebyCategory(HttpServletRequest req, String categoryName) {
 
 		try {
 			List<Map<String, Object>> ProductsCategory = ss.getMapper(ProductMapper.class)
@@ -430,6 +428,64 @@ public class ProductDAO {
 			System.out.println("db에 문제있음 ㅠ");
 		}
 
+	}
+
+	public void insertProductOrdersNonMember(List<ProductOrder_NonMember> productOrders, HttpServletResponse response) {
+		try {
+			System.out.println(productOrders);
+			System.out.println("총" + productOrders.size() + "개 항목 장바구니 담음");
+
+			for (ProductOrder_NonMember order : productOrders) {
+				if (ss.getMapper(ProductMapper.class).insertProductOrder_NonMember(order) != 0) {
+					System.out.println("주문내역데이터 삽입 성공");
+				} else {
+					// 실패 상태 코드와 메시지를 클라이언트에게 전송
+					System.out.println("주문내역데이터 삽입 실패");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
+	}
+
+	public void insertProductOrdersMember(List<ProductOrder_Member> productOrders, HttpServletResponse response) {
+
+		try {
+			System.out.println(productOrders);
+			System.out.println("총" + productOrders.size() + "개 항목 장바구니 담음");
+
+			for (ProductOrder_Member order : productOrders) {
+				if (ss.getMapper(ProductMapper.class).insertProductOrder_Member(order) != 0) {
+					System.out.println("주문내역데이터 삽입 성공");
+				} else {
+					System.out.println("주문내역데이터 삽입 실패");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
+
+	}
+
+	public void getProductOrdersByCookieID(HttpServletRequest req, String cookieID) {
+		try {
+			
+			System.out.println("넣어볼게");
+			List<Map<String,String>> nonmemberOrder = ss.getMapper(ProductMapper.class).selectProductOrdersByCookieID(cookieID);
+				System.out.println(nonmemberOrder);
+			if (nonmemberOrder.size() != 0) {
+				req.setAttribute("nonMemberOrder", nonmemberOrder);
+				System.out.println(nonmemberOrder);
+			} else {
+				System.out.println("장바구니없는데요?");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
 	}
 
 }

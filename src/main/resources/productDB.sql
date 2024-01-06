@@ -203,3 +203,61 @@ insert into evo_category_detail values(90000, 90003, '머플러');
 insert into evo_category_detail values(90000, 90004, '장갑');
 insert into evo_category_detail values(90000, 90005, '마스크');
 insert into evo_category_detail values(90000, 90006, '기타 악세사리');
+
+--productOrder_NonMember 테이블
+
+CREATE TABLE productOrder_NonMember (
+    NOrder_number NUMBER(10) PRIMARY KEY,
+    NOrder_productNo DECIMAL(10, 0) NOT NULL,
+    NOrder_cookieID VARCHAR(255) NOT NULL,
+    NOrder_productName VARCHAR2(50 CHAR) NOT NULL,
+    NOrder_productColor VARCHAR2(30 CHAR) NOT NULL,
+    NOrder_productSize VARCHAR2(10 CHAR) NOT NULL,
+    NOrder_productQuantity NUMBER(3) NOT NULL,
+    NOrder_productPrice DECIMAL(10) NOT NULL
+   
+);
+
+CREATE SEQUENCE PRODUCTNORDER_SEQ;
+drop sequence productnorder_seq;
+
+select * from productOrder_NonMember;
+drop table productOrder_NonMember;
+
+--productorder_member 테이블
+CREATE TABLE productOrder_Member(
+    memberOrder_Number NUMBER(10) PRIMARY KEY,
+    memberOrder_productNo DECIMAL(10,0) NOT NULL,
+    memberOrder_memberId VARCHAR2(255) NOT NULL,
+    memberOrder_productName VARCHAR2(50 CHAR) NOT NULL,
+    memberOrder_productColor VARCHAR2(30 CHAR) NOT NULL,
+    memberOrder_productSize VARCHAR2(10 CHAR) NOT NULL,
+    memberOrder_productQuantity NUMBER(3) NOT NULL,
+    memberOrder_productPrice DECIMAL(10) NOT NULL
+
+      
+);
+
+create sequence productorder_seq;
+drop sequence productorder_seq;
+
+
+drop table productOrder_Member;
+select*from productOrder_member;
+
+SELECT
+    nom.NOrder_number,
+    nom.NOrder_productNo,
+    nom.NOrder_cookieID,
+    nom.NOrder_productName,
+    nom.NOrder_productColor,
+    nom.NOrder_productSize,
+    nom.NOrder_productQuantity,
+    nom.NOrder_productPrice, -- 여기에 쉼표 추가
+    epi.im_thumbnail_image
+FROM
+    productOrder_NonMember nom
+INNER JOIN
+    evo_product_image epi ON nom.NOrder_productNo = epi.im_p_product_no
+WHERE
+    nom.NOrder_cookieID = 'user_1704242468999';

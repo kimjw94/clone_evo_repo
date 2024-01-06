@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.evo.member.MemberMapper">
+	<!-- Member 관련 -->
+
+	<insert id="Signup" parameterType="com.market.evo.member.Member">
+		insert into EVO_MEMBER
+		values(#{m_id}, #{m_password},#{m_name}, #{m_alias},
+		#{m_phone},#{m_address_num},
+		#{m_address_kor},#{m_buy_sell,jdbcType=NUMERIC},
+		#{m_company_name,jdbcType=VARCHAR},
+		#{m_company_address_num,jdbcType=NUMERIC},
+		#{m_company_address_kor,jdbcType=VARCHAR},
+		#{m_account_name,jdbcType=VARCHAR},
+		#{m_account_number,jdbcType=VARCHAR})
+	</insert>
+
+	<select id="GetIDForLogin"
+		resultType="com.market.evo.member.Member">
+		SELECT * FROM EVO_MEMBER WHERE M_ID = #{m_id}
+	</select>
+	<update id="updateMember"
+		parameterType="com.market.evo.member.Member">
+		update EVO_MEMBER set m_password = #{m_password}, m_name
+		= #{m_name}, m_alias = #{m_alias}, m_phone = #{m_phone}, m_address_num
+		= #{m_address_num}, m_address_kor = #{m_address_kor} where m_id =
+		#{m_id}
+	</update>
+	<update id="sellerupdate"
+		parameterType="com.market.evo.member.Member">
+		update EVO_MEMBER set m_company_name =
+		#{m_company_name}, m_company_address_num = #{m_company_address_num},
+		m_account_name = #{m_account_name}, m_account_number =
+		#{m_account_number}, m_company_address_kor = #{m_company_address_kor}
+		where m_id = #{m_id}
+	</update>
+	<delete id="deleteMember"
+		parameterType="com.market.evo.member.Member">
+		delete from EVO_MEMBER where m_id = #{m_id}
+	</delete>
+	<select id="getMemberById"
+		parameterType="com.market.evo.member.Member"
+		resultType="com.market.evo.member.Member">
+		select * from EVO_MEMBER where m_id = #{m_id}
+	</select>
+	<select id="getMemberByAl"
+		parameterType="com.market.evo.member.Member"
+		resultType="com.market.evo.member.Member">
+		select * from EVO_MEMBER where m_alias = #{m_alias}
+	</select>
+	<select id="searchId"
+		parameterType="com.market.evo.member.Member"
+		resultType="com.market.evo.member.Member">
+		select * from EVO_MEMBER where m_name = #{m_name} AND
+		m_phone = #{m_phone}
+	</select>
+	<select id="searchPw"
+		parameterType="com.market.evo.member.Member"
+		resultType="com.market.evo.member.Member">
+		select * from EVO_MEMBER where m_id = #{m_id} AND m_name =
+		#{m_name} AND m_phone = #{m_phone}
+	</select>
+
+	<!-- 고객센터 관련 -->
+	<!-- categoryName -->
+	<insert id="cont" parameterType="com.market.evo.member.Helpper">
+		INSERT INTO h_form VALUES
+		(seq_h_num.nextval, #{h_m_id}, #{h_title}, #{h_productNum}, #{h_cont},
+		#{h_category}, #{h_category_code})
+	</insert>
+	<select id="categoryList" resultType="map">
+		select * from
+		helpper_r_category
+	</select>
+	<select id="detailCateList" parameterType="int" resultType="map">
+		select s_s_cate_code, s_s_cate_name
+		from
+		helpper_s_category
+		where
+		s_cate_code = #{r_cate_code}
+	</select>
+	<select id="helpperList"
+		resultType="com.market.evo.member.Helpper">
+		SELECT * FROM h_form
+		<where>
+			<if test="h_m_id != null">
+				AND h_m_id = #{h_m_id}
+			</if>
+		</where>
+	</select>
+	<select id="helpperListWithPagination"
+		resultType="com.market.evo.member.Helpper">
+    <![CDATA[
+    SELECT * FROM (
+        SELECT h.*, ROWNUM rnum FROM (
+            SELECT * FROM h_form
+            WHERE h_m_id = #{h.h_m_id}
+            ORDER BY h_num
+        ) h
+        WHERE ROWNUM <= #{startIndex} + #{itemsPerPage}
+    ) WHERE rnum > #{startIndex}
+    ]]>
+	</select>
+	<select id="getTotalHelpperCount" resultType="int">
+		SELECT COUNT(*) FROM h_form
+	</select>
+
+
+
+</mapper>

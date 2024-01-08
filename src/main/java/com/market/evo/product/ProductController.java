@@ -17,13 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.market.evo.product.Product;
-import com.market.evo.product.ProductDAO;
-import com.market.evo.product.ProductOrder_Member;
-import com.market.evo.product.ProductOrder_NonMember;
-import com.market.evo.product.member_orderData;
-import com.market.evo.product.nonmember_orderData;
-
 @Controller
 public class ProductController {
 
@@ -202,6 +195,45 @@ public class ProductController {
 		req.setAttribute("cp", "product/NoMemberOrder.jsp");
 		return "index";
 	}
+
+
+	@RequestMapping(value = "/product.orderlist.member", method = RequestMethod.GET)
+	public String orderlistmmember(HttpServletRequest req) {
+		pDAO.getProductOrdersbyID(req);
+		req.setAttribute("cp", "product/MemberOrder.jsp");
+		return "index";
+	}
 	
+	
+	@RequestMapping(value="/product.payedorder.nonmember", method=RequestMethod.POST)
+	@ResponseBody
+	public void payedOrderfromnonmember(HttpServletRequest req,HttpServletResponse rep, @RequestBody String json) {
+		try {
+			System.out.println(json);
+			ObjectMapper objectMapper = new ObjectMapper();
+			payedOrderData payedOrder = objectMapper.readValue(json, payedOrderData.class);
+			
+			List<PayedOrder> payedOrder2 = payedOrder.getData();
+			pDAO.insertPayedOrder(payedOrder2, rep);
+			rep.setStatus(HttpServletResponse.SC_OK);
+			rep.getWriter().write("pay_Success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				// 오류 상태 코드와 메시지를 클라이언트에게 전송
+				rep.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				rep.getWriter().write("pay_Failed");
+			} catch (IOException ioException) {
+				ioException.printStackTrace();
+			}
+		}
+	
+	}
+	
+	@RequestMapping(value="/order_success",method=RequestMethod.GET)
+		public String orderSuccess(HttpServletRequest req) {
+		req.setAttribute("cp", "product/orderComplete.jsp");
+		return "index";
+		}
 	
 }

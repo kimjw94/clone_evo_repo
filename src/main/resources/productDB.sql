@@ -245,19 +245,21 @@ drop sequence productorder_seq;
 drop table productOrder_Member;
 select*from productOrder_member;
 
-SELECT
-    nom.NOrder_number,
-    nom.NOrder_productNo,
-    nom.NOrder_cookieID,
-    nom.NOrder_productName,
-    nom.NOrder_productColor,
-    nom.NOrder_productSize,
-    nom.NOrder_productQuantity,
-    nom.NOrder_productPrice, -- 여기에 쉼표 추가
-    epi.im_thumbnail_image
-FROM
-    productOrder_NonMember nom
-INNER JOIN
-    evo_product_image epi ON nom.NOrder_productNo = epi.im_p_product_no
-WHERE
-    nom.NOrder_cookieID = 'user_1704242468999';
+--payedOrder테이블
+Create table payedOrder(
+	p_orderNo number(10) primary key,
+ 	p_orderID varchar2(255) not null,
+ 	p_orderNum varchar2(50) not null,
+ 	p_orderName varchar2(255 char) not null,
+ 	p_orderPhone varchar2(15 char)not null,
+ 	p_orderAddressNum number(7) not null,
+ 	p_orderAddress varchar2(50 char) not null,
+ 	p_productNames varchar2(50 char) not null,
+ 	p_totalAmount	decimal(10) not null
+ 	);
+
+select*from payedOrder;
+drop table payedOrder;
+ 	create sequence payedOrder_seq;
+ 	
+ 	

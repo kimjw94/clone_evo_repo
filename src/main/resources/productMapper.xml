@@ -43,11 +43,11 @@
 		values(
 		#{im_p_product_no},
 		#{im_thumbnail_image}
-		
+
 		<if test="im_info_image != null">
-		,#{im_info_image}
+			,#{im_info_image}
 		</if>
-		
+
 		)
 	</insert>
 
@@ -94,85 +94,93 @@
 	</select>
 
 
-<!-- 삼풍 상세정보 불러오기 (재고 빼고) -->
+	<!-- 삼풍 상세정보 불러오기 (재고 빼고) -->
 	<select id="detailProduct" parameterType="int" resultType="map">
-		select  p.p_product_no, p.p_product_name, p.p_price, p.p_info,
-				c.c_category_name, c.c_category_code,
-				d.d_category_detail_name, d.d_category_detail_code,
-				im.im_thumbnail_image, im.im_info_image
-  		from evo_product p, evo_product_image im,
-  				evo_category c, evo_category_detail d
- 		where p.p_product_no = #{p_product_no}
-   			and p.p_category_code = d.d_category_detail_code
-   			and d.d_category_code = c.c_category_code
-   			and im.im_p_product_no = p.p_product_no
+		select p.p_product_no, p.p_product_name, p.p_price, p.p_info,
+		c.c_category_name, c.c_category_code,
+		d.d_category_detail_name, d.d_category_detail_code,
+		im.im_thumbnail_image, im.im_info_image
+		from evo_product p, evo_product_image im,
+		evo_category c, evo_category_detail d
+		where p.p_product_no = #{p_product_no}
+		and p.p_category_code = d.d_category_detail_code
+		and d.d_category_code = c.c_category_code
+		and im.im_p_product_no = p.p_product_no
 	</select>
-	
+
 	<!-- 재고만 따로 불러오기 -->
-	<select id="detailInventory" parameterType="int" resultType="map">
+	<select id="detailInventory" parameterType="int"
+		resultType="map">
 		select * from evo_product_inventory
-		 where i_p_product_no = #{p_product_no}
+		where i_p_product_no = #{p_product_no}
 	</select>
-	
+
 	<!-- 재고만 업데이트 -->
 	<update id="updateInven" parameterType="map">
-		update evo_product_inventory
-		   set i_product_size = #{i_product_size},
-		       i_product_color = #{i_product_color},
-		       i_product_count = #{i_product_count}
-		 where i_product_size = #{i_product_sizeo}
-		   and i_product_color = #{i_product_coloro}
-		   and i_product_count = #{i_product_counto}
-		   and i_p_product_no = #{i_product_no}
+		update
+		evo_product_inventory
+		set i_product_size = #{i_product_size},
+		i_product_color = #{i_product_color},
+		i_product_count = #{i_product_count}
+		where i_product_size = #{i_product_sizeo}
+		and i_product_color = #{i_product_coloro}
+		and i_product_count = #{i_product_counto}
+		and i_p_product_no = #{i_product_no}
 	</update>
-	
+
 	<!-- 상품만 수정 -->
-	<update id="updatePro" parameterType="com.market.evo.product.Product">
+	<update id="updatePro"
+		parameterType="com.market.evo.product.Product">
 		update evo_product
-		   set p_product_name = #{p_product_name},
-		   		p_price = #{p_price},
-		   		p_info = #{p_info},
-		   		p_updateDay = default
-		 where p_product_no = #{p_product_no}
+		set p_product_name = #{p_product_name},
+		p_price = #{p_price},
+		p_info = #{p_info},
+		p_updateDay = default
+		where p_product_no = #{p_product_no}
 	</update>
-	
+
 	<!-- 썸네일 이미지만 수정 -->
 	<update id="updateThumbImg" parameterType="map">
-		update evo_product_image
-		   set im_thumbnail_image = #{im_thumbnail_image}
-		 where im_p_product_no = #{im_p_product_no}
+		update
+		evo_product_image
+		set im_thumbnail_image = #{im_thumbnail_image}
+		where im_p_product_no = #{im_p_product_no}
 	</update>
-	
+
 	<!-- 상품설명 이미지만 수정 -->
 	<update id="updateInfoImg" parameterType="map">
-		update evo_product_image
-		   set im_info_image = #{im_info_image}
-		 where im_p_product_no = #{im_p_product_no}
+		update
+		evo_product_image
+		set im_info_image = #{im_info_image}
+		where im_p_product_no = #{im_p_product_no}
 	</update>
-	
+
 	<!-- 재고 삭제 -->
 	<delete id="deleteInven" parameterType="map">
-		delete from evo_product_inventory
+		delete from
+		evo_product_inventory
 		where i_product_size = #{i_product_sizeo}
-		   and i_product_color = #{i_product_coloro}
-		   and i_product_count = #{i_product_counto}
-		   and i_p_product_no = #{i_product_no}
+		and i_product_color = #{i_product_coloro}
+		and i_product_count = #{i_product_counto}
+		and i_p_product_no = #{i_product_no}
 	</delete>
-	
+
 	<delete id="deleteInv" parameterType="int">
-		delete from evo_product_inventory
+		delete from
+		evo_product_inventory
 		where i_p_product_no = #{p_product_no}
 	</delete>
-	
+
 	<!-- 상품 삭제 -->
 	<delete id="deletePro" parameterType="int">
-		delete from evo_product 
-		 where p_product_no = #{p_product_no}
+		delete from evo_product
+		where p_product_no = #{p_product_no}
 	</delete>
-	
+
 	<delete id="deleteImg" parameterType="int">
-		delete from evo_product_image
-		 where im_p_product_no = #{p_product_no}
+		delete from
+		evo_product_image
+		where im_p_product_no = #{p_product_no}
 	</delete>
 
 
@@ -192,7 +200,7 @@
 		and
 		c.c_category_name= #{categoryName}
 	</select>
-	
+
 	<select id="getProductswithImagebyDetailCategory"
 		resultType="map">
 		select p.*, I.IM_THUMBNAIL_IMAGE
@@ -278,33 +286,59 @@
 		memberorder_productQuantity,memberOrder_productPrice,memberOrder_memberId)
 		values(
 		productorder_seq.nextval,
-		#{memberOrder_productNo, jdbcType=NUMERIC},
+		#{memberOrder_productNo,
+		jdbcType=NUMERIC},
 		#{memberOrder_productName},
 		#{memberOrder_productColor},
 		#{memberOrder_productSize},
 		#{memberOrder_productQuantity},
-		#{memberOrder_productPrice, jdbcType=NUMERIC},
+		#{memberOrder_productPrice,
+		jdbcType=NUMERIC},
 		#{memberOrder_memberId})
 
 	</insert>
 
 	<select id="selectProductOrdersByCookieID" resultType="map">
 		SELECT
-    nom.NOrder_number,
-    nom.NOrder_productNo,
-    nom.NOrder_cookieID,
-    nom.NOrder_productName,
-    nom.NOrder_productColor,
-    nom.NOrder_productSize,
-    nom.NOrder_productQuantity,
-    nom.NOrder_productPrice,
-    epi.im_thumbnail_image
-FROM
-    productOrder_NonMember nom
-INNER JOIN
-    evo_product_image epi ON nom.NOrder_productNo = epi.im_p_product_no
-WHERE
-    nom.NOrder_cookieID = #{cookieID}
+		nom.NOrder_number,
+		nom.NOrder_productNo,
+		nom.NOrder_cookieID,
+		nom.NOrder_productName,
+		nom.NOrder_productColor,
+		nom.NOrder_productSize,
+		nom.NOrder_productQuantity,
+		nom.NOrder_productPrice,
+		epi.im_thumbnail_image
+		FROM
+		productOrder_NonMember nom
+		INNER JOIN
+		evo_product_image epi ON nom.NOrder_productNo = epi.im_p_product_no
+		WHERE
+		nom.NOrder_cookieID = #{cookieID}
 	</select>
-
+	
+	<select id="selectProductOrdersByID" resultType="map">
+		SELECT
+		om.memberOrder_Number,
+		om.memberOrder_productNo,
+		om.memberOrder_memberId,
+		om.memberOrder_productName,
+		om.memberOrder_productColor,
+		om.memberOrder_productSize,
+		om.memberOrder_productQuantity,
+		om.memberOrder_productPrice,
+		epi.im_thumbnail_image
+		FROM
+		productOrder_Member om
+		INNER JOIN
+		evo_product_image epi ON om.memberOrder_productNo = epi.im_p_product_no
+		WHERE
+		om.memberOrder_memberId = #{mebmerID}
+	</select>
+	
+	
+<insert id="insertPayedOrder" parameterType="com.market.evo.product.PayedOrder">
+    insert into payedOrder values(payedOrder_seq.nextval,#{p_orderID},#{p_orderNum},#{p_orderName},#{p_orderPhone},
+    #{p_orderAddressNum},#{p_orderAddress},#{p_productNames},#{p_totalAmount})
+</insert>
 </mapper>

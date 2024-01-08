@@ -13,6 +13,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -225,48 +226,46 @@ public class ProductDAO {
 		}
 	}
 
-public void getOriginalInven(HttpServletRequest req, Map<String, Object> originInven) {
-		
+	public void getOriginalInven(HttpServletRequest req, Map<String, Object> originInven) {
+
 		try {
-			if(originInven.get("o") != null) {
-				if(ss.getMapper(ProductMapper.class).deleteInven(originInven) == 1) {
+			if (originInven.get("o") != null) {
+				if (ss.getMapper(ProductMapper.class).deleteInven(originInven) == 1) {
 				}
-			} else originalInven = originInven;
-		} catch(Exception e) {
+			} else
+				originalInven = originInven;
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("삭제 실패 ㅠ");
 		}
-		
-		
-		
-		
+
 	}
-	
+
 	public void updateProInven(HttpServletRequest req, Map<String, Object> inven) {
-		
+
 		try {
-			
+
 			Map<String, Object> updateInven = new HashMap<String, Object>();
-			
-			for(Map.Entry<String, Object> map : originalInven.entrySet()) {
+
+			for (Map.Entry<String, Object> map : originalInven.entrySet()) {
 				updateInven.put(map.getKey(), map.getValue());
 			}
-			
-			for(Map.Entry<String, Object> map2 : inven.entrySet()) {
+
+			for (Map.Entry<String, Object> map2 : inven.entrySet()) {
 				updateInven.put(map2.getKey(), map2.getValue());
 			}
 
-			if(ss.getMapper(ProductMapper.class).updateInven(updateInven) == 1) {
+			if (ss.getMapper(ProductMapper.class).updateInven(updateInven) == 1) {
 				System.out.println("업데이트 성공");
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("업데이트 실패");
 		}
 	}
-	
+
 	public int updateProduct(Product p, HttpServletRequest req) {
-		
+
 		MultipartRequest mr = null;
 
 		// 섬네일 사진 경로
@@ -278,27 +277,26 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 		String thumbName2 = null;
 		String infoName2 = null;
 
-		try {		
-			
+		try {
+
 			path1 = req.getSession().getServletContext().getRealPath("resources/thumbnailImg/");
 			path2 = req.getSession().getServletContext().getRealPath("resources/infoImg/");
-		
 
 			// 처음엔 path1(썸네일경로)에 다 저장
 			mr = new MultipartRequest(req, path1, 30 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 
 			try {
 				int pro_no = Integer.parseInt(mr.getParameter("p_product_no"));
-				
+
 				// 파일명에 시간추가하기
 				String thumbName = mr.getFilesystemName("im_thumbnail_image");
 				String infoName = mr.getFilesystemName("im_info_image");
-				
+
 				String now = new SimpleDateFormat("yyMMddHmsS").format(new Date());
 				Map<String, Object> imgMap = new HashMap<String, Object>();
 				imgMap.put("im_p_product_no", pro_no);
-				
-				if(thumbName != null) {
+
+				if (thumbName != null) {
 
 					// 썸네일이미지 파일
 					thumbName2 = now + thumbName;
@@ -306,58 +304,53 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 					File oldPhoto = new File(path1 + thumbName);
 					File newPhoto = new File(path1 + thumbName2);
 					oldPhoto.renameTo(newPhoto);
-					
+
 					imgMap.put("im_thumbnail_image", thumbName2);
-					
-					if(ss.getMapper(ProductMapper.class).updateThumbImg(imgMap) == 1) {
+
+					if (ss.getMapper(ProductMapper.class).updateThumbImg(imgMap) == 1) {
 						System.out.println("썸네일 이미지 변경 완료");
 					}
-					
+
 				}
-				
-				if(infoName != null) {
+
+				if (infoName != null) {
 					infoName2 = now + infoName;
 
 					// 정보 이미지 파일
 					File oldPhoto = new File(path1 + infoName);
 					File newPhoto = new File(path2 + infoName2);
 					oldPhoto.renameTo(newPhoto);
-					
+
 					imgMap.put("im_info_image", infoName2);
-					
-					if(ss.getMapper(ProductMapper.class).updateInfoImg(imgMap) == 1) {
+
+					if (ss.getMapper(ProductMapper.class).updateInfoImg(imgMap) == 1) {
 						System.out.println("상품설명 이미지 변경 완료");
 					}
-					
+
 				}
-
-				
-
 
 				Member m = (Member) req.getSession().getAttribute("loginMember");
 
 				p.setP_m_id(m.getM_id());
 				p.setP_product_name(mr.getParameter("p_product_name"));
 				p.setP_info(mr.getParameter("p_info"));
-				
+
 				BigDecimal p_no = new BigDecimal(mr.getParameter("p_product_no"));
 				p.setP_product_no(p_no);
-				
 
 				int p_category_code = Integer.parseInt(mr.getParameter("p_category_code"));
 				p.setP_category_code(p_category_code);
 
 				int p_price = Integer.parseInt(mr.getParameter("p_price"));
 				p.setP_price(p_price);
-	
-				if(ss.getMapper(ProductMapper.class).updatePro(p) == 1) {
+
+				if (ss.getMapper(ProductMapper.class).updatePro(p) == 1) {
 					System.out.println("상품 업데이트 완료");
 				}
 
 				Map<String, Object> inventory = new HashMap<String, Object>();
 				Map<String, Object> insertInven = new HashMap<String, Object>();
-				
-				
+
 				// i_product로만 시작되는 inputName 불러오기
 				Enumeration<String> enumKey = mr.getParameterNames();
 				int size = 0;
@@ -368,10 +361,10 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 					if (key.contains("a_product")) {
 						inventory.put(key, mr.getParameter(key));
 						size = Integer.parseInt(key.replaceAll("[^0-9]", ""));
-						if(minSize > size) {
+						if (minSize > size) {
 							minSize = size;
 						}
-						if(maxSize < size) {
+						if (maxSize < size) {
 							maxSize = size;
 						}
 					}
@@ -386,16 +379,16 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 							String result = getKey.replaceAll("[0-9]", "");
 							result = result.replace('a', 'i');
 							insertInven.put(result, entry.getValue());
-							
+
 						}
 					}
-					
-					if(insertInven.size() != 0 ) {
+
+					if (insertInven.size() != 0) {
 						System.out.println(insertInven);
 						insertInven.put("i_p_product_no", pro_no);
 						try {
 							if (ss.getMapper(ProductMapper.class).addInventory(insertInven) == 1) {
-								
+
 							}
 
 						} catch (Exception e) {
@@ -406,9 +399,9 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 						}
 					}
 				}
-				
-			return pro_no;
-			
+
+				return pro_no;
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				delImg(path1, path2, thumbName2, infoName2);
@@ -422,7 +415,7 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 			return 0;
 		}
 	}
-	
+
 	// 이미지 삭제 함수
 
 	public void delImg(String path1, String path2, String thumbImg, String infoImg) {
@@ -460,56 +453,50 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 		}
 	}
 
-	
-	
 	// 상품 디테일
 	public void detailProduct(HttpServletRequest req, int p_product_no) {
 		try {
 			List<Map<String, Object>> dp = ss.getMapper(ProductMapper.class).detailProduct(p_product_no);
-			
+
 			List<Map<String, Object>> di = ss.getMapper(ProductMapper.class).detailInventory(p_product_no);
-			
-			
-			if(dp.size() != 0) {
+
+			if (dp.size() != 0) {
 				req.setAttribute("detailProduct", dp);
 			}
-			
-			if(di.size() != 0) {
+
+			if (di.size() != 0) {
 				req.setAttribute("detailInventory", di);
 			}
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void deleteProduct(HttpServletRequest req) {
 		try {
 			int p_product_no = Integer.parseInt(req.getParameter("p_product_no"));
-			
-			
+
 			// 상품 삭제
-			if(ss.getMapper(ProductMapper.class).deletePro(p_product_no) == 1) {
+			if (ss.getMapper(ProductMapper.class).deletePro(p_product_no) == 1) {
 				System.out.println("상품 삭제");
 			}
-			
+
 			// 이미지 삭제
-			if(ss.getMapper(ProductMapper.class).deleteImg(p_product_no) == 1) {
+			if (ss.getMapper(ProductMapper.class).deleteImg(p_product_no) == 1) {
 				System.out.println("이미지 삭제");
 			}
-			
+
 			// 재고 삭제
-			if(ss.getMapper(ProductMapper.class).deleteInv(p_product_no) == 1) {
+			if (ss.getMapper(ProductMapper.class).deleteInv(p_product_no) == 1) {
 				System.out.println("재고 삭제");
 			}
-			
-			
-		} catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void getProductsWithImagebyCategory(HttpServletRequest req,String categoryName) {
-		
+
+	public void getProductsWithImagebyCategory(HttpServletRequest req, String categoryName) {
 
 		try {
 			List<Map<String, Object>> ProductsCategory = ss.getMapper(ProductMapper.class)
@@ -652,4 +639,41 @@ public void getOriginalInven(HttpServletRequest req, Map<String, Object> originI
 		}
 	}
 
+	public void getProductOrdersbyID(HttpServletRequest req) {
+		Member m = (Member) req.getSession().getAttribute("loginMember");
+
+		try {
+			String memberID = m.getM_id();
+			System.out.println("넣어볼게");
+			List<Map<String, String>> memberOrder = ss.getMapper(ProductMapper.class).selectProductOrdersByID(memberID);
+
+			if (memberOrder.size() != 0) {
+				req.setAttribute("MemberOrder", memberOrder);
+				System.out.println(memberOrder);
+			} else {
+				System.out.println("장바구니 없음");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+		}
+	}
+
+	public void insertPayedOrder(List<PayedOrder> payedOrder, HttpServletResponse response) {
+
+	    try {
+	        System.out.println(payedOrder);
+
+	        for (PayedOrder order : payedOrder) {
+	            if (ss.getMapper(ProductMapper.class).insertPayedOrder(order) != 0) {
+	                System.out.println("주문내역데이터 삽입 성공");
+	            } else {
+	            	System.out.println("주문내역데이터 삽입 실패");
+	            }
+	        }
+	    } catch (Exception e) {
+	    	e.printStackTrace();
+			System.out.println("db에 문제있음 ㅠ");
+	    }
+	}
 }

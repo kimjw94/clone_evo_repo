@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (response === "response.nonmember") {
                         window.location.href = 'product.orderlist.nonmember';
                     } else if (response === "response.member") {
-                        window.location.href = '/path/to/other/page/member';
+                        window.location.href = 'product.orderlist.member';
                     }
                 },
                 error: function (error) {

@@ -34,5 +34,6 @@ public interface ProductMapper {
 	public abstract int insertProductOrder_NonMember(ProductOrder_NonMember order);
 	public abstract int insertProductOrder_Member(ProductOrder_Member order);
 	public List<Map<String,String>> selectProductOrdersByCookieID(String cookieID); 
-
+	public List<Map<String,String>> selectProductOrdersByID(String memberID);
+	public abstract int insertPayedOrder(PayedOrder payedOrder);
 }

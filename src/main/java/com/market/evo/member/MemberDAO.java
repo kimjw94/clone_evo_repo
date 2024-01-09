@@ -323,6 +323,5 @@ public class MemberDAO {
 	    System.out.println("파일 저장 중: " + file.getAbsolutePath());
 	}
 	
-
 }
 

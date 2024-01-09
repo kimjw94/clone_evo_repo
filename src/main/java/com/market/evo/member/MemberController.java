@@ -52,7 +52,7 @@ public class MemberController {
 	@RequestMapping(value = "/member.signup", method = RequestMethod.POST)
 	public String Signup(Member m, HttpServletRequest req) {
 		mDAO.Signup(m, req);
-		req.setAttribute("cp", "home.jsp");
+		req.setAttribute("cp", "member/loginPage.jsp");
 		return "index";
 
 	}
@@ -195,16 +195,11 @@ public class MemberController {
 		return "index";
 	}
 
-	@RequestMapping(value = "/member.helpperList.go", method = RequestMethod.GET)
+	@RequestMapping(value = "/member.alwaysFAQ.go", method = RequestMethod.GET)
 	public String helpperList(HttpServletRequest req) {
-		if (req.getSession().getAttribute("loginMember") == null) {
-
-			return "redirect:/login";
-		} else {
-
-			req.setAttribute("cp", "member/helpperList.jsp");
-			return "index";
-		}
+		req.setAttribute("cp", "member/alwaysFAQ.jsp");
+		return "index";
+		
 	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -235,6 +230,12 @@ public class MemberController {
 	public String cont(Helpper h, HttpServletRequest req) {
 		mDAO.cont(h, req);
 		req.setAttribute("cp", "home.jsp");
+		return "index";
+	}
+	
+	@RequestMapping(value ="/member.sellPls.go", method=RequestMethod.GET)
+	public String sellPlsGo(HttpServletRequest req) {
+		req.setAttribute("cp", "info.jsp");
 		return "index";
 	}
 

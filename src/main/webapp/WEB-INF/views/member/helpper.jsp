@@ -66,11 +66,11 @@
 </head>
 <body>
 	<form action="member.helpper" method="post" enctype="multipart/form-data">
-		<div>1:1 문의하기</div>
+		<div class="nfont" id="hTitle">1:1 문의하기</div>
 		<hr />
 		<div>
 			<div align="left">
-				<div>문의 유형</div>
+				<div class="htTitle">문의 유형</div>
 				<div>
 					<label> <select id="h_category" name="h_category">
 							<option value="choice">선택</option>
@@ -85,30 +85,30 @@
 				</div>
 			</div>
 			<div>
-				<div>
+				<div class="htTitle">
 					<label for="h_title">주문 번호</label>
 				</div>
 				<div>
 					<input type="text" id="h_title" name="h_title" >
 				</div>
 			</div>
-			<div>
-				<div>
-					상품 내용
-				</div>
-				<div align="center">
-					<input type="text" id="h_cont" name="h_cont" style="width: 1000px; height: 400px;">
-				</div>
-			</div>
 			<div align="left">
 				<!-- 이미지 업로드 창 -->
+				<div class="htTitle">이미지</div>
 				<div>
 					<input type="file" name="imageFile">
 				</div>
 			</div>
-			<div align="right">
+			<div>
+				<div class="htTitle">글 내용</div>
+				<div align="center">
+					<input type="text" id="h_cont" name="h_cont" style="width: 1000px; height: 400px;">
+				</div>
+			</div>
+			
+			<div align="center" class="htTitle">
 				<div>
-					<button type="submit">문의하기</button>
+					<button type="submit" class="btn-black" id="hBtn">문의하기</button>
 				</div>
 			</div>
 		</div>

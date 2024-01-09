@@ -13,7 +13,7 @@
 		<div  class="photo">
 			<a href="product.showProduct.detail?productNo=${p.P_PRODUCT_NO }">
 				<div>
-					<img src="resources/thumnailImg/${p.IM_THUMBNAIL_IMAGE}"
+					<img src="resources/thumbnailImg/${p.IM_THUMBNAIL_IMAGE}"
 						id="p_image">
 				</div>
 				<div class="p_title">${p.P_PRODUCT_NAME}</div>

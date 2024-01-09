@@ -13,7 +13,13 @@
 		var m_password = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
+		var m_phone = document.getElementById("m_phone");
+		var m_alias = document.getElementById("m_alias");
+		var m_address1 = document.getElementById("address_input1");
+		var m_address2 = document.getElementById("address_input2");
+		var m_address3 = document.getElementById("address_input3");
 
+		
 		if ((m_password.value) == "") {
 			alert("비밀번호를 입력해주세요.");
 			m_password.focus();
@@ -31,7 +37,26 @@
 			m_pwcheck.focus();
 
 			return false;
-		} else {
+		} 
+		
+		if((m_alias.value) == "") {
+			alert("닉네임을 입력해주세요.");
+			m_alias.focus();
+			return false;
+		}
+		
+		if((m_phone.value) == "") {
+			alert("연락처를 입력해주세요.");
+			m_phone.focus();
+			return false;	
+		} 
+		
+		if((m_address1.value == "") || (m_address2.value == "") || (m_address3.value == "")) {
+			alert("주소를 입력해주세요.");
+			return false;
+		}
+		
+		else {
 			return true;
 		}
 
@@ -79,10 +104,10 @@
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('address input1').value = data.zonecode;
-						document.getElementById("address input2").value = addr;
+						document.getElementById('address_input1').value = data.zonecode;
+						document.getElementById("address_input2").value = addr;
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById("address input3").focus();
+						document.getElementById("address_input3").focus();
 
 					}
 				}).open();
@@ -130,7 +155,7 @@
 			<tr>
 				<th><label for="m_pw">PW</label></th>
 				<td><input value="${sessionScope.loginMember.m_password }"
-					type="password" name="m_password" id="m_pw" placeholder="Password"
+					type="password" name="m_password" id="m_password" placeholder="Password"
 					class=""></td>
 			</tr>
 			<tr>
@@ -161,24 +186,29 @@
 			</tr>
 			<tr>
 				<th><label for="m_address">주소</label></th>
-				<td><input type="text" name="m_address1" id="address input1"
+				<td><input type="text" name="m_address1" id="address_input1"
 					class="" readonly="readonly">
 					<button type="button" onclick="address_search()" class="btn-black">검색</button>
 				</td>
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="text" name="m_address2" id="address input2"
+				<td><input type="text" name="m_address2" id="address_input2"
 					class="" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="text" name="m_address3" id="address input3"
+				<td><input type="text" name="m_address3" id="address_input3"
 					class="" placeholder="상세주소"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="signupTd">
 					<button class="btn-black" id="signupBtn">수정</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center" class="sellTD">
+					<button class="btn-black" id="sellBtn" onclick="location.href='member.sellPls.go'">판매자 신청</button>
 				</td>
 			</tr>
 			<tr>

@@ -1,22 +1,22 @@
 @charset "UTF-8";
-.helpper {
+.index_nav {
   display: flex;
   justify-content: left;
   align-items: center;
 }
 
-.helpper ul {
+.index_nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.helpper ul li {
+.index_nav ul li {
   position: relative;
   margin-right: 20px;
 }
 
-.helpper ul li a {
+.index_nav ul li a {
   text-decoration: none;
   color: #333;
   font-size: 16px;
@@ -24,7 +24,7 @@
   display: block;
 }
 
-.helpper ul ul {
+.index_nav ul ul {
   position: absolute;
   top: 100%;
   left: 0;
@@ -34,20 +34,22 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.helpper ul li:hover > ul {
+.index_nav ul li:hover > ul {
   display: block;
 }
 
-.helpper ul ul li {
+.index_nav ul ul li {
   width: 200px;
   display: block;
+
 }
 
-.helpper ul ul li a {
-  padding: 10px;
+.index_nav ul ul li a {
+  margin-bottom: 10px;
+  font-size: 12pt;
 }
 
-.helpper ul ul ul {
+.index_nav ul ul ul {
   position: absolute;
   top: 0;
   left: 100%;
@@ -57,6 +59,94 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.helpper ul ul li:hover > ul {
+.index_nav ul ul li:hover > ul {
   display: block;
+}
+
+#hTitle {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20pt;
+}
+
+#fTitle {
+	padding: 20px;
+	font-size: 20pt;
+}
+
+#hBtn {
+	width: 120px;
+}
+
+.htTitle {
+	margin-top: 30px;
+}
+
+.f_btn {
+	color: #dcdcdc;
+	font-size: 12pt;
+}
+
+.f_List {
+	display: flex;
+	align-items: center;
+	box-sizing : border-box;
+	width: 100%;
+	border-top: 3px solid #000;
+	border-bottom: 1px solid #000;
+	justify-content: center;
+}
+
+.f_category {
+	text-align: center;
+	width: 300px;
+	font-size: 9pt;
+}
+
+.f_question {
+	flex: 1;
+	width: 120px;
+	font-size: 9pt;
+}
+
+.fSearch {
+	padding: 30px;
+	margin-bottom: 20px;
+}
+
+.h_btn {
+	height: 35px;
+}
+
+.f_qList {
+	display: flex;
+}
+
+.f_Category {
+	text-align: center;
+	width: 300px;
+	font-size: 11pt;
+}
+
+.f_Question {
+	flex: 1;
+	width: 120px;
+	font-size: 11pt;
+}
+
+.f_aList {
+	display: flex;
+	background-color: lightgray;
+}
+
+.f_Category {
+	text-align: center;
+	width: 300px;
+	font-size: 11pt;
+}
+
+.f_Answer {
+	flex: 1;
+	width: 120px;
+	font-size: 11pt;
 }

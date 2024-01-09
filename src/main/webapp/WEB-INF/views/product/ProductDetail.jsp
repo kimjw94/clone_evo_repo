@@ -411,7 +411,7 @@ document.addEventListener('DOMContentLoaded', function () {
 				<div class="product-name">${p.P_PRODUCT_NAME}</div>
 				<div class="product-left-info">
 					<div>
-						<img src="resources/thumnailImg/${p.IM_THUMBNAIL_IMAGE}"
+						<img src="resources/thumbnailImg/${p.IM_THUMBNAIL_IMAGE}"
 							alt="Product Image" class="product-image">
 					</div>
 				</div>

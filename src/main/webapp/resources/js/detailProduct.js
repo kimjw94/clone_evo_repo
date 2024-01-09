@@ -390,7 +390,15 @@ function check() {
 			alert("가격을 입력해주세요.");
 			price.focus();
 			return false;
-		} else {
+		} 
+		
+		if(flag == false) {
+			alert("수정완료가 되지 않은 재고가 있습니다. 확인을 눌러주세요.");
+			return false;
+			
+		} 
+		
+		else {
 			return true;
 		}
 		

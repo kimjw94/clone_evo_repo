@@ -54,22 +54,9 @@
 			<div align="center">
 				<a href="/evo/" class="title">evo</a>
 			</div>
-			<div>
-				<div class="nfont" align="left">
-					<nav class="helpper">
-						<ul>
-							<li style="cursor: pointer;">고객센터
-								<ul>
-									<li><a href="">자주 묻는 질문</a></li>
-									<li><a href="member.helpper.go">1:1 문의</a></li>
-									<li><a href="member.helpperList.go">문의 내역</a></li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-				<div class="nfont" align="right">
-					<nav class="myPage">
+			<div class="iIndex">
+				<div class="nfont" id="login_info">
+					<nav class="index_nav">
 						<ul>
 							<c:if test="${sessionScope.loginMember.m_id != null }">
 								<li style="cursor: pointer;">${sessionScope.loginMember.m_alias }님
@@ -94,8 +81,24 @@
 		</div>
 		<hr class="footerHr" />
 		<div class="footer" align="center">
-			evo
-			<p>문의 : 0000 - 0000
+			<div>
+				
+			</div>
+			
+			<div class="h_head">
+				<div>고객센터</div>
+			</div>
+			<div class="h_footer">
+				<div class="h_foo">1577-0000 (유료)</div>
+				<div>평일 오전 9시 - 오후 6시</div>
+				
+			</div>
+			<div class="h_footer2">
+				<div class="h_foo2"><a href="member.alwaysFAQ.go">FAQ 자주 묻는 질문 ></a></div>
+				<div class="h_foo3"><a href="member.helpper.go">1:1문의</a></div>
+				
+			</div>
+
 		</div>
 	</div>
 	<input type="checkbox" id="check_box" />

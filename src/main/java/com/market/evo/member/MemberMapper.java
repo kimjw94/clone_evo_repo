@@ -15,7 +15,7 @@ public interface MemberMapper {
 	public abstract List<Member> getMemberByAl(Member m);
 	public abstract Member searchId(Member m);
 	public abstract Member searchPw(Member m);
-	
+	public abstract int sellPls(String m_id);
 	//고객센터 관련
 	public abstract int cont(Helpper h);
 	public List<Map<String, Object>> categoryList();

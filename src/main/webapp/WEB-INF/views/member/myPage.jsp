@@ -40,7 +40,7 @@
 				</div>
 			</div>
 			<div class="pIcon">
-				<div class="iiconName" align="center">장바구니</div>
+				<div class="iiconName" align="center"><a href="product.showShoppingbasket">장바구니</a></div>
 				<div class="iiconName" align="center">위시리스트</div>
 				<div class="iiconName" align="center">구매내역</div>
 			<c:if test="${sessionScope.loginMember.m_buy_sell == 1 }">
@@ -51,23 +51,7 @@
 			</div>
 		</div>
 		<hr class="line"/>
-		<div align="center" valign="bottom">
-			<div align="left">
-				<div colspan="4" class="nfont">최근 본 상품</div>
-			</div>
-			<div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-			<div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-		</div>
+
 	</form>
 
 </body>

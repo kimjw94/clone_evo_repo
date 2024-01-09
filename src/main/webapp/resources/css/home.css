@@ -87,6 +87,48 @@ a {
 	margin-top: 200px;
 }
 
+.h_head {
+	font-size: 12pt;
+}
+
+.h_footer {
+	
+	font-size: 9pt;
+}
+
+.h_foo {
+	margin: auto;
+	padding: 10px;
+}
+
+.h_footer2 {
+	display: flex;
+	font-size: 9pt;
+	padding: 20px;
+}
+
+.h_foo2 {
+	width: 600px;
+}
+
+.h_foo3 a {
+	padding: 10px;	
+	background-color: #dcdcdc;
+}
+
+.h_foo2 a {
+	padding: 10px;	
+	background-color: #dcdcdc;
+}
+
 #loginA {
 	padding: 10px;
+}
+
+.iIndex {
+	display: flex;
+}
+
+#login_info {
+	margin-left: auto;
 }

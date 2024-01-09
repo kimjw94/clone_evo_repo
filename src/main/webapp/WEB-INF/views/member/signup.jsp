@@ -8,12 +8,20 @@
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+
+var idFlag = true;
+var nickFlag = true;
 	function btn_submit() {
 
 		var m_id = document.getElementById("m_id");
 		var m_password = document.getElementById("m_password");
 		var m_pwcheck = document.getElementById("m_pwcheck");
 		var m_name = document.getElementById("m_name");
+		var m_phone = document.getElementById("m_phone");
+		var m_alias = document.getElementById("m_alias");
+		var m_address1 = document.getElementById("address_input1");
+		var m_address2 = document.getElementById("address_input2");
+		var m_address3 = document.getElementById("address_input3");
 
 		let result = true;
 
@@ -30,18 +38,51 @@
 			return false;
 		}
 
+
+		if ((m_password.value) != (m_pwcheck.value)) {
+			alert("비밀번호가 동일하지 않습니다.");
+			m_pwcheck.focus();
+
+			return false;
+		} 
+		
 		if ((m_name.value) == "") {
 			alert("이름을 입력해주세요.");
 			m_name.focus();
 			return false;
 		}
 
-		if ((m_pw.value) != (m_pwcheck.value)) {
-			alert("비밀번호가 동일하지 않습니다.");
-			m_pwcheck.focus();
-
+		
+		if((m_alias.value) == "") {
+			alert("닉네임을 입력해주세요.");
+			m_alias.focus();
 			return false;
-		} else {
+		}
+		
+		if((m_phone.value) == "") {
+			alert("연락처를 입력해주세요.");
+			m_phone.focus();
+			return false;	
+		} 
+		
+		if((m_address1.value) == "" || (m_address2.value == "") || (m_address3.value == "")) {
+			alert("주소를 입력해주세요.");
+			return false;
+		}
+		
+		if(idFlag == false) {
+			alert("아이디가 중복되었습니다. 다시 입력해주세요.");
+			m_id.focus();
+			return false;
+		}
+		
+		if(nickFlag == false) {
+			alert("닉네임이 중복되었습니다. 다시 입력해주세요.");
+			m_alias.focus();
+			return false;
+		}
+		
+		else {
 			return true;
 		}
 
@@ -89,10 +130,10 @@
 						}
 
 						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('address input1').value = data.zonecode;
-						document.getElementById("address input2").value = addr;
+						document.getElementById('address_input1').value = data.zonecode;
+						document.getElementById("address_input2").value = addr;
 						// 커서를 상세주소 필드로 이동한다.
-						document.getElementById("address input3").focus();
+						document.getElementById("address_input3").focus();
 
 					}
 				}).open();
@@ -108,9 +149,11 @@
 				if (memberJSON.member[0] == null) {
 					$("#label1").html('사용 가능한 아이디입니다.')
 					$("#label1").css("color", "black");
+					idFlag = true;
 				} else {
 					$("#label1").html('사용할 수 없는 아이디입니다.')
 					$("#label1").css("color", "red");
+					idFlag = false;
 				}
 			});
 		});
@@ -124,12 +167,22 @@
 				if (memberJSON.member[0] == null) {
 					$("#label2").html('사용 가능한 닉네임입니다.')
 					$("#label2").css("color", "black");
+					nickFlag = true;
 				} else {
 					$("#label2").html('사용할 수 없는 닉네임입니다.')
 					$("#label2").css("color", "red");
+					nickFlag = false;
 				}
 			});
 		});
+	});
+	
+	$(document).on('keyup', '#m_id', function() {
+		$(this).val($(this).val().replace(/[^a-zA-Z0-9]/g, ''));
+	});
+	
+	$(document).on('keyup', '#m_phone', function() {
+		$(this).val($(this).val().replace(/[^0-9]/g, ''));
 	});
 </script>
 </head>
@@ -143,7 +196,7 @@
 			</tr>
 			<tr>
 				<th rowspan="2"><label for="m_id">ID</label></th>
-				<td><input name="m_id" id="m_id" placeholder="ID" class="">
+				<td><input name="m_id" id="m_id" placeholder="영문 소문자 및 숫자만 입력해주세요." class="">
 				</td>
 			</tr>
 			<tr>
@@ -177,23 +230,23 @@
 			<tr>
 				<th><label for="m_phone">연락처</label></th>
 				<td><input type="text" name="m_phone" id="m_phone" class=""
-					placeholder="ex) 010-xxxx-xxxx"></td>
+					placeholder="ex) 01012345678"></td>
 			</tr>
 			<tr>
 				<th><label for="m_address">주소</label></th>
-				<td><input type="text" name="m_address1" id="address input1"
+				<td><input type="text" name="m_address1" id="address_input1"
 					class="" readonly="readonly">
 					<button type="button" onclick="address_search()" class="btn-black">검색</button>
 				</td>
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="text" name="m_address2" id="address input2"
+				<td><input type="text" name="m_address2" id="address_input2"
 					class="" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<th></th>
-				<td><input type="text" name="m_address3" id="address input3"
+				<td><input type="text" name="m_address3" id="address_input3"
 					class="" placeholder="상세주소"></td>
 			</tr>
 			<tr>

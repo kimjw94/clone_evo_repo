@@ -12,7 +12,7 @@
 		<div class="titleImg" align="center">
 			<img src="./resources/css/img/main.PNG" width="800px" height="200px">
 		</div>
-		
+		<!-- 
 		<div class="pIcon">
 			<div class="iicon" align="center">
 				<a href="product.showProduct.all?categoryName=상의"><i class="fa-solid fa-shirt fa-2x"></i></a>
@@ -42,6 +42,7 @@
 				<a href="">모자</a>
 			</div>
 		</div>
+		-->
 		<hr class="line"/>
 		<div class="beest" align="left"> Best </div>
 		<div class="bImgDiv">

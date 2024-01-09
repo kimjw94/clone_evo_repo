@@ -10,6 +10,7 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="resources/js/jQuery.js"></script>
 <script type="text/javascript">
+//주소
 	function address_search() {
 	new daum.Postcode(
 				{
@@ -47,21 +48,25 @@
 					}
 				}).open();
 	}
+	//
 	
 	  document.addEventListener('DOMContentLoaded', function () {
-	        updateTotalPriceDisplay();
-	        generateProductNames();
-	    });
+    updateTotalPriceDisplay();
+    var productNames = generateProductNames();
+    console.log('Product Names:', productNames);
+});
 
-	    var orderTable = document.getElementById('order-table');
-	    if (orderTable) {
-	        orderTable.addEventListener('input', function (event) {
-	            var target = event.target;
-	            if (target.classList.contains('product-quantity') || target.classList.contains('product-price')) {
-	                updateTotalPriceDisplay();
-	            }
-	        });
-	    }
+	  var orderTable = document.getElementById('order-table');
+	  if (orderTable) {
+	      orderTable.addEventListener('input', function (event) {
+	          var target = event.target;
+	          if (target.classList.contains('product-quantity') || target.classList.contains('product-price')) {
+	              updateTotalPriceDisplay();
+	              var productNames = generateProductNames(); // 수정된 부분
+	              console.log('Product Names:', productNames); // 수정된 부분
+	          }
+	      });
+	  }
 
 	    function calculateTotalPrice() {
 	        var totalPrice = 0;
@@ -89,7 +94,7 @@
 	        var orderRows = document.querySelectorAll('.order-row');
 
 	        orderRows.forEach(function (row) {
-	            var productNameElement = row.querySelector('.product-name');
+	            var productNameElement = row.querySelector('td:nth-child(2)'); // 수정된 부분
 	            if (productNameElement) {
 	                var productName = productNameElement.innerText;
 	                productNames.push(productName);
@@ -99,18 +104,19 @@
 	        return productNames;
 	    }
 
-	    function generateUniqueOrderNumber() {
+	 
+	    	function generateUniqueOrderNumber() {
 	        var timestamp = new Date().getTime();
 	        var randomNumber = Math.floor(Math.random() * 1000);
 	        return 'ORDER_' + timestamp + '_' + randomNumber;
 	    }
 
 	    // 서버에서 전달된 상품명 배열 사용
-	    var productNames = [
-	        <c:forEach var="order" items="${MemberOrder}" varStatus="loop">
-	            '${order.MEMBERORDER_PRODUCTNAME}'${!loop.last ? ',' : ''}
-	        </c:forEach>
-	    ];
+	 var productNames = [
+        <c:forEach var="order" items="${MemberOrder}" varStatus="loop">
+            '${order.MEMBERORDER_PRODUCTNAME}'${!loop.last ? ',' : ''}
+        </c:forEach>
+    ];
 
 	    var IMP = window.IMP;
 	    IMP.init('imp85536486');
@@ -141,6 +147,7 @@
 	          // callback
 	          if (rsp.success) {
 	            console.log(rsp);
+	            sendOrderDetails(uniqueOrderNumber);
 	          } else {
 	            console.log(rsp);
 	          }
@@ -162,7 +169,7 @@
 	        var productNames = generateProductNames(); // 이미 구현된 함수 사용
 	        var totalAmount = calculateTotalPrice();
 
-	        // 사용자 ID 가져오기 (예시로 getCookieID 함수 사용)
+	        // 사용자 ID 가져오기 
 	        var orderID = ${sessionScope.loginMember.m_id};
 
 	        // 주문 데이터 생성
@@ -185,7 +192,7 @@
 	        $.ajax({
 	            type: "POST",
 	            contentType: "application/json;charset=UTF-8",
-	            url: "product.payedorder.nonmember",
+	            url: "product.payedorder.member",
 	            data: JSON.stringify(orderData),
 	            success: function (response) {
 	                console.log("주문 세부 정보 전송 성공");
@@ -193,6 +200,7 @@
 	            },
 	            error: function (error) {
 	                console.error("주문 세부 정보 전송 중 오류 발생", error);
+	                alert('주문 세부 정보 전송 중 오류 발생')
 	            }
 	        });
 	    }
@@ -216,12 +224,12 @@
 					class="order__item__label">이름</span>
 					<div class="order_item_area">
 						<input type="text" class="order_input" name="order_name"
-							placeholder=${sessionScope.loginMember.m_name } maxlength="20">
+							placeholder=${sessionScope.loginMember.m_name } maxlength="20" value=${sessionScope.loginMember.m_name }>
 					</div></li>
 				<li class="order__item order__item--phone"><span
 					class="order__item__label">휴대전화</span>
 					<div class="order__item__area">
-						<input name="order_phone" placeholder=${sessionScope.loginMember.m_phone }>
+						<input name="order_phone" placeholder=${sessionScope.loginMember.m_phone } value=${sessionScope.loginMember.m_phone }>
 					</div></li>
 			</ul>
 		</div>

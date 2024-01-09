@@ -45,10 +45,11 @@
             }
         }).open();
     }
-
+//
     document.addEventListener('DOMContentLoaded', function () {
         updateTotalPriceDisplay();
         generateProductNames();
+        console.log('Product Names:', productNames);
     });
 
     var orderTable = document.getElementById('order-table');
@@ -87,7 +88,7 @@
         var orderRows = document.querySelectorAll('.order-row');
 
         orderRows.forEach(function (row) {
-            var productNameElement = row.querySelector('.product-name');
+            var productNameElement = row.querySelector('.order-row td:nth-child(2)');
             if (productNameElement) {
                 var productName = productNameElement.innerText;
                 productNames.push(productName);

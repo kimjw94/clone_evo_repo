@@ -230,6 +230,32 @@ public class ProductController {
 	
 	}
 	
+	
+	@RequestMapping(value="/product.payedorder.member", method=RequestMethod.POST)
+	@ResponseBody
+	public void payedOrderfrommember(HttpServletRequest req,HttpServletResponse rep, @RequestBody String json) {
+		try {
+			System.out.println(json);
+			ObjectMapper objectMapper = new ObjectMapper();
+			payedOrderData payedOrder = objectMapper.readValue(json, payedOrderData.class);
+			
+			List<PayedOrder> payedOrder2 = payedOrder.getData();
+			pDAO.insertPayedOrder(payedOrder2, rep);
+			rep.setStatus(HttpServletResponse.SC_OK);
+			rep.getWriter().write("pay_Success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				// 오류 상태 코드와 메시지를 클라이언트에게 전송
+				rep.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+				rep.getWriter().write("pay_Failed");
+			} catch (IOException ioException) {
+				ioException.printStackTrace();
+			}
+		}
+	
+	}
+	
 	@RequestMapping(value="/order_success",method=RequestMethod.GET)
 		public String orderSuccess(HttpServletRequest req) {
 		req.setAttribute("cp", "product/orderComplete.jsp");

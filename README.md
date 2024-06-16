@@ -28,4 +28,8 @@
 - 상품 등록 /조회 /수정 / 삭제
 - 상품 주문 및 결제
 - 고객센터 문의 게시판
-  
+
+## 화면구성
+1. 메인화면
+<img src="https://github.com/kimjw94/clone_evo_repo/raw/main/assets/152935868/969aecd4-96d3-48eb-acff-2c111c094cfc" alt="image">
+

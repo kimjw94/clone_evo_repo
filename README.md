@@ -33,3 +33,5 @@
 1. 메인화면
 <img src="https://github.com/kimjw94/clone_evo_repo/raw/main/assets/152935868/969aecd4-96d3-48eb-acff-2c111c094cfc" alt="image">
 
+![evo_main](https://github.com/kimjw94/clone_evo_repo/assets/152935868/62f48a31-6053-4c80-8b32-cd763153b839)
+<img src="https://github.com/kimjw94/clone_evo_repo/raw/main/assets/152935868/62f48a31-6053-4c80-8b32-cd763153b839" alt="evo_main">

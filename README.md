@@ -31,5 +31,6 @@
 
 ## 화면구성
 1. 메인화면
-![evo_main](https://github.com/kimjw94/clone_evo_repo/assets/152935868/62f48a31-6053-4c80-8b32-cd763153b839){: width="300" height="300"}
+
+
 

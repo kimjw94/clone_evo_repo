@@ -88,4 +88,30 @@
 - 판매자 신청 클릭시 **DB에 판매자여부 값이 0에서 1로 변경**되며 판매자로 상품등록이 가능하게 변경 됨
 - 회원탈퇴 클릭시 비밀번호를 입력하는 창으로 이동 후 비밀번호 입력 성공시 회원 탈퇴하겠습니까 alert 발생
 ---
+7. **판매자 등록 페이지**
+    <p align="center">
+    <img src="https://github.com/kimjw94/clone_evo_repo/assets/152935868/f90f770a-aa26-4e6e-9cae-3a31a07b2393" width="400" height"400">
+    </p>
+- 판매자 등록이 되어있는 아이디로 로그인 후 환영합니다 부분에 마우스 오버시 **상품정보 항목이 추가됨**
+- 상품 추가를 클릭하면 위에 사진과 같은 페이지로 이동
+- 상품 등록 완료시 해당 카테고리에서 **상품 조회가 가능해짐**
+---
+8. **상품 조회 페이지**
+   <p align="center">
+     <img src="https://github.com/kimjw94/clone_evo_repo/assets/152935868/ed6cb647-5640-40dd-b501-4f163281e212" width="300" >
+     <img src="https://github.com/kimjw94/clone_evo_repo/assets/152935868/572e6edd-a34d-4e39-bb22-1822471e307b" width="300" >
+   </p>
 
+   <p align="center">
+   <img src="https://github.com/kimjw94/clone_evo_repo/assets/152935868/48b86f88-8760-4bf5-b2a3-976fe7d0c952" width="300">
+   <img src="https://github.com/kimjw94/clone_evo_repo/assets/152935868/9c3e3771-2b50-4b63-8e83-845a8ad577e9" width="300">
+   </p>
+   <p align="center">
+   <img src="https://github.com/kimjw94/clone_evo_repo/assets/152935868/33b5ed0e-536a-416d-9211-2781d0589c03)" width="300">
+   </p>
+ - 옵션 선택시 **동적 테이블 생성**
+ - **+/- 버튼에 따른 수량 증가**와 수량 증가에 따른 **전체가격 계산**
+ - 옵션 미선택 후 상품 주문하기 시도시 **옵션 선택 유도 alert**
+ - 동일 옵션 선택 시 테이블 내에 **수량 조절 버튼 클릭 유도 alert**
+---
+9.

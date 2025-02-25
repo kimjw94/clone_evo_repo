@@ -10,6 +10,16 @@
 개발인원 : 3명(김재원, 이용재, 지유림)  
 주제 선정 이유: 로그인 시스템 구현, DB CRUD 등 웹 페이지 제작의 기초가 되는 기술들을 적용할 수 있는 프로젝트
 
+**본인(김재원)이 맡은 역할**  
+구매자 화면 관련 내용, 구매 DB 구현  
+회원 로그인 화면,기능 제작  
+구매자 상품 정보 조회 화면, 기능 제작  
+전체 상품 리스트 조회 화면, 기능 제작  
+홈의 상품 네비게이션 바 기능 제작  
+결제 화면 기능 제작  
+주문정보 DB 구현  
+
+
 ## 기술 스택
 ### ✔️ Front-end
 <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
